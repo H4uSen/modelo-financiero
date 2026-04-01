@@ -52,3 +52,79 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Ignore Visual Studio specific files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore build outputs
+bin/
+obj/
+[Bb]uild[Ll]og.*
+
+# Ignore NuGet packages
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Ignore Rider/JetBrains specific files
+.idea/
+*.sln.iml
+
+# Ignore Windows specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Ignore log files
+*.log
+
+# Ignore application insights
+ApplicationInsights.config
+
+# Ignore publish output
+wwwroot/
+publish/
+
+# Ignore Resharper files
+_ReSharper.Caches/
+
+# Ignore generated files
+Form1.Designer.cs
+Form1.resx
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Ignore other system files
+.DS_Store
+*.class
+*.pyc
+*.pyo
+*.pyd
+*.pid
+*.seed
+*.cover
+*.orig
+*.rej
+*.so
+*.o
+*.lo
+*.la
+*.al
+*.lib
+*.a
+*.la
+*.la
+*.la

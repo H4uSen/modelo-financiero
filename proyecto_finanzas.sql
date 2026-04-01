@@ -1,9 +1,8 @@
-USE hausencito247_finanzas
-GO
-SELECT * FROM escenarios
+CREATE DATABASE db_finanzas
+Go
+USE db_finanzas
 GO
 
-GO
 create table entradasEscenarios
 (
     id_escenario             int identity
@@ -90,8 +89,7 @@ CREATE TABLE estadoResultados
     otros_ingresos DECIMAL(18, 2) DEFAULT 0,
     --neto_otros_ingresos DECIMAL(18, 2) DEFAULT 0,
     -- utilidad_antes_impuestos DECIMAL(18, 2) DEFAULT 0,
-    impuestos DECIMAL(18, 2) DEFAULT 0),
+    impuestos DECIMAL(18, 2) DEFAULT 0,
     --utilidad_neta DECIMAL(18, 2) DEFAULT 0),
-
     FOREIGN KEY (id_escenario) REFERENCES entradasEscenarios(id_escenario)
 )
