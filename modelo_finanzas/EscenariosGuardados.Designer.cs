@@ -132,6 +132,7 @@
             Controls.Add(dgvEscenarios);
             Name = "EscenariosGuardados";
             Text = "EscenariosGuardados";
+            FormClosed += EscenariosGuardados_FormClosed;
             ((System.ComponentModel.ISupportInitialize)dgvEscenarios).EndInit();
             tabControl2.ResumeLayout(false);
             ResumeLayout(false);

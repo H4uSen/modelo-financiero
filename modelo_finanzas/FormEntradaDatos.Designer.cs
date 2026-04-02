@@ -96,9 +96,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(10, 7);
+            label1.Location = new Point(11, 9);
             label1.Name = "label1";
-            label1.Size = new Size(154, 15);
+            label1.Size = new Size(194, 20);
             label1.TabIndex = 0;
             label1.Text = "Ingrese los siguientes datos:";
             // 
@@ -106,18 +106,18 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(6, 23);
+            label2.Location = new Point(7, 31);
             label2.Name = "label2";
-            label2.Size = new Size(135, 17);
+            label2.Size = new Size(174, 23);
             label2.TabIndex = 1;
             label2.Text = "Tamaño del mercado:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 66);
+            label4.Location = new Point(7, 88);
             label4.Name = "label4";
-            label4.Size = new Size(213, 19);
+            label4.Size = new Size(269, 23);
             label4.TabIndex = 3;
             label4.Text = "% crecimiento anual del mercado:";
             label4.Click += label4_Click;
@@ -125,27 +125,27 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(6, 116);
+            label5.Location = new Point(7, 155);
             label5.Name = "label5";
-            label5.Size = new Size(135, 19);
+            label5.Size = new Size(169, 23);
             label5.TabIndex = 4;
             label5.Text = "Encuestas realizadas:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(256, 116);
+            label6.Location = new Point(293, 155);
             label6.Name = "label6";
-            label6.Size = new Size(148, 19);
+            label6.Size = new Size(183, 23);
             label6.TabIndex = 5;
             label6.Text = "Manifestaron comprar:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(256, 66);
+            label7.Location = new Point(293, 88);
             label7.Name = "label7";
-            label7.Size = new Size(152, 19);
+            label7.Size = new Size(190, 23);
             label7.TabIndex = 6;
             label7.Text = "% objetivo de mercado:";
             // 
@@ -163,8 +163,7 @@
             groupBox1.Controls.Add(label5);
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox1.Location = new Point(10, 24);
-            groupBox1.Margin = new Padding(3, 2, 3, 2);
+            groupBox1.Location = new Point(11, 32);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(3, 2, 3, 2);
             groupBox1.Size = new Size(518, 176);
@@ -190,26 +189,29 @@
             // 
             // txtEncRealizadas
             // 
-            txtEncRealizadas.Location = new Point(6, 134);
+            txtEncRealizadas.Location = new Point(7, 179);
+            txtEncRealizadas.Margin = new Padding(3, 4, 3, 4);
             txtEncRealizadas.Name = "txtEncRealizadas";
             txtEncRealizadas.PlaceholderText = "ej. 5000";
-            txtEncRealizadas.Size = new Size(213, 26);
+            txtEncRealizadas.Size = new Size(243, 30);
             txtEncRealizadas.TabIndex = 13;
             // 
             // txtCrecimientoAnualMerc
             // 
-            txtCrecimientoAnualMerc.Location = new Point(6, 88);
+            txtCrecimientoAnualMerc.Location = new Point(7, 117);
+            txtCrecimientoAnualMerc.Margin = new Padding(3, 4, 3, 4);
             txtCrecimientoAnualMerc.Name = "txtCrecimientoAnualMerc";
             txtCrecimientoAnualMerc.PlaceholderText = "ej. 2.5%";
-            txtCrecimientoAnualMerc.Size = new Size(213, 26);
+            txtCrecimientoAnualMerc.Size = new Size(243, 30);
             txtCrecimientoAnualMerc.TabIndex = 12;
             // 
             // txtTamanioMercado
             // 
-            txtTamanioMercado.Location = new Point(6, 40);
+            txtTamanioMercado.Location = new Point(7, 53);
+            txtTamanioMercado.Margin = new Padding(3, 4, 3, 4);
             txtTamanioMercado.Name = "txtTamanioMercado";
             txtTamanioMercado.PlaceholderText = "ej. 2000000";
-            txtTamanioMercado.Size = new Size(213, 26);
+            txtTamanioMercado.Size = new Size(243, 30);
             txtTamanioMercado.TabIndex = 11;
             txtTamanioMercado.KeyPress += txtTamanioMercado_KeyPress;
             // 
@@ -280,36 +282,36 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(6, 22);
+            label8.Location = new Point(7, 29);
             label8.Name = "label8";
-            label8.Size = new Size(127, 17);
+            label8.Size = new Size(164, 23);
             label8.TabIndex = 1;
             label8.Text = "Precio del producto:";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(256, 20);
+            label9.Location = new Point(293, 27);
             label9.Name = "label9";
-            label9.Size = new Size(193, 19);
+            label9.Size = new Size(243, 23);
             label9.TabIndex = 2;
             label9.Text = "% de inflación anual esperado:";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(6, 65);
+            label11.Location = new Point(7, 87);
             label11.Name = "label11";
-            label11.Size = new Size(341, 19);
+            label11.Size = new Size(431, 23);
             label11.TabIndex = 3;
             label11.Text = "% de incremento real al precio por encima de inflación:";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(6, 115);
+            label13.Location = new Point(7, 153);
             label13.Name = "label13";
-            label13.Size = new Size(202, 19);
+            label13.Size = new Size(256, 23);
             label13.TabIndex = 4;
             label13.Text = "% de IPP adicional a la inflación:";
             // 
@@ -323,8 +325,7 @@
             groupBox3.Controls.Add(label15);
             groupBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox3.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox3.Location = new Point(10, 204);
-            groupBox3.Margin = new Padding(3, 2, 3, 2);
+            groupBox3.Location = new Point(11, 272);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(3, 2, 3, 2);
             groupBox3.Size = new Size(518, 132);
@@ -360,18 +361,18 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(6, 22);
+            label10.Location = new Point(7, 29);
             label10.Name = "label10";
-            label10.Size = new Size(170, 17);
+            label10.Size = new Size(221, 23);
             label10.TabIndex = 1;
             label10.Text = "Costo de producción inicial:";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(256, 20);
+            label12.Location = new Point(293, 27);
             label12.Name = "label12";
-            label12.Size = new Size(236, 19);
+            label12.Size = new Size(291, 23);
             label12.TabIndex = 2;
             label12.Text = "% de gastos operativos sobre ventas:";
             // 
@@ -502,25 +503,25 @@
             label24.AutoSize = true;
             label24.Location = new Point(296, 207);
             label24.Name = "label24";
-            label24.Size = new Size(137, 19);
+            label24.Size = new Size(170, 23);
             label24.TabIndex = 10;
             label24.Text = "% de tasa impositiva:";
             // 
             // label23
             // 
             label23.AutoSize = true;
-            label23.Location = new Point(6, 207);
+            label23.Location = new Point(7, 276);
             label23.Name = "label23";
-            label23.Size = new Size(180, 19);
+            label23.Size = new Size(225, 23);
             label23.TabIndex = 9;
             label23.Text = "% de gradiente de los flujos:";
             // 
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new Point(6, 160);
+            label22.Location = new Point(7, 213);
             label22.Name = "label22";
-            label22.Size = new Size(201, 19);
+            label22.Size = new Size(252, 23);
             label22.TabIndex = 8;
             label22.Text = "% prima de riesgo del mercado:";
             // 
@@ -529,16 +530,16 @@
             label21.AutoSize = true;
             label21.Location = new Point(296, 160);
             label21.Name = "label21";
-            label21.Size = new Size(102, 19);
+            label21.Size = new Size(127, 23);
             label21.TabIndex = 7;
             label21.Text = "Beta del sector:";
             // 
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(6, 113);
+            label20.Location = new Point(7, 151);
             label20.Name = "label20";
-            label20.Size = new Size(161, 19);
+            label20.Size = new Size(201, 23);
             label20.TabIndex = 6;
             label20.Text = "% de tasa libre de riesgo:";
             // 
@@ -547,7 +548,7 @@
             label19.AutoSize = true;
             label19.Location = new Point(296, 113);
             label19.Name = "label19";
-            label19.Size = new Size(112, 19);
+            label19.Size = new Size(141, 23);
             label19.TabIndex = 5;
             label19.Text = "Plazo del crédito:";
             // 
@@ -556,7 +557,7 @@
             label18.AutoSize = true;
             label18.Location = new Point(296, 66);
             label18.Name = "label18";
-            label18.Size = new Size(161, 19);
+            label18.Size = new Size(203, 23);
             label18.TabIndex = 4;
             label18.Text = "% financiado con crédito:";
             // 
@@ -564,9 +565,9 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.Location = new Point(6, 21);
+            label14.Location = new Point(7, 28);
             label14.Name = "label14";
-            label14.Size = new Size(280, 17);
+            label14.Size = new Size(365, 23);
             label14.TabIndex = 1;
             label14.Text = "Inversión en equipos X punto de participación:";
             // 
@@ -575,7 +576,7 @@
             label16.AutoSize = true;
             label16.Location = new Point(296, 19);
             label16.Name = "label16";
-            label16.Size = new Size(143, 19);
+            label16.Size = new Size(181, 23);
             label16.TabIndex = 2;
             label16.Text = "Plazo de depreciación:";
             label16.Click += label16_Click;
@@ -583,9 +584,9 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(6, 66);
+            label17.Location = new Point(7, 88);
             label17.Name = "label17";
-            label17.Size = new Size(275, 19);
+            label17.Size = new Size(343, 23);
             label17.TabIndex = 3;
             label17.Text = "% de recuperaciones sobre costo de ventas:";
             // 
@@ -651,7 +652,7 @@
             // 
             // FormEntradaDatos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1125, 511);
             Controls.Add(btnGuardar);
@@ -666,9 +667,9 @@
             Controls.Add(button1);
             Controls.Add(groupBox1);
             Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "FormEntradaDatos";
             Text = "Modelo Financiero";
+            FormClosed += FormEntradaDatos_FormClosed;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

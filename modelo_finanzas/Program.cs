@@ -1,3 +1,5 @@
+using Prueba1;
+
 namespace modelo_finanzas
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace modelo_finanzas
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormEntradaDatos());
+            Application.Run(new MenuPrincipal());
         }
     }
 }

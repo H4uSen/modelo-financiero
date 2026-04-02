@@ -16,5 +16,10 @@ namespace Prueba1
             this.CenterToScreen();
             this.Text = "Escenarios Guardados";
         }
+
+        private void EscenariosGuardados_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

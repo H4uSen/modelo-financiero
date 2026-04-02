@@ -21,5 +21,10 @@ namespace Prueba1
         {
 
         }
+
+        private void VistaResultadosFinales_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
