@@ -53,7 +53,7 @@ namespace Prueba1
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Application.Exit(); 
         }
     }
 }
