@@ -1,0 +1,31 @@
+# mssql-compose.yaml
+name: finanzas-mssql
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql-finanzas
+    restart: no
+    environment:
+      SA_PASSWORD: ${SA_PASSWORD}
+      MSSQL_PID: Express
+      ACCEPT_EULA: Y
+      MSSQL_BACKUP_DIR: /var/opt/mssql/backup:rw
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./data:/var/opt/mssql/data:rw
+      - ./data/log:/var/opt/mssql/log:rw
+      - ./data/backup:/var/opt/mssql/backup:rw
+    networks:
+      default:
+        interface_name: mssql.finanzas
+    #Execute command to create database
+    #command: /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P ${SA_PASSWORD} -d master -Q "CREATE DATABASE finanzas"
+
+    # Uncomment the following section to enable file synchronization for development
+    # develop:
+    #   watch:
+    #     - action: sync
+    #       path: .
+    #       target: /code
+
