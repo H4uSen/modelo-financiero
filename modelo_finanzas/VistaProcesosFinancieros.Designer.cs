@@ -85,6 +85,7 @@
             Controls.Add(dgvTablaVentasProyectadas);
             Name = "VistaProcesosFinancieros";
             Text = "VistaProcesosFinancieros";
+            FormClosed += VistaProcesosFinancieros_FormClosed;
             ((System.ComponentModel.ISupportInitialize)dgvTablaVentasProyectadas).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvTablaCostosGastos).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvTablaAmortiCredito).EndInit();

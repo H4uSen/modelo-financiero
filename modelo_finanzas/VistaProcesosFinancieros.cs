@@ -16,5 +16,10 @@ namespace Prueba1
             this.CenterToScreen();
             this.Text = "Proyecciones y Cálculos";
         }
+
+        private void VistaProcesosFinancieros_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

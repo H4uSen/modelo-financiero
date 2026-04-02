@@ -35,6 +35,19 @@ namespace Prueba1
         /// </summary>
         private void InitializeComponent()
         {
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend1 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VistaResultadosFinales));
+            LiveChartsCore.Drawing.Padding padding1 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip1 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
+            LiveChartsCore.Drawing.Padding padding2 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend2 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
+            LiveChartsCore.Drawing.Padding padding3 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip2 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
+            LiveChartsCore.Drawing.Padding padding4 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend skDefaultLegend3 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultLegend();
+            LiveChartsCore.Drawing.Padding padding5 = new LiveChartsCore.Drawing.Padding();
+            LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip skDefaultTooltip3 = new LiveChartsCore.SkiaSharpView.SKCharts.SKDefaultTooltip();
+            LiveChartsCore.Drawing.Padding padding6 = new LiveChartsCore.Drawing.Padding();
             label1 = new Label();
             label2 = new Label();
             tabControl1 = new TabControl();
@@ -99,11 +112,44 @@ namespace Prueba1
             // 
             // cartesianChart1
             // 
+            cartesianChart1.AutoUpdateEnabled = true;
+            cartesianChart1.ChartTheme = null;
+            skDefaultLegend1.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultLegend1.Content = null;
+            skDefaultLegend1.IsValid = true;
+            skDefaultLegend1.Opacity = 1F;
+            padding1.Bottom = 0F;
+            padding1.Left = 0F;
+            padding1.Right = 0F;
+            padding1.Top = 0F;
+            skDefaultLegend1.Padding = padding1;
+            skDefaultLegend1.RemoveOnCompleted = false;
+            skDefaultLegend1.RotateTransform = 0F;
+            skDefaultLegend1.X = 0F;
+            skDefaultLegend1.Y = 0F;
+            cartesianChart1.Legend = skDefaultLegend1;
             cartesianChart1.Location = new Point(32, 63);
+            cartesianChart1.MatchAxesScreenDataRatio = false;
             cartesianChart1.Name = "cartesianChart1";
             cartesianChart1.Size = new Size(619, 222);
             cartesianChart1.TabIndex = 0;
-            cartesianChart1.Text = "cartesianChart1";
+            skDefaultTooltip1.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultTooltip1.Content = null;
+            skDefaultTooltip1.IsValid = true;
+            skDefaultTooltip1.Opacity = 1F;
+            padding2.Bottom = 0F;
+            padding2.Left = 0F;
+            padding2.Right = 0F;
+            padding2.Top = 0F;
+            skDefaultTooltip1.Padding = padding2;
+            skDefaultTooltip1.RemoveOnCompleted = false;
+            skDefaultTooltip1.RotateTransform = 0F;
+            skDefaultTooltip1.Wedge = 10;
+            skDefaultTooltip1.X = 0F;
+            skDefaultTooltip1.Y = 0F;
+            cartesianChart1.Tooltip = skDefaultTooltip1;
+            cartesianChart1.TooltipFindingStrategy = TooltipFindingStrategy.Automatic;
+            cartesianChart1.UpdaterThrottler = TimeSpan.Parse("00:00:00.0500000");
             // 
             // TcCostosGastos
             // 
@@ -118,11 +164,44 @@ namespace Prueba1
             // 
             // cartesianChart2
             // 
+            cartesianChart2.AutoUpdateEnabled = true;
+            cartesianChart2.ChartTheme = null;
+            skDefaultLegend2.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultLegend2.Content = null;
+            skDefaultLegend2.IsValid = true;
+            skDefaultLegend2.Opacity = 1F;
+            padding3.Bottom = 0F;
+            padding3.Left = 0F;
+            padding3.Right = 0F;
+            padding3.Top = 0F;
+            skDefaultLegend2.Padding = padding3;
+            skDefaultLegend2.RemoveOnCompleted = false;
+            skDefaultLegend2.RotateTransform = 0F;
+            skDefaultLegend2.X = 0F;
+            skDefaultLegend2.Y = 0F;
+            cartesianChart2.Legend = skDefaultLegend2;
             cartesianChart2.Location = new Point(28, 67);
+            cartesianChart2.MatchAxesScreenDataRatio = false;
             cartesianChart2.Name = "cartesianChart2";
             cartesianChart2.Size = new Size(619, 222);
             cartesianChart2.TabIndex = 1;
-            cartesianChart2.Text = "cartesianChart2";
+            skDefaultTooltip2.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultTooltip2.Content = null;
+            skDefaultTooltip2.IsValid = true;
+            skDefaultTooltip2.Opacity = 1F;
+            padding4.Bottom = 0F;
+            padding4.Left = 0F;
+            padding4.Right = 0F;
+            padding4.Top = 0F;
+            skDefaultTooltip2.Padding = padding4;
+            skDefaultTooltip2.RemoveOnCompleted = false;
+            skDefaultTooltip2.RotateTransform = 0F;
+            skDefaultTooltip2.Wedge = 10;
+            skDefaultTooltip2.X = 0F;
+            skDefaultTooltip2.Y = 0F;
+            cartesianChart2.Tooltip = skDefaultTooltip2;
+            cartesianChart2.TooltipFindingStrategy = TooltipFindingStrategy.Automatic;
+            cartesianChart2.UpdaterThrottler = TimeSpan.Parse("00:00:00.0500000");
             // 
             // TcAmortizaCredito
             // 
@@ -137,11 +216,44 @@ namespace Prueba1
             // 
             // cartesianChart3
             // 
+            cartesianChart3.AutoUpdateEnabled = true;
+            cartesianChart3.ChartTheme = null;
+            skDefaultLegend3.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultLegend3.Content = null;
+            skDefaultLegend3.IsValid = true;
+            skDefaultLegend3.Opacity = 1F;
+            padding5.Bottom = 0F;
+            padding5.Left = 0F;
+            padding5.Right = 0F;
+            padding5.Top = 0F;
+            skDefaultLegend3.Padding = padding5;
+            skDefaultLegend3.RemoveOnCompleted = false;
+            skDefaultLegend3.RotateTransform = 0F;
+            skDefaultLegend3.X = 0F;
+            skDefaultLegend3.Y = 0F;
+            cartesianChart3.Legend = skDefaultLegend3;
             cartesianChart3.Location = new Point(32, 63);
+            cartesianChart3.MatchAxesScreenDataRatio = false;
             cartesianChart3.Name = "cartesianChart3";
             cartesianChart3.Size = new Size(619, 222);
             cartesianChart3.TabIndex = 1;
-            cartesianChart3.Text = "cartesianChart3";
+            skDefaultTooltip3.AnimationsSpeed = TimeSpan.Parse("00:00:00.1500000");
+            skDefaultTooltip3.Content = null;
+            skDefaultTooltip3.IsValid = true;
+            skDefaultTooltip3.Opacity = 1F;
+            padding6.Bottom = 0F;
+            padding6.Left = 0F;
+            padding6.Right = 0F;
+            padding6.Top = 0F;
+            skDefaultTooltip3.Padding = padding6;
+            skDefaultTooltip3.RemoveOnCompleted = false;
+            skDefaultTooltip3.RotateTransform = 0F;
+            skDefaultTooltip3.Wedge = 10;
+            skDefaultTooltip3.X = 0F;
+            skDefaultTooltip3.Y = 0F;
+            cartesianChart3.Tooltip = skDefaultTooltip3;
+            cartesianChart3.TooltipFindingStrategy = TooltipFindingStrategy.Automatic;
+            cartesianChart3.UpdaterThrottler = TimeSpan.Parse("00:00:00.0500000");
             // 
             // button1
             // 
@@ -208,6 +320,7 @@ namespace Prueba1
             Controls.Add(label1);
             Name = "VistaResultadosFinales";
             Text = "VistaResultadosFinales";
+            FormClosed += VistaResultadosFinales_FormClosed;
             tabControl1.ResumeLayout(false);
             TcVentasProyectadas.ResumeLayout(false);
             TcCostosGastos.ResumeLayout(false);

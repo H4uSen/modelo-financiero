@@ -30,7 +30,7 @@ namespace modelo_finanzas
             {
                 if (double.TryParse(txtCrecimientoAnualMerc.Text, out double value))
                 {
-                    txtCrecimientoAnualMerc.Text = (value/100).ToString("0.##%");
+                    txtCrecimientoAnualMerc.Text = (value / 100).ToString("0.##%");
                 }
             };
 
@@ -83,6 +83,9 @@ namespace modelo_finanzas
             InputValidator.integerValidation(txtTamanioMercado, e);
         }
 
-       
+        private void FormEntradaDatos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
