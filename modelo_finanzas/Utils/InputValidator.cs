@@ -11,7 +11,7 @@ namespace modelo_finanzas.Utils
     {
         public static void integerValidation(TextBox textBox,KeyPressEventArgs e, bool includeNegatives = false)
         {
-            if (textBox.Text.Contains("-") && !includeNegatives && textBox.Text.Length == 1)
+            if (textBox.Text.Contains('-') && !includeNegatives && textBox.Text.Length == 1)
             {
                 e.Handled = true;
                 return;
