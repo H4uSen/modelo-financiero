@@ -128,3 +128,4 @@ Form1.resx
 *.la
 *.la
 *.la
+/modelo_finanzas/.env
