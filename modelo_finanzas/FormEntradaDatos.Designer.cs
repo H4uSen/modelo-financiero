@@ -30,12 +30,14 @@
         {
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
             groupBox1 = new GroupBox();
+            txtEncRealizadas = new TextBox();
+            txtCrecimientoAnualMerc = new TextBox();
+            txtTamanioMercado = new TextBox();
             button1 = new Button();
             groupBox2 = new GroupBox();
             label8 = new Label();
@@ -47,16 +49,18 @@
             label12 = new Label();
             label15 = new Label();
             groupBox4 = new GroupBox();
+            label24 = new Label();
+            label23 = new Label();
+            label22 = new Label();
+            label21 = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            label18 = new Label();
             label14 = new Label();
             label16 = new Label();
             label17 = new Label();
-            label18 = new Label();
-            label19 = new Label();
-            label20 = new Label();
-            label21 = new Label();
-            label22 = new Label();
-            label23 = new Label();
-            label24 = new Label();
+            txtManiComp = new TextBox();
+            txtObjeMer = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -81,15 +85,6 @@
             label2.Size = new Size(135, 17);
             label2.TabIndex = 1;
             label2.Text = "Tamaño del mercado:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(256, 21);
-            label3.Name = "label3";
-            label3.Size = new Size(195, 19);
-            label3.TabIndex = 2;
-            label3.Text = "% de crecimiento del mercado:";
             // 
             // label4
             // 
@@ -130,8 +125,12 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtObjeMer);
+            groupBox1.Controls.Add(txtManiComp);
+            groupBox1.Controls.Add(txtEncRealizadas);
+            groupBox1.Controls.Add(txtCrecimientoAnualMerc);
+            groupBox1.Controls.Add(txtTamanioMercado);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label6);
@@ -146,6 +145,31 @@
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Mercado y demanda";
+            // 
+            // txtEncRealizadas
+            // 
+            txtEncRealizadas.Location = new Point(6, 134);
+            txtEncRealizadas.Name = "txtEncRealizadas";
+            txtEncRealizadas.PlaceholderText = "ej. 5000";
+            txtEncRealizadas.Size = new Size(213, 26);
+            txtEncRealizadas.TabIndex = 13;
+            // 
+            // txtCrecimientoAnualMerc
+            // 
+            txtCrecimientoAnualMerc.Location = new Point(6, 88);
+            txtCrecimientoAnualMerc.Name = "txtCrecimientoAnualMerc";
+            txtCrecimientoAnualMerc.PlaceholderText = "ej. 2.5%";
+            txtCrecimientoAnualMerc.Size = new Size(213, 26);
+            txtCrecimientoAnualMerc.TabIndex = 12;
+            // 
+            // txtTamanioMercado
+            // 
+            txtTamanioMercado.Location = new Point(6, 40);
+            txtTamanioMercado.Name = "txtTamanioMercado";
+            txtTamanioMercado.PlaceholderText = "ej. 2000000";
+            txtTamanioMercado.Size = new Size(213, 26);
+            txtTamanioMercado.TabIndex = 11;
+            txtTamanioMercado.KeyPress += txtTamanioMercado_KeyPress;
             // 
             // button1
             // 
@@ -278,6 +302,69 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Inversión, financiamiento y otros parámetros";
             // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(306, 207);
+            label24.Name = "label24";
+            label24.Size = new Size(137, 19);
+            label24.TabIndex = 10;
+            label24.Text = "% de tasa impositiva:";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(6, 207);
+            label23.Name = "label23";
+            label23.Size = new Size(180, 19);
+            label23.TabIndex = 9;
+            label23.Text = "% de gradiente de los flujos:";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(6, 160);
+            label22.Name = "label22";
+            label22.Size = new Size(201, 19);
+            label22.TabIndex = 8;
+            label22.Text = "% prima de riesgo del mercado:";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(306, 160);
+            label21.Name = "label21";
+            label21.Size = new Size(102, 19);
+            label21.TabIndex = 7;
+            label21.Text = "Beta del sector:";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(6, 113);
+            label20.Name = "label20";
+            label20.Size = new Size(161, 19);
+            label20.TabIndex = 6;
+            label20.Text = "% de tasa libre de riesgo:";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(306, 113);
+            label19.Name = "label19";
+            label19.Size = new Size(112, 19);
+            label19.TabIndex = 5;
+            label19.Text = "Plazo del crédito:";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(306, 66);
+            label18.Name = "label18";
+            label18.Size = new Size(161, 19);
+            label18.TabIndex = 4;
+            label18.Text = "% financiado con crédito:";
+            // 
             // label14
             // 
             label14.AutoSize = true;
@@ -307,68 +394,21 @@
             label17.TabIndex = 3;
             label17.Text = "% de recuperaciones sobre costo de ventas:";
             // 
-            // label18
+            // txtManiComp
             // 
-            label18.AutoSize = true;
-            label18.Location = new Point(306, 66);
-            label18.Name = "label18";
-            label18.Size = new Size(161, 19);
-            label18.TabIndex = 4;
-            label18.Text = "% financiado con crédito:";
+            txtManiComp.Location = new Point(256, 134);
+            txtManiComp.Name = "txtManiComp";
+            txtManiComp.PlaceholderText = "ej. 5000";
+            txtManiComp.Size = new Size(213, 26);
+            txtManiComp.TabIndex = 14;
             // 
-            // label19
+            // txtObjeMer
             // 
-            label19.AutoSize = true;
-            label19.Location = new Point(306, 113);
-            label19.Name = "label19";
-            label19.Size = new Size(112, 19);
-            label19.TabIndex = 5;
-            label19.Text = "Plazo del crédito:";
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Location = new Point(6, 113);
-            label20.Name = "label20";
-            label20.Size = new Size(161, 19);
-            label20.TabIndex = 6;
-            label20.Text = "% de tasa libre de riesgo:";
-            // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.Location = new Point(306, 160);
-            label21.Name = "label21";
-            label21.Size = new Size(102, 19);
-            label21.TabIndex = 7;
-            label21.Text = "Beta del sector:";
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Location = new Point(6, 160);
-            label22.Name = "label22";
-            label22.Size = new Size(201, 19);
-            label22.TabIndex = 8;
-            label22.Text = "% prima de riesgo del mercado:";
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Location = new Point(6, 207);
-            label23.Name = "label23";
-            label23.Size = new Size(180, 19);
-            label23.TabIndex = 9;
-            label23.Text = "% de gradiente de los flujos:";
-            // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Location = new Point(306, 207);
-            label24.Name = "label24";
-            label24.Size = new Size(137, 19);
-            label24.TabIndex = 10;
-            label24.Text = "% de tasa impositiva:";
+            txtObjeMer.Location = new Point(256, 88);
+            txtObjeMer.Name = "txtObjeMer";
+            txtObjeMer.PlaceholderText = "ej. 2.5%";
+            txtObjeMer.Size = new Size(213, 26);
+            txtObjeMer.TabIndex = 15;
             // 
             // FormEntradaDatos
             // 
@@ -427,5 +467,10 @@
         private Label label22;
         private Label label21;
         private Label label20;
+        private TextBox txtTamanioMercado;
+        private TextBox txtCrecimientoAnualMerc;
+        private TextBox txtEncRealizadas;
+        private TextBox txtObjeMer;
+        private TextBox txtManiComp;
     }
 }

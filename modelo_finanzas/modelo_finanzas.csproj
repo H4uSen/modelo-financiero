@@ -7,12 +7,16 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>07d804f7-4ca3-480d-8f02-ea06b7648e1c</UserSecretsId>
+	<NoWarn>NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
+    <PackageReference Include="LiveChartsCore" Version="2.0.0" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView" Version="2.0.0" />
+	<PackageReference Include="LiveChartsCore.SkiaSharpView.WinForms" Version="2.0.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.5" />
   </ItemGroup>
 
 </Project>
