@@ -19,7 +19,7 @@ namespace modelo_finanzas.Models
         public SqlDecimal AbonoCapital { get; set; } = 0;
         public SqlDecimal SaldoFinal { get; set; } = 0;
 
-        public static void CalcularAmortizacion(Amortizacion amortizacion, DatosEntrada datosEntrada, int anio)
+        public void CalcularAmortizacion(Amortizacion amortizacion, DatosEntrada datosEntrada, Variables variables, DatosEscenarios escenarios)
         {
             //TODO: Implementar el cálculo de amortización
         }

@@ -239,6 +239,21 @@ namespace modelo_finanzas
 
                 int escenarioID = await controller.InsertDatos(datos);
                 datos.Id = escenarioID;
+
+                DatosEscenarios escenarios = new DatosEscenarios();
+                Variables variables = new Variables();
+                Amortizacion amortizacion = new Amortizacion();
+                EstadoResultados estadoResultados = new EstadoResultados();
+
+                variables.IdEscenario = escenarioID;
+                variables.CalcularVariables(variables, datos, escenarios);
+
+                amortizacion.IdEscenario = escenarioID;
+                amortizacion.CalcularAmortizacion(amortizacion, datos, variables, escenarios);
+
+                estadoResultados.IdEscenario = escenarioID;
+                estadoResultados.CalcularEstadoResultados(estadoResultados, variables, datos, escenarios, amortizacion);
+
                 if (escenarioID > 0)
                 {
                     MessageBox.Show("Datos insertados correctamente.");

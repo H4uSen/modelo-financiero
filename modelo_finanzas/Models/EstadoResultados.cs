@@ -29,7 +29,7 @@ namespace modelo_finanzas.Models
         public SqlDecimal UtilidadNeta { get; set; } = 0;
         public SqlDecimal CapitalTrabajo { get; set; } = 0;
 
-        public static void CalcularEstadoResultados(EstadoResultados estado, Variables variables, DatosEntrada datosEntrada)
+        public void CalcularEstadoResultados(EstadoResultados estado, Variables variables, DatosEntrada datosEntrada, DatosEscenarios escenarios, Amortizacion amortizacion)
         {
             //TODO: Implementar la lógica de cálculo del estado de resultados utilizando las variables y datos de entrada
         }

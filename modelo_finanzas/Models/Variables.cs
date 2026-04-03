@@ -19,7 +19,7 @@ namespace modelo_finanzas.Models
         public SqlMoney PrecioVenta { get; set; } = 0;
         public SqlMoney CostoProduccion { get; set; } = 0;
 
-        public static void CalcularVariables(Variables variables, DatosEntrada datosEntrada, DatosEscenarios datosEscenarios)
+        public void CalcularVariables(Variables variables, DatosEntrada datosEntrada, DatosEscenarios datosEscenarios)
         {
             //TODO: Implementar la lógica para calcular las variables a partir de los datos de entrada y los datos de escenarios
         }
