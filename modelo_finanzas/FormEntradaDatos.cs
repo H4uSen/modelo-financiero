@@ -205,7 +205,7 @@ namespace modelo_finanzas
             try
             {
                 DatosEntrada datos = new DatosEntrada();
-                DatosController controller = new DatosController();
+                DatosService controller = new DatosService();
                 datos.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ? 
                     $"Escenario: {DateTime.Now.ToString("G")}"
                     :txtNombreEscenario.Text;
@@ -237,8 +237,9 @@ namespace modelo_finanzas
                 datos.BetaSector = SqlDecimal.Parse(txtBetaSector.Text.Replace("%", ""));
                 datos.TasaImpuestos = SqlDecimal.Parse(txtTasaImpositiva.Text.Replace("%", ""));
 
-                int rows = await controller.InsertDatos(datos);
-                if (rows > 0)
+                int escenarioID = await controller.InsertDatos(datos);
+                datos.Id = escenarioID;
+                if (escenarioID > 0)
                 {
                     MessageBox.Show("Datos insertados correctamente.");
                     //TODO: Limpiar formulario o redirigir a la pantalla de calculos

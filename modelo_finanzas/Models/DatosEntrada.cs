@@ -11,6 +11,7 @@ namespace modelo_finanzas.Models
 {
     public class DatosEntrada
     {
+        public SqlInt32 Id { get; set; }
         public SqlString NombreEscenario    { get; set; } = $"Escenario: {DateTime.Now.ToString("G")}";
         public SqlDateTime FechaCreacion    { get; set; } = SqlDateTime.Parse(DateTime.Now.ToString("G"));
         public SqlInt32 TamanioMercado      { get; set; }

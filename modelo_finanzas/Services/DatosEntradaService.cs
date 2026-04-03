@@ -5,11 +5,12 @@ using System.Text;
 using modelo_finanzas.Models;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace modelo_finanzas.Logic
 {
     
-    public class DatosController
+    public class DatosService
     {
         public async Task<int> InsertDatos(DatosEntrada datos)
         {
@@ -27,7 +28,10 @@ namespace modelo_finanzas.Logic
             @DepreciacionAnios, @PrecioInicial, @IncrementoPrecio, @Inflacion, 
             @Ipp, @CostoProduccionInicial, @OtrosIngresos, @GastosOperativos, 
             @CapitalTrabajo, @PorcentajeDeuda, @PlazoCredito, @TasaLibreRiesgo, 
-            @BetaSector, @PrimaRiesgoMercado,@GradienteFlujos,@TasaImpuestos)";
+            @BetaSector, @PrimaRiesgoMercado,@GradienteFlujos,@TasaImpuestos);
+    
+            SELECT CAST(SCOPE_IDENTITY() AS Id);
+            ";
 
             DbConnection db = DbConnection.Instance;
             if (await db.TestConnectionAsync())
@@ -60,8 +64,9 @@ namespace modelo_finanzas.Logic
                 command.Parameters.AddWithValue("@GradienteFlujos", datos.GradienteFlujos);
                 command.Parameters.AddWithValue("@TasaImpuestos", datos.TasaImpuestos);
 
-                return await command.ExecuteNonQueryAsync();
-                
+                var result = await command.ExecuteScalarAsync();
+                return Convert.ToInt32(result);
+
             }
             return -1;
             throw new Exception("No se pudo establecer conexión con la base de datos.");
