@@ -3,6 +3,7 @@ using System.Data.SqlTypes;
 using modelo_finanzas.Models;
 using modelo_finanzas.Utils;
 using modelo_finanzas.Logic;
+using Prueba1;
 namespace modelo_finanzas
 {
     public partial class FormEntradaDatos : Form
@@ -206,12 +207,12 @@ namespace modelo_finanzas
             {
                 DatosEntrada datos = new DatosEntrada();
                 DatosService controller = new DatosService();
-                datos.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ? 
+                datos.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ?
                     $"Escenario: {DateTime.Now.ToString("G")}"
-                    :txtNombreEscenario.Text;
+                    : txtNombreEscenario.Text;
                 datos.FechaCreacion = DateTime.Parse(txtFechaCreacion.Text);
                 //Mercado y demanda
-                datos.TamanioMercado = SqlInt32.Parse(txtTamanioMercado.Text.Replace(",",""));
+                datos.TamanioMercado = SqlInt32.Parse(txtTamanioMercado.Text.Replace(",", ""));
                 datos.CrecimientoMercado = SqlDecimal.Parse(txtCrecimientoAnualMerc.Text.Replace("%", ""));
                 datos.Encuestas = SqlInt32.Parse(txtEncRealizadas.Text.Replace(",", ""));
                 datos.ObjetivoMercado = SqlDecimal.Parse(txtObjeMer.Text.Replace("%", ""));
@@ -270,6 +271,36 @@ namespace modelo_finanzas
             {
                 MessageBox.Show("Error al procesar los datos de entrada: \n" + ex.Message.ToString());
             }
+        }
+
+        private Form activeForm = null  ;
+
+        private void OpenChildForm(Form childForm)
+        {
+            // Close previous form if exists
+            if (activeForm != null)
+                activeForm.Close();
+
+            activeForm = childForm;
+
+            // Important settings
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+
+            // Add to panel
+            panel2.Controls.Clear();
+            panel2.Controls.Add(childForm);
+            panel2.Tag = childForm;
+
+            childForm.BringToFront();
+            childForm.Show();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            var form = new MenuPrincipal();
+            OpenChildForm(form);
         }
     }
 }

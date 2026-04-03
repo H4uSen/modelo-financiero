@@ -86,6 +86,7 @@
             btnCancelar = new Button();
             btnGuardar = new Button();
             errorProvider1 = new ErrorProvider(components);
+            panel2 = new Panel();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -167,7 +168,7 @@
             groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(3, 2, 3, 2);
-            groupBox1.Size = new Size(470, 176);
+            groupBox1.Size = new Size(470, 184);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Mercado y demanda";
@@ -217,7 +218,8 @@
             // 
             // button1
             // 
-            button1.Location = new Point(9, 442);
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button1.Location = new Point(9, 498);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(128, 33);
@@ -228,6 +230,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.AutoSize = true;
             groupBox2.Controls.Add(txtInflaAnual);
             groupBox2.Controls.Add(txtIPP);
             groupBox2.Controls.Add(txtIncRealPrec);
@@ -238,11 +241,11 @@
             groupBox2.Controls.Add(label13);
             groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox2.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox2.Location = new Point(486, 18);
+            groupBox2.Location = new Point(486, 24);
             groupBox2.Margin = new Padding(3, 2, 3, 2);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(3, 2, 3, 2);
-            groupBox2.Size = new Size(475, 182);
+            groupBox2.Size = new Size(492, 185);
             groupBox2.TabIndex = 9;
             groupBox2.TabStop = false;
             groupBox2.Text = "Precios e inflación";
@@ -322,6 +325,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.AutoSize = true;
             groupBox3.Controls.Add(txtGastOper);
             groupBox3.Controls.Add(txtCapTrab);
             groupBox3.Controls.Add(txtCostProdIni);
@@ -330,11 +334,11 @@
             groupBox3.Controls.Add(label15);
             groupBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox3.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox3.Location = new Point(10, 204);
+            groupBox3.Location = new Point(9, 216);
             groupBox3.Margin = new Padding(3, 2, 3, 2);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(3, 2, 3, 2);
-            groupBox3.Size = new Size(470, 117);
+            groupBox3.Size = new Size(476, 188);
             groupBox3.TabIndex = 9;
             groupBox3.TabStop = false;
             groupBox3.Text = "Costos";
@@ -396,6 +400,8 @@
             // 
             // groupBox4
             // 
+            groupBox4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            groupBox4.AutoSize = true;
             groupBox4.Controls.Add(txtTasaImpositiva);
             groupBox4.Controls.Add(txtBetaSector);
             groupBox4.Controls.Add(txtPlazoCredito);
@@ -418,11 +424,11 @@
             groupBox4.Controls.Add(label17);
             groupBox4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox4.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox4.Location = new Point(486, 204);
+            groupBox4.Location = new Point(492, 216);
             groupBox4.Margin = new Padding(3, 2, 3, 2);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new Padding(3, 2, 3, 2);
-            groupBox4.Size = new Size(486, 259);
+            groupBox4.Size = new Size(486, 315);
             groupBox4.TabIndex = 10;
             groupBox4.TabStop = false;
             groupBox4.Text = "Inversión, financiamiento y otros parámetros";
@@ -611,9 +617,10 @@
             // 
             // label25
             // 
+            label25.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.Location = new Point(10, 334);
+            label25.Location = new Point(10, 439);
             label25.Name = "label25";
             label25.Size = new Size(159, 20);
             label25.TabIndex = 18;
@@ -621,9 +628,10 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(241, 334);
+            label3.Location = new Point(244, 437);
             label3.Name = "label3";
             label3.Size = new Size(131, 20);
             label3.TabIndex = 19;
@@ -631,8 +639,9 @@
             // 
             // txtNombreEscenario
             // 
+            txtNombreEscenario.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txtNombreEscenario.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombreEscenario.Location = new Point(9, 356);
+            txtNombreEscenario.Location = new Point(9, 459);
             txtNombreEscenario.Margin = new Padding(3, 2, 3, 2);
             txtNombreEscenario.Name = "txtNombreEscenario";
             txtNombreEscenario.PlaceholderText = "ej. 'Escen: 2026-03-14'";
@@ -641,8 +650,9 @@
             // 
             // txtFechaCreacion
             // 
+            txtFechaCreacion.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txtFechaCreacion.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtFechaCreacion.Location = new Point(241, 356);
+            txtFechaCreacion.Location = new Point(241, 459);
             txtFechaCreacion.Margin = new Padding(3, 2, 3, 2);
             txtFechaCreacion.Name = "txtFechaCreacion";
             txtFechaCreacion.Size = new Size(207, 27);
@@ -650,17 +660,20 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(168, 442);
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCancelar.Location = new Point(168, 498);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(128, 33);
             btnCancelar.TabIndex = 21;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(321, 442);
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnGuardar.Location = new Point(321, 498);
             btnGuardar.Margin = new Padding(3, 2, 3, 2);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(128, 33);
@@ -673,21 +686,28 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.Location = new Point(984, 35);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(292, 496);
+            panel2.TabIndex = 24;
+            // 
             // FormEntradaDatos
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
-            AutoSize = true;
-            AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(984, 486);
+            ClientSize = new Size(1277, 542);
+            Controls.Add(panel2);
             Controls.Add(btnGuardar);
             Controls.Add(btnCancelar);
             Controls.Add(txtFechaCreacion);
             Controls.Add(txtNombreEscenario);
             Controls.Add(label3);
-            Controls.Add(label25);
             Controls.Add(groupBox4);
+            Controls.Add(label25);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(button1);
@@ -768,5 +788,6 @@
         private Button btnCancelar;
         private Button btnGuardar;
         private ErrorProvider errorProvider1;
+        private Panel panel2;
     }
 }
