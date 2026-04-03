@@ -1,3 +1,5 @@
+CREATE DATABASE hausencito247_finanzas
+GO
 USE hausencito247_finanzas
 GO
 SELECT * FROM escenarios
@@ -36,13 +38,14 @@ GO
 CREATE TABLE datosEscenarios (
     id INT PRIMARY KEY IDENTITY(1,1),
     escenario_id INT,
-    mercado_esperado DECIMAL(5,2),
-    variacion_nominal_precio DECIMAL(5,2),
-    variacion_nominal_ipp DECIMAL(5,4),
-    valor_inversion_inicial DECIMAL(18,2),
-    financiado_con_credito DECIMAL(18,2),
-    costo_deuda DECIMAL(5,2),
-    financiado_con_aportes DECIMAL(18,2),
+
+    mercado_esperado_anio1 DECIMAL(5,2), -- encuestas/personas_interesadas
+    variacion_nominal_precio DECIMAL(5,2), --(1+inflacion)*(1+incremento_precio)-1
+    variacion_nominal_ipp DECIMAL(5,2), --(1+inflacion)*(1+ipp)-1
+    valor_inversion_inicial DECIMAL(18,2), --inversion_equipos*(objetivo_mercado*100)
+    financiado_con_credito DECIMAL(18,2), --valor_inversion_inicial*porcentaje_deuda
+    costo_deuda DECIMAL(5,2), -- Se saca el porcentaje de la tabla de tasas de interés según % de deuda
+    financiado_con_aportes DECIMAL(18,2), --valor_inversion_inicial-financiado_con_credito
 
     FOREIGN KEY (escenario_id) REFERENCES entradasEscenarios(id_escenario)
 );
@@ -51,6 +54,7 @@ CREATE TABLE variables
 (
     id int identity(1,1) primary key,
     id_escenario int,
+
     anio int,
     tamanio_mercado DECIMAL(18, 2) DEFAULT 0,
     participacion_mercado DECIMAL(5, 2) DEFAULT 0,
@@ -64,6 +68,7 @@ CREATE TABLE amortizacion
 (
     id int identity(1,1) primary key,
     id_escenario int,
+
     anio int,
     saldo_inicial DECIMAL(18, 2) DEFAULT 0,
     cuota DECIMAL(18, 2) DEFAULT 0,
@@ -89,7 +94,7 @@ CREATE TABLE estadoResultados
     otros_ingresos DECIMAL(18, 2) DEFAULT 0,
     --neto_otros_ingresos DECIMAL(18, 2) DEFAULT 0,
     -- utilidad_antes_impuestos DECIMAL(18, 2) DEFAULT 0,
-    impuestos DECIMAL(18, 2) DEFAULT 0),
+    impuestos DECIMAL(18, 2) DEFAULT 0,
     --utilidad_neta DECIMAL(18, 2) DEFAULT 0),
 
     FOREIGN KEY (id_escenario) REFERENCES entradasEscenarios(id_escenario)
