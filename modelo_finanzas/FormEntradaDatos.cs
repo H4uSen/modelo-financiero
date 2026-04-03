@@ -252,8 +252,8 @@ namespace modelo_finanzas
                 amortizacion.IdEscenario = escenarioID;
                 amortizacion.CalcularAmortizacion(amortizacion, datos, variables, escenarios);
 
-                estadoResultados.IdEscenario = escenarioID;
-                estadoResultados.CalcularEstadoResultados(estadoResultados, variables, datos, escenarios, amortizacion);
+               // estadoResultados.IdEscenario = escenarioID;
+               // estadoResultados.CalcularEstadoResultados(estadoResultados, variables, datos, escenarios, amortizacion);
 
                 if (escenarioID > 0)
                 {
