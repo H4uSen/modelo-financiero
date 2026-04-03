@@ -1,8 +1,8 @@
-CREATE DATABASE db_finanzas
-Go
-USE db_finanzas
+USE hausencito247_finanzas
 GO
-
+SELECT * FROM escenarios
+GO
+GO
 create table entradasEscenarios
 (
     id_escenario             int identity
@@ -10,38 +10,38 @@ create table entradasEscenarios
     nombre_escenario         varchar(100),
     fecha_creacion           datetime default getdate(),
     tamano_mercado           int,
-    crecimiento_mercado      decimal(5, 4),
+    crecimiento_mercado      decimal(5, 2),
     encuestas                int,
     personas_interesadas     int,
-    objetivo_mercado         decimal(5, 4),
+    objetivo_mercado         decimal(5, 2),
     inversion_equipos        decimal(18, 2),
     depreciacion_anios       int,
     precio_inicial           decimal(18, 2),
-    incremento_precio        decimal(5, 4),
-    inflacion                decimal(5, 4),
-    ipp                      decimal(5, 4),
+    incremento_precio        decimal(5, 2),
+    inflacion                decimal(5, 2),
+    ipp                      decimal(5, 2),
     costo_produccion_inicial decimal(18, 2),
-    otros_ingresos           decimal(5, 4),
-    gastos_operativos        decimal(5, 4),
-    capital_trabajo          decimal(5, 4),
-    porcentaje_deuda         decimal(5, 4),
+    otros_ingresos           decimal(5, 2),
+    gastos_operativos        decimal(5, 2),
+    capital_trabajo          decimal(5, 2),
+    porcentaje_deuda         decimal(5, 2),
     plazo_credito            int,
-    tasa_libre_riesgo        decimal(5, 4),
-    beta_sector              decimal(5, 4),
-    prima_riesgo_mercado     decimal(5, 4),
-    gradiente_flujos         decimal(5, 4),
-    tasa_impuestos           decimal(5, 4)
+    tasa_libre_riesgo        decimal(5, 2),
+    beta_sector              decimal(5, 2),
+    prima_riesgo_mercado     decimal(5, 2),
+    gradiente_flujos         decimal(5, 2),
+    tasa_impuestos           decimal(5, 2)
 )
 GO
 CREATE TABLE datosEscenarios (
     id INT PRIMARY KEY IDENTITY(1,1),
     escenario_id INT,
-    mercado_esperado DECIMAL(5,4),
-    variacion_nominal_precio DECIMAL(5,4),
+    mercado_esperado DECIMAL(5,2),
+    variacion_nominal_precio DECIMAL(5,2),
     variacion_nominal_ipp DECIMAL(5,4),
     valor_inversion_inicial DECIMAL(18,2),
     financiado_con_credito DECIMAL(18,2),
-    costo_deuda DECIMAL(5,4),
+    costo_deuda DECIMAL(5,2),
     financiado_con_aportes DECIMAL(18,2),
 
     FOREIGN KEY (escenario_id) REFERENCES entradasEscenarios(id_escenario)
@@ -53,7 +53,7 @@ CREATE TABLE variables
     id_escenario int,
     anio int,
     tamanio_mercado DECIMAL(18, 2) DEFAULT 0,
-    participacion_mercado DECIMAL(5, 4) DEFAULT 0,
+    participacion_mercado DECIMAL(5, 2) DEFAULT 0,
     unidades_vendidas int DEFAULT 0,
     precio_venta DECIMAL(18, 2) DEFAULT 0,
     costo_produccion DECIMAL(18, 2) DEFAULT 0,
@@ -89,7 +89,8 @@ CREATE TABLE estadoResultados
     otros_ingresos DECIMAL(18, 2) DEFAULT 0,
     --neto_otros_ingresos DECIMAL(18, 2) DEFAULT 0,
     -- utilidad_antes_impuestos DECIMAL(18, 2) DEFAULT 0,
-    impuestos DECIMAL(18, 2) DEFAULT 0,
+    impuestos DECIMAL(18, 2) DEFAULT 0),
     --utilidad_neta DECIMAL(18, 2) DEFAULT 0),
+
     FOREIGN KEY (id_escenario) REFERENCES entradasEscenarios(id_escenario)
 )
