@@ -20,6 +20,34 @@ namespace modelo_finanzas
             txtFechaCreacion.Tag = "optional";
             txtFechaCreacion.Text = DateTime.Now.ToString("G");
 
+            txtNombreEscenario.TabIndex = 0;
+            txtFechaCreacion.TabIndex = 1;
+            txtTamanioMercado.TabIndex = 2;
+            txtCrecimientoAnualMerc.TabIndex = 3;
+            txtEncRealizadas.TabIndex = 4;
+            txtObjeMer.TabIndex = 5;
+            txtManiComp.TabIndex = 6;
+            txtCostProdIni.TabIndex = 7;
+            txtCapTrab.TabIndex = 8;
+            txtGastOper.TabIndex = 9;
+            txtPrecioProducto.TabIndex = 10;
+            txtIncRealPrec.TabIndex = 11;
+            txtIPP.TabIndex = 12;
+            txtInflaAnual.TabIndex = 13;
+            txtInvEquiXPart.TabIndex = 14;
+            txtRecupSobreCosto.TabIndex = 15;
+            txtTasaLibRiesgo.TabIndex = 16;
+            txtPrimRiesgMerc.TabIndex = 17;
+            txtGradFlujos.TabIndex = 18;
+            txtPlazoDep.TabIndex = 19;
+            txtFinanCredito.TabIndex = 20;
+            txtPlazoCredito.TabIndex = 21;
+            txtBetaSector.TabIndex = 22;
+            txtTasaImpositiva.TabIndex = 23;
+            btnTest.TabIndex = 24;
+            btnCancelar.TabIndex = 25;
+            btnGuardar.TabIndex = 26;
+
             #region Mercado y demanda
             txtTamanioMercado.MaxLength = 15;
             txtEncRealizadas.MaxLength = 15;
@@ -238,8 +266,11 @@ namespace modelo_finanzas
                 datos.BetaSector = SqlDecimal.Parse(txtBetaSector.Text.Replace("%", ""));
                 datos.TasaImpuestos = SqlDecimal.Parse(txtTasaImpositiva.Text.Replace("%", ""));
 
-                int escenarioID = await controller.InsertDatos(datos);
+                //int escenarioID = await controller.InsertDatos(datos);
+                int escenarioID = 1; //TODO: Reemplazar luego, solo para pruebas
+
                 datos.Id = escenarioID;
+               
 
                 DatosEscenarios escenarios = new DatosEscenarios();
                 Variables variables = new Variables();
@@ -249,6 +280,9 @@ namespace modelo_finanzas
                 variables.IdEscenario = escenarioID;
                 variables.CalcularVariables(variables, datos, escenarios);
 
+                escenarios.Escenario_id = escenarioID;
+                escenarios.CalcularDatosEscenarios(escenarios, datos);
+
                 amortizacion.IdEscenario = escenarioID;
                 amortizacion.CalcularAmortizacion(amortizacion, datos, variables, escenarios);
 
@@ -257,6 +291,8 @@ namespace modelo_finanzas
 
                 if (escenarioID > 0)
                 {
+                    FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
+                    OpenChildForm(formDatosEscenario, new Point(0,0));
                     MessageBox.Show("Datos insertados correctamente.");
                     //TODO: Limpiar formulario o redirigir a la pantalla de calculos
                     //this.Close();
@@ -273,9 +309,9 @@ namespace modelo_finanzas
             }
         }
 
-        private Form activeForm = null  ;
+        private Form activeForm;
 
-        private void OpenChildForm(Form childForm)
+        private void OpenChildForm(Form childForm, Point position)
         {
             // Close previous form if exists
             if (activeForm != null)
@@ -293,14 +329,17 @@ namespace modelo_finanzas
             panel2.Controls.Add(childForm);
             panel2.Tag = childForm;
 
+            //Set the position
+            childForm.Location = position;
+
+
             childForm.BringToFront();
             childForm.Show();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            var form = new MenuPrincipal();
-            OpenChildForm(form);
+
         }
     }
 }

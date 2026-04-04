@@ -41,7 +41,7 @@
             txtEncRealizadas = new TextBox();
             txtCrecimientoAnualMerc = new TextBox();
             txtTamanioMercado = new TextBox();
-            button1 = new Button();
+            btnTest = new Button();
             groupBox2 = new GroupBox();
             txtInflaAnual = new TextBox();
             txtIPP = new TextBox();
@@ -216,17 +216,17 @@
             txtTamanioMercado.TabIndex = 11;
             txtTamanioMercado.KeyPress += txtTamanioMercado_KeyPress;
             // 
-            // button1
+            // btnTest
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button1.Location = new Point(9, 498);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(128, 33);
-            button1.TabIndex = 9;
-            button1.Text = "test connection";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnTest.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnTest.Location = new Point(9, 498);
+            btnTest.Margin = new Padding(3, 2, 3, 2);
+            btnTest.Name = "btnTest";
+            btnTest.Size = new Size(128, 33);
+            btnTest.TabIndex = 9;
+            btnTest.Text = "test connection";
+            btnTest.UseVisualStyleBackColor = false;
+            btnTest.Click += button1_Click;
             // 
             // groupBox2
             // 
@@ -710,7 +710,7 @@
             Controls.Add(label25);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
-            Controls.Add(button1);
+            Controls.Add(btnTest);
             Controls.Add(groupBox1);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
@@ -739,7 +739,7 @@
         private Label label6;
         private Label label7;
         private GroupBox groupBox1;
-        private Button button1;
+        private Button btnTest;
         private GroupBox groupBox2;
         private Label label8;
         private Label label9;

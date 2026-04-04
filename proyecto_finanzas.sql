@@ -2,7 +2,7 @@ CREATE DATABASE hausencito247_finanzas
 GO
 USE hausencito247_finanzas
 GO
-SELECT * FROM escenarios
+SELECT * FROM entradasEscenarios
 GO
 GO
 create table entradasEscenarios

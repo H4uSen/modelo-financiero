@@ -9,7 +9,7 @@ namespace modelo_finanzas.Models
 {
     public class DatosEscenarios
     {
-        public SqlInt32 Id { get; set; }
+        public int Id { get; set; }
         public int Escenario_id { get; set; }
 
         public decimal Mercado_esperado_anio1 { get; set; } //Encuestas / PersonasInteresadas
@@ -20,9 +20,16 @@ namespace modelo_finanzas.Models
         public decimal Costo_deuda { get; set; }// % que se saca de la tabla de intereses en el excel
         public decimal Financiado_con_aportes { get; set; }//valor_inversion_inicial - Financiado_con_credito
 
-        public static void CalcularDatosEscenarios(DatosEscenarios datosEscenarios, DatosEntrada datosEntrada)
+        public void CalcularDatosEscenarios(DatosEscenarios datosEscenarios, DatosEntrada datosEntrada)
         {
-            //TODO: Realizar los cálculos para cada propiedad de DatosEscenarios 
+            datosEscenarios.Mercado_esperado_anio1 =  (decimal)datosEntrada.PersonasInteresadas / (decimal)datosEntrada.Encuestas;
+            datosEscenarios.Variacion_nominal_precio = ((1 + (decimal)datosEntrada.Inflacion/100) * (1 + (decimal)datosEntrada.IncrementoPrecio/100)) - 1;
+            datosEscenarios.Variacion_nominal_ipp = ((1 + (decimal)datosEntrada.Inflacion/100) * (1 + (decimal)datosEntrada.Ipp/100)) - 1;
+            datosEscenarios.Valor_inversion_inicial = (decimal)datosEntrada.InversionEquipos * ((decimal)datosEntrada.ObjetivoMercado);
+            datosEscenarios.Financiado_con_credito = datosEscenarios.Valor_inversion_inicial * (decimal)datosEntrada.PorcentajeDeuda / 100;
+            RangoInteres rangoInteres = new RangoInteres();
+            datosEscenarios.Costo_deuda = rangoInteres.ObtenerTasa((decimal)datosEntrada.PorcentajeDeuda);
+            datosEscenarios.Financiado_con_aportes = datosEscenarios.Valor_inversion_inicial - datosEscenarios.Financiado_con_credito;
         }
     }
 }
