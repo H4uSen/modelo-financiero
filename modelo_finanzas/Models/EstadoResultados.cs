@@ -37,12 +37,15 @@ namespace modelo_finanzas.Models
         public void CalcularEstadoResultados(EstadoResultados estado, Variables variables, DatosEntrada datosEntrada, DatosEscenarios escenarios, Amortizacion amortizacion)
         {
             // 1. VENTAS Y COSTOS (Vienen de los escenarios o datos de entrada)
+            estado.Ventas = variables.PrecioVenta * variables.UnidadesVendidas;
+            estado.CostoVentas = variables.UnidadesVendidas * variables.CostoProduccion;
             // Aquí pondrías la lógica de proyección, por ahora usemos los valores que ya trae el 'estado'
 
             // 2. UTILIDAD BRUTA = Ventas - Costo de Ventas
             estado.UtilidadBruta = estado.Ventas - estado.CostoVentas;
 
             // 3. GASTOS Y DEPRECIACIÓN
+            estado.GastosOperativos = estado.Ventas * datosEntrada.GastosOperativos;
             // La depreciación tiene la regla que viste en el Excel:
             if (estado.Anio.Value <= datosEntrada.DepreciacionAnios.Value)
             {
@@ -61,6 +64,7 @@ namespace modelo_finanzas.Models
             // 5. RESULTADO FINANCIERO
             // Los gastos financieros los sacamos de la tabla de amortización de ese año
             estado.GastosFinancieros = amortizacion.Interes;
+            estado.OtrosIngresos = estado.CostoVentas * datosEntrada.OtrosIngresos;
             estado.NetoOtrosIngresos = estado.OtrosIngresos - estado.GastosFinancieros;
 
             // 6. UTILIDAD ANTES DE IMPUESTOS
@@ -78,6 +82,7 @@ namespace modelo_finanzas.Models
 
             // 8. UTILIDAD NETA
             estado.UtilidadNeta = estado.UtilidadAntesImpuestos - estado.Impuestos;
+            estado.CapitalTrabajo = estado.Ventas * datosEntrada.CapitalTrabajo;
         }
     }
 }
