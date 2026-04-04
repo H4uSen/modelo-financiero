@@ -30,7 +30,7 @@ namespace modelo_finanzas.Logic
             @CapitalTrabajo, @PorcentajeDeuda, @PlazoCredito, @TasaLibreRiesgo, 
             @BetaSector, @PrimaRiesgoMercado,@GradienteFlujos,@TasaImpuestos);
     
-            SELECT CAST(SCOPE_IDENTITY() AS Id);
+            SELECT CAST(SCOPE_IDENTITY() AS int);
             ";
 
             DbConnection db = DbConnection.Instance;
@@ -65,6 +65,7 @@ namespace modelo_finanzas.Logic
                 command.Parameters.AddWithValue("@TasaImpuestos", datos.TasaImpuestos);
 
                 var result = await command.ExecuteScalarAsync();
+                connection.Close();
                 return Convert.ToInt32(result);
 
             }

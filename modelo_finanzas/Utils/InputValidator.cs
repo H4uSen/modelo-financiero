@@ -39,5 +39,21 @@ namespace modelo_finanzas.Utils
 
 
         }
+
+        public static void removeFormat(object? sender, EventArgs e)
+        {
+            if(sender is TextBox textBox)
+            {
+                if (textBox != null && !string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    string valorLimpio = textBox.Text.Replace("$", "")
+                                                 .Replace("%", "")
+                                                 .Replace(",", "")
+                                                 .Trim();
+                    textBox.Text = valorLimpio;
+                }
+            }
+            
+        }
     }
 }

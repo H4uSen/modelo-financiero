@@ -23,12 +23,12 @@ namespace modelo_finanzas.Models
         public void CalcularDatosEscenarios(DatosEscenarios datosEscenarios, DatosEntrada datosEntrada)
         {
             datosEscenarios.Mercado_esperado_anio1 =  (decimal)datosEntrada.PersonasInteresadas / (decimal)datosEntrada.Encuestas;
-            datosEscenarios.Variacion_nominal_precio = ((1 + (decimal)datosEntrada.Inflacion/100) * (1 + (decimal)datosEntrada.IncrementoPrecio/100)) - 1;
-            datosEscenarios.Variacion_nominal_ipp = ((1 + (decimal)datosEntrada.Inflacion/100) * (1 + (decimal)datosEntrada.Ipp/100)) - 1;
+            datosEscenarios.Variacion_nominal_precio = ((1 + (decimal)datosEntrada.Inflacion) * (1 + (decimal)datosEntrada.IncrementoPrecio)) - 1;
+            datosEscenarios.Variacion_nominal_ipp = ((1 + (decimal)datosEntrada.Inflacion) * (1 + (decimal)datosEntrada.Ipp)) - 1;
             datosEscenarios.Valor_inversion_inicial = (decimal)datosEntrada.InversionEquipos * ((decimal)datosEntrada.ObjetivoMercado);
-            datosEscenarios.Financiado_con_credito = datosEscenarios.Valor_inversion_inicial * (decimal)datosEntrada.PorcentajeDeuda / 100;
+            datosEscenarios.Financiado_con_credito = datosEscenarios.Valor_inversion_inicial * (decimal)datosEntrada.PorcentajeDeuda;
             RangoInteres rangoInteres = new RangoInteres();
-            datosEscenarios.Costo_deuda = rangoInteres.ObtenerTasa((decimal)datosEntrada.PorcentajeDeuda);
+            datosEscenarios.Costo_deuda = rangoInteres.ObtenerTasa((decimal)datosEntrada.PorcentajeDeuda*100);
             datosEscenarios.Financiado_con_aportes = datosEscenarios.Valor_inversion_inicial - datosEscenarios.Financiado_con_credito;
         }
     }

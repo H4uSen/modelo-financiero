@@ -1,9 +1,10 @@
+using modelo_finanzas.Logic;
+using modelo_finanzas.Models;
+using modelo_finanzas.Services;
+using modelo_finanzas.Utils;
+using Prueba1;
 using System.Configuration;
 using System.Data.SqlTypes;
-using modelo_finanzas.Models;
-using modelo_finanzas.Utils;
-using modelo_finanzas.Logic;
-using Prueba1;
 namespace modelo_finanzas
 {
     public partial class FormEntradaDatos : Form
@@ -48,7 +49,14 @@ namespace modelo_finanzas
             btnCancelar.TabIndex = 25;
             btnGuardar.TabIndex = 26;
 
+            gpbMercado.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enter += InputValidator.removeFormat);
+            gpbCostos.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enter += InputValidator.removeFormat);
+            gpbInversion.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enter += InputValidator.removeFormat);
+            gpbInversion.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enter += InputValidator.removeFormat);   
+
             #region Mercado y demanda
+
+
             txtTamanioMercado.MaxLength = 15;
             txtEncRealizadas.MaxLength = 15;
             txtCrecimientoAnualMerc.MaxLength = 5;
@@ -241,34 +249,32 @@ namespace modelo_finanzas
                 datos.FechaCreacion = DateTime.Parse(txtFechaCreacion.Text);
                 //Mercado y demanda
                 datos.TamanioMercado = SqlInt32.Parse(txtTamanioMercado.Text.Replace(",", ""));
-                datos.CrecimientoMercado = SqlDecimal.Parse(txtCrecimientoAnualMerc.Text.Replace("%", ""));
+                datos.CrecimientoMercado = SqlDecimal.Parse(txtCrecimientoAnualMerc.Text.Replace("%", ""))/100;
                 datos.Encuestas = SqlInt32.Parse(txtEncRealizadas.Text.Replace(",", ""));
-                datos.ObjetivoMercado = SqlDecimal.Parse(txtObjeMer.Text.Replace("%", ""));
+                datos.ObjetivoMercado = SqlDecimal.Parse(txtObjeMer.Text.Replace("%", ""))/100;
                 datos.PersonasInteresadas = SqlInt32.Parse(txtManiComp.Text.Replace(",", ""));
                 //Costos
                 datos.CostoProduccionInicial = SqlMoney.Parse(txtCostProdIni.Text);
-                datos.CapitalTrabajo = SqlDecimal.Parse(txtCapTrab.Text.Replace("%", ""));
-                datos.GastosOperativos = SqlDecimal.Parse(txtGastOper.Text.Replace("%", ""));
+                datos.CapitalTrabajo = SqlDecimal.Parse(txtCapTrab.Text.Replace("%", ""))/100;
+                datos.GastosOperativos = SqlDecimal.Parse(txtGastOper.Text.Replace("%", ""))/100;
                 //Precios e inflacion
                 datos.PrecioInicial = SqlMoney.Parse(txtPrecioProducto.Text);
-                datos.IncrementoPrecio = SqlDecimal.Parse(txtIncRealPrec.Text.Replace("%", ""));
-                datos.Ipp = SqlDecimal.Parse(txtIPP.Text.Replace("%", ""));
-                datos.Inflacion = SqlDecimal.Parse(txtInflaAnual.Text.Replace("%", ""));
+                datos.IncrementoPrecio = SqlDecimal.Parse(txtIncRealPrec.Text.Replace("%", ""))/100;
+                datos.Ipp = SqlDecimal.Parse(txtIPP.Text.Replace("%", ""))/100;
+                datos.Inflacion = SqlDecimal.Parse(txtInflaAnual.Text.Replace("%", "")) / 100;
                 //Inversion, financiamiento y otros
                 datos.InversionEquipos = SqlMoney.Parse(txtInvEquiXPart.Text);
-                datos.OtrosIngresos = SqlDecimal.Parse(txtRecupSobreCosto.Text.Replace("%", ""));
-                datos.TasaLibreRiesgo = SqlDecimal.Parse(txtTasaLibRiesgo.Text.Replace("%", ""));
-                datos.PrimaRiesgoMercado = SqlDecimal.Parse(txtPrimRiesgMerc.Text.Replace("%", ""));
-                datos.GradienteFlujos = SqlDecimal.Parse(txtGradFlujos.Text.Replace("%", ""));
+                datos.OtrosIngresos = SqlDecimal.Parse(txtRecupSobreCosto.Text.Replace("%", "")) / 100;
+                datos.TasaLibreRiesgo = SqlDecimal.Parse(txtTasaLibRiesgo.Text.Replace("%", "")) / 100;
+                datos.PrimaRiesgoMercado = SqlDecimal.Parse(txtPrimRiesgMerc.Text.Replace("%", "")) / 100;
+                datos.GradienteFlujos = SqlDecimal.Parse(txtGradFlujos.Text.Replace("%", "")) / 100;
                 datos.DepreciacionAnios = SqlInt16.Parse(txtPlazoDep.Text.Replace(" años", ""));
-                datos.PorcentajeDeuda = SqlDecimal.Parse(txtFinanCredito.Text.Replace("%", ""));
+                datos.PorcentajeDeuda = SqlDecimal.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
                 datos.PlazoCredito = SqlInt16.Parse(txtPlazoCredito.Text.Replace(" años", ""));
-                datos.BetaSector = SqlDecimal.Parse(txtBetaSector.Text.Replace("%", ""));
-                datos.TasaImpuestos = SqlDecimal.Parse(txtTasaImpositiva.Text.Replace("%", ""));
+                datos.BetaSector = SqlDecimal.Parse(txtBetaSector.Text.Replace("%", "")) / 100;
+                datos.TasaImpuestos = SqlDecimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
 
-                //int escenarioID = await controller.InsertDatos(datos);
-                int escenarioID = 1; //TODO: Reemplazar luego, solo para pruebas
-
+                int escenarioID = await controller.InsertDatos(datos);
                 datos.Id = escenarioID;
                
 
@@ -280,8 +286,21 @@ namespace modelo_finanzas
                 variables.IdEscenario = escenarioID;
                 variables.CalcularVariables(variables, datos, escenarios);
 
+
+                //Calculo de datos de escenario
                 escenarios.Escenario_id = escenarioID;
                 escenarios.CalcularDatosEscenarios(escenarios, datos);
+                DatosEscenariosService escenariosService = new DatosEscenariosService();
+                int escenID = await escenariosService.InsertEscenario(escenarios);
+                if(escenID > 0)
+                {
+                    escenarios.Id = escenID;
+                }
+                else
+                {
+                    MessageBox.Show("Error al insertar los datos del escenario.");
+                    return;
+                }
 
                 amortizacion.IdEscenario = escenarioID;
                 amortizacion.CalcularAmortizacion(amortizacion, datos, variables, escenarios);

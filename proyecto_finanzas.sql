@@ -3,52 +3,55 @@ GO
 USE hausencito247_finanzas
 GO
 SELECT * FROM entradasEscenarios
+SELECT * FROM datosEscenarios
+--DROP DATABASE hausencito247_finanzas
+--USE master
 GO
 GO
 create table entradasEscenarios
 (
-    id_escenario             int identity
-        primary key,
+    id_escenario             int identity(1,1) primary key,
     nombre_escenario         varchar(100),
     fecha_creacion           datetime default getdate(),
     tamano_mercado           int,
-    crecimiento_mercado      decimal(5, 2),
+    crecimiento_mercado      decimal(5, 4),
     encuestas                int,
     personas_interesadas     int,
-    objetivo_mercado         decimal(5, 2),
-    inversion_equipos        decimal(18, 2),
+    objetivo_mercado         decimal(5, 4),
+    inversion_equipos        decimal(18, 4),
     depreciacion_anios       int,
     precio_inicial           decimal(18, 2),
-    incremento_precio        decimal(5, 2),
-    inflacion                decimal(5, 2),
-    ipp                      decimal(5, 2),
+    incremento_precio        decimal(5, 4),
+    inflacion                decimal(5, 4),
+    ipp                      decimal(5, 4),
     costo_produccion_inicial decimal(18, 2),
-    otros_ingresos           decimal(5, 2),
-    gastos_operativos        decimal(5, 2),
-    capital_trabajo          decimal(5, 2),
-    porcentaje_deuda         decimal(5, 2),
+    otros_ingresos           decimal(5, 4),
+    gastos_operativos        decimal(5, 4),
+    capital_trabajo          decimal(5, 4),
+    porcentaje_deuda         decimal(5, 4),
     plazo_credito            int,
-    tasa_libre_riesgo        decimal(5, 2),
-    beta_sector              decimal(5, 2),
-    prima_riesgo_mercado     decimal(5, 2),
-    gradiente_flujos         decimal(5, 2),
-    tasa_impuestos           decimal(5, 2)
+    tasa_libre_riesgo        decimal(5, 4),
+    beta_sector              decimal(5, 4),
+    prima_riesgo_mercado     decimal(5, 4),
+    gradiente_flujos         decimal(5, 4),
+    tasa_impuestos           decimal(5, 4)
 )
 GO
 CREATE TABLE datosEscenarios (
     id INT PRIMARY KEY IDENTITY(1,1),
     escenario_id INT,
 
-    mercado_esperado_anio1 DECIMAL(5,2), -- encuestas/personas_interesadas
-    variacion_nominal_precio DECIMAL(5,2), --(1+inflacion)*(1+incremento_precio)-1
-    variacion_nominal_ipp DECIMAL(5,2), --(1+inflacion)*(1+ipp)-1
+    mercado_esperado_anio1 DECIMAL(5,4), -- encuestas/personas_interesadas
+    variacion_nominal_precio DECIMAL(5,4), --(1+inflacion)*(1+incremento_precio)-1
+    variacion_nominal_ipp DECIMAL(5,4), --(1+inflacion)*(1+ipp)-1
     valor_inversion_inicial DECIMAL(18,2), --inversion_equipos*(objetivo_mercado*100)
     financiado_con_credito DECIMAL(18,2), --valor_inversion_inicial*porcentaje_deuda
-    costo_deuda DECIMAL(5,2), -- Se saca el porcentaje de la tabla de tasas de interés según % de deuda
-    financiado_con_aportes DECIMAL(18,2), --valor_inversion_inicial-financiado_con_credito
+    costo_deuda DECIMAL(5,4), -- Se saca el porcentaje de la tabla de tasas de interés según % de deuda
+    financiado_con_aportes DECIMAL(18,4), --valor_inversion_inicial-financiado_con_credito
 
     FOREIGN KEY (escenario_id) REFERENCES entradasEscenarios(id_escenario)
 );
+
 GO
 CREATE TABLE variables
 (
@@ -57,7 +60,7 @@ CREATE TABLE variables
 
     anio int,
     tamanio_mercado DECIMAL(18, 2) DEFAULT 0,
-    participacion_mercado DECIMAL(5, 2) DEFAULT 0,
+    participacion_mercado DECIMAL(5, 4) DEFAULT 0,
     unidades_vendidas int DEFAULT 0,
     precio_venta DECIMAL(18, 2) DEFAULT 0,
     costo_produccion DECIMAL(18, 2) DEFAULT 0,

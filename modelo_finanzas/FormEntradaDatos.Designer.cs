@@ -35,14 +35,14 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            groupBox1 = new GroupBox();
+            gpbMercado = new GroupBox();
             txtObjeMer = new TextBox();
             txtManiComp = new TextBox();
             txtEncRealizadas = new TextBox();
             txtCrecimientoAnualMerc = new TextBox();
             txtTamanioMercado = new TextBox();
             btnTest = new Button();
-            groupBox2 = new GroupBox();
+            gpbPrecios = new GroupBox();
             txtInflaAnual = new TextBox();
             txtIPP = new TextBox();
             txtIncRealPrec = new TextBox();
@@ -51,14 +51,14 @@
             label9 = new Label();
             label11 = new Label();
             label13 = new Label();
-            groupBox3 = new GroupBox();
+            gpbCostos = new GroupBox();
             txtGastOper = new TextBox();
             txtCapTrab = new TextBox();
             txtCostProdIni = new TextBox();
             label10 = new Label();
             label12 = new Label();
             label15 = new Label();
-            groupBox4 = new GroupBox();
+            gpbInversion = new GroupBox();
             txtTasaImpositiva = new TextBox();
             txtBetaSector = new TextBox();
             txtPlazoCredito = new TextBox();
@@ -87,10 +87,10 @@
             btnGuardar = new Button();
             errorProvider1 = new ErrorProvider(components);
             panel2 = new Panel();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
-            groupBox4.SuspendLayout();
+            gpbMercado.SuspendLayout();
+            gpbPrecios.SuspendLayout();
+            gpbCostos.SuspendLayout();
+            gpbInversion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
@@ -150,35 +150,35 @@
             label7.TabIndex = 6;
             label7.Text = "% objetivo de mercado:";
             // 
-            // groupBox1
+            // gpbMercado
             // 
-            groupBox1.Controls.Add(txtObjeMer);
-            groupBox1.Controls.Add(txtManiComp);
-            groupBox1.Controls.Add(txtEncRealizadas);
-            groupBox1.Controls.Add(txtCrecimientoAnualMerc);
-            groupBox1.Controls.Add(txtTamanioMercado);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox1.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox1.Location = new Point(10, 24);
-            groupBox1.Margin = new Padding(3, 2, 3, 2);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 2, 3, 2);
-            groupBox1.Size = new Size(470, 184);
-            groupBox1.TabIndex = 8;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Mercado y demanda";
+            gpbMercado.Controls.Add(txtObjeMer);
+            gpbMercado.Controls.Add(txtManiComp);
+            gpbMercado.Controls.Add(txtEncRealizadas);
+            gpbMercado.Controls.Add(txtCrecimientoAnualMerc);
+            gpbMercado.Controls.Add(txtTamanioMercado);
+            gpbMercado.Controls.Add(label2);
+            gpbMercado.Controls.Add(label7);
+            gpbMercado.Controls.Add(label4);
+            gpbMercado.Controls.Add(label6);
+            gpbMercado.Controls.Add(label5);
+            gpbMercado.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            gpbMercado.ForeColor = SystemColors.ActiveCaptionText;
+            gpbMercado.Location = new Point(10, 24);
+            gpbMercado.Margin = new Padding(3, 2, 3, 2);
+            gpbMercado.Name = "gpbMercado";
+            gpbMercado.Padding = new Padding(3, 2, 3, 2);
+            gpbMercado.Size = new Size(470, 184);
+            gpbMercado.TabIndex = 8;
+            gpbMercado.TabStop = false;
+            gpbMercado.Text = "Mercado y demanda";
             // 
             // txtObjeMer
             // 
             txtObjeMer.Location = new Point(252, 40);
             txtObjeMer.Margin = new Padding(3, 2, 3, 2);
             txtObjeMer.Name = "txtObjeMer";
-            txtObjeMer.PlaceholderText = "ej. 2.5%";
+            txtObjeMer.PlaceholderText = "ej. 4%";
             txtObjeMer.Size = new Size(187, 26);
             txtObjeMer.TabIndex = 15;
             // 
@@ -187,7 +187,7 @@
             txtManiComp.Location = new Point(251, 89);
             txtManiComp.Margin = new Padding(3, 2, 3, 2);
             txtManiComp.Name = "txtManiComp";
-            txtManiComp.PlaceholderText = "ej. 5000";
+            txtManiComp.PlaceholderText = "ej. 9";
             txtManiComp.Size = new Size(187, 26);
             txtManiComp.TabIndex = 14;
             // 
@@ -195,7 +195,7 @@
             // 
             txtEncRealizadas.Location = new Point(6, 134);
             txtEncRealizadas.Name = "txtEncRealizadas";
-            txtEncRealizadas.PlaceholderText = "ej. 5000";
+            txtEncRealizadas.PlaceholderText = "ej. 400";
             txtEncRealizadas.Size = new Size(213, 26);
             txtEncRealizadas.TabIndex = 13;
             // 
@@ -203,7 +203,7 @@
             // 
             txtCrecimientoAnualMerc.Location = new Point(6, 88);
             txtCrecimientoAnualMerc.Name = "txtCrecimientoAnualMerc";
-            txtCrecimientoAnualMerc.PlaceholderText = "ej. 2.5%";
+            txtCrecimientoAnualMerc.PlaceholderText = "ej. 2.0%";
             txtCrecimientoAnualMerc.Size = new Size(213, 26);
             txtCrecimientoAnualMerc.TabIndex = 12;
             // 
@@ -211,7 +211,7 @@
             // 
             txtTamanioMercado.Location = new Point(6, 40);
             txtTamanioMercado.Name = "txtTamanioMercado";
-            txtTamanioMercado.PlaceholderText = "ej. 2000000";
+            txtTamanioMercado.PlaceholderText = "ej. 800,000";
             txtTamanioMercado.Size = new Size(213, 26);
             txtTamanioMercado.TabIndex = 11;
             txtTamanioMercado.KeyPress += txtTamanioMercado_KeyPress;
@@ -228,61 +228,61 @@
             btnTest.UseVisualStyleBackColor = false;
             btnTest.Click += button1_Click;
             // 
-            // groupBox2
+            // gpbPrecios
             // 
-            groupBox2.AutoSize = true;
-            groupBox2.Controls.Add(txtInflaAnual);
-            groupBox2.Controls.Add(txtIPP);
-            groupBox2.Controls.Add(txtIncRealPrec);
-            groupBox2.Controls.Add(txtPrecioProducto);
-            groupBox2.Controls.Add(label8);
-            groupBox2.Controls.Add(label9);
-            groupBox2.Controls.Add(label11);
-            groupBox2.Controls.Add(label13);
-            groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox2.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox2.Location = new Point(486, 24);
-            groupBox2.Margin = new Padding(3, 2, 3, 2);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 2, 3, 2);
-            groupBox2.Size = new Size(492, 185);
-            groupBox2.TabIndex = 9;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Precios e inflación";
+            gpbPrecios.AutoSize = true;
+            gpbPrecios.Controls.Add(txtInflaAnual);
+            gpbPrecios.Controls.Add(txtIPP);
+            gpbPrecios.Controls.Add(txtIncRealPrec);
+            gpbPrecios.Controls.Add(txtPrecioProducto);
+            gpbPrecios.Controls.Add(label8);
+            gpbPrecios.Controls.Add(label9);
+            gpbPrecios.Controls.Add(label11);
+            gpbPrecios.Controls.Add(label13);
+            gpbPrecios.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            gpbPrecios.ForeColor = SystemColors.ActiveCaptionText;
+            gpbPrecios.Location = new Point(486, 24);
+            gpbPrecios.Margin = new Padding(3, 2, 3, 2);
+            gpbPrecios.Name = "gpbPrecios";
+            gpbPrecios.Padding = new Padding(3, 2, 3, 2);
+            gpbPrecios.Size = new Size(506, 194);
+            gpbPrecios.TabIndex = 9;
+            gpbPrecios.TabStop = false;
+            gpbPrecios.Text = "Precios e inflación";
             // 
             // txtInflaAnual
             // 
-            txtInflaAnual.Location = new Point(256, 41);
+            txtInflaAnual.Location = new Point(299, 45);
             txtInflaAnual.Margin = new Padding(3, 2, 3, 2);
             txtInflaAnual.Name = "txtInflaAnual";
-            txtInflaAnual.PlaceholderText = "ej. 2.5%";
+            txtInflaAnual.PlaceholderText = "ej. 3.5%";
             txtInflaAnual.Size = new Size(187, 26);
             txtInflaAnual.TabIndex = 18;
             // 
             // txtIPP
             // 
-            txtIPP.Location = new Point(5, 136);
+            txtIPP.Location = new Point(5, 145);
             txtIPP.Margin = new Padding(3, 2, 3, 2);
             txtIPP.Name = "txtIPP";
-            txtIPP.PlaceholderText = "ej. 2.5%";
+            txtIPP.PlaceholderText = "ej. 1%";
             txtIPP.Size = new Size(187, 26);
             txtIPP.TabIndex = 18;
             // 
             // txtIncRealPrec
             // 
-            txtIncRealPrec.Location = new Point(5, 87);
+            txtIncRealPrec.Location = new Point(5, 96);
             txtIncRealPrec.Margin = new Padding(3, 2, 3, 2);
             txtIncRealPrec.Name = "txtIncRealPrec";
-            txtIncRealPrec.PlaceholderText = "ej. 2.5%";
+            txtIncRealPrec.PlaceholderText = "ej. 0.8%";
             txtIncRealPrec.Size = new Size(187, 26);
             txtIncRealPrec.TabIndex = 18;
             // 
             // txtPrecioProducto
             // 
-            txtPrecioProducto.Location = new Point(0, 41);
+            txtPrecioProducto.Location = new Point(6, 41);
             txtPrecioProducto.Margin = new Padding(3, 2, 3, 2);
             txtPrecioProducto.Name = "txtPrecioProducto";
-            txtPrecioProducto.PlaceholderText = "ej. 2000000";
+            txtPrecioProducto.PlaceholderText = "ej. 7200";
             txtPrecioProducto.Size = new Size(187, 26);
             txtPrecioProducto.TabIndex = 18;
             // 
@@ -299,7 +299,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(256, 20);
+            label9.Location = new Point(299, 24);
             label9.Name = "label9";
             label9.Size = new Size(193, 19);
             label9.TabIndex = 2;
@@ -308,7 +308,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(6, 65);
+            label11.Location = new Point(6, 75);
             label11.Name = "label11";
             label11.Size = new Size(341, 19);
             label11.TabIndex = 3;
@@ -317,38 +317,38 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(6, 115);
+            label13.Location = new Point(6, 124);
             label13.Name = "label13";
             label13.Size = new Size(202, 19);
             label13.TabIndex = 4;
             label13.Text = "% de IPP adicional a la inflación:";
             // 
-            // groupBox3
+            // gpbCostos
             // 
-            groupBox3.AutoSize = true;
-            groupBox3.Controls.Add(txtGastOper);
-            groupBox3.Controls.Add(txtCapTrab);
-            groupBox3.Controls.Add(txtCostProdIni);
-            groupBox3.Controls.Add(label10);
-            groupBox3.Controls.Add(label12);
-            groupBox3.Controls.Add(label15);
-            groupBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox3.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox3.Location = new Point(9, 216);
-            groupBox3.Margin = new Padding(3, 2, 3, 2);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new Padding(3, 2, 3, 2);
-            groupBox3.Size = new Size(476, 188);
-            groupBox3.TabIndex = 9;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Costos";
+            gpbCostos.AutoSize = true;
+            gpbCostos.Controls.Add(txtGastOper);
+            gpbCostos.Controls.Add(txtCapTrab);
+            gpbCostos.Controls.Add(txtCostProdIni);
+            gpbCostos.Controls.Add(label10);
+            gpbCostos.Controls.Add(label12);
+            gpbCostos.Controls.Add(label15);
+            gpbCostos.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            gpbCostos.ForeColor = SystemColors.ActiveCaptionText;
+            gpbCostos.Location = new Point(9, 216);
+            gpbCostos.Margin = new Padding(3, 2, 3, 2);
+            gpbCostos.Name = "gpbCostos";
+            gpbCostos.Padding = new Padding(3, 2, 3, 2);
+            gpbCostos.Size = new Size(476, 188);
+            gpbCostos.TabIndex = 9;
+            gpbCostos.TabStop = false;
+            gpbCostos.Text = "Costos";
             // 
             // txtGastOper
             // 
             txtGastOper.Location = new Point(234, 41);
             txtGastOper.Margin = new Padding(3, 2, 3, 2);
             txtGastOper.Name = "txtGastOper";
-            txtGastOper.PlaceholderText = "ej. 2.5%";
+            txtGastOper.PlaceholderText = "ej. 25%";
             txtGastOper.Size = new Size(187, 26);
             txtGastOper.TabIndex = 17;
             // 
@@ -357,7 +357,7 @@
             txtCapTrab.Location = new Point(6, 87);
             txtCapTrab.Margin = new Padding(3, 2, 3, 2);
             txtCapTrab.Name = "txtCapTrab";
-            txtCapTrab.PlaceholderText = "ej. 2.5%";
+            txtCapTrab.PlaceholderText = "ej. 9%";
             txtCapTrab.Size = new Size(187, 26);
             txtCapTrab.TabIndex = 16;
             // 
@@ -366,7 +366,7 @@
             txtCostProdIni.Location = new Point(6, 41);
             txtCostProdIni.Margin = new Padding(3, 2, 3, 2);
             txtCostProdIni.Name = "txtCostProdIni";
-            txtCostProdIni.PlaceholderText = "ej. 2000000";
+            txtCostProdIni.PlaceholderText = "ej. 3500";
             txtCostProdIni.Size = new Size(187, 26);
             txtCostProdIni.TabIndex = 16;
             // 
@@ -398,47 +398,47 @@
             label15.TabIndex = 3;
             label15.Text = "% de capital de trabajo sobre ventas:";
             // 
-            // groupBox4
+            // gpbInversion
             // 
-            groupBox4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            groupBox4.AutoSize = true;
-            groupBox4.Controls.Add(txtTasaImpositiva);
-            groupBox4.Controls.Add(txtBetaSector);
-            groupBox4.Controls.Add(txtPlazoCredito);
-            groupBox4.Controls.Add(txtFinanCredito);
-            groupBox4.Controls.Add(txtPlazoDep);
-            groupBox4.Controls.Add(txtGradFlujos);
-            groupBox4.Controls.Add(txtPrimRiesgMerc);
-            groupBox4.Controls.Add(txtTasaLibRiesgo);
-            groupBox4.Controls.Add(txtRecupSobreCosto);
-            groupBox4.Controls.Add(txtInvEquiXPart);
-            groupBox4.Controls.Add(label24);
-            groupBox4.Controls.Add(label23);
-            groupBox4.Controls.Add(label22);
-            groupBox4.Controls.Add(label21);
-            groupBox4.Controls.Add(label20);
-            groupBox4.Controls.Add(label19);
-            groupBox4.Controls.Add(label18);
-            groupBox4.Controls.Add(label14);
-            groupBox4.Controls.Add(label16);
-            groupBox4.Controls.Add(label17);
-            groupBox4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox4.ForeColor = SystemColors.ActiveCaptionText;
-            groupBox4.Location = new Point(492, 216);
-            groupBox4.Margin = new Padding(3, 2, 3, 2);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Padding = new Padding(3, 2, 3, 2);
-            groupBox4.Size = new Size(486, 315);
-            groupBox4.TabIndex = 10;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Inversión, financiamiento y otros parámetros";
+            gpbInversion.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            gpbInversion.AutoSize = true;
+            gpbInversion.Controls.Add(txtTasaImpositiva);
+            gpbInversion.Controls.Add(txtBetaSector);
+            gpbInversion.Controls.Add(txtPlazoCredito);
+            gpbInversion.Controls.Add(txtFinanCredito);
+            gpbInversion.Controls.Add(txtPlazoDep);
+            gpbInversion.Controls.Add(txtGradFlujos);
+            gpbInversion.Controls.Add(txtPrimRiesgMerc);
+            gpbInversion.Controls.Add(txtTasaLibRiesgo);
+            gpbInversion.Controls.Add(txtRecupSobreCosto);
+            gpbInversion.Controls.Add(txtInvEquiXPart);
+            gpbInversion.Controls.Add(label24);
+            gpbInversion.Controls.Add(label23);
+            gpbInversion.Controls.Add(label22);
+            gpbInversion.Controls.Add(label21);
+            gpbInversion.Controls.Add(label20);
+            gpbInversion.Controls.Add(label19);
+            gpbInversion.Controls.Add(label18);
+            gpbInversion.Controls.Add(label14);
+            gpbInversion.Controls.Add(label16);
+            gpbInversion.Controls.Add(label17);
+            gpbInversion.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            gpbInversion.ForeColor = SystemColors.ActiveCaptionText;
+            gpbInversion.Location = new Point(492, 216);
+            gpbInversion.Margin = new Padding(3, 2, 3, 2);
+            gpbInversion.Name = "gpbInversion";
+            gpbInversion.Padding = new Padding(3, 2, 3, 2);
+            gpbInversion.Size = new Size(500, 315);
+            gpbInversion.TabIndex = 10;
+            gpbInversion.TabStop = false;
+            gpbInversion.Text = "Inversión, financiamiento y otros parámetros";
             // 
             // txtTasaImpositiva
             // 
             txtTasaImpositiva.Location = new Point(293, 229);
             txtTasaImpositiva.Margin = new Padding(3, 2, 3, 2);
             txtTasaImpositiva.Name = "txtTasaImpositiva";
-            txtTasaImpositiva.PlaceholderText = "ej. 2.5%";
+            txtTasaImpositiva.PlaceholderText = "ej. 34%";
             txtTasaImpositiva.Size = new Size(187, 26);
             txtTasaImpositiva.TabIndex = 27;
             // 
@@ -456,7 +456,7 @@
             txtPlazoCredito.Location = new Point(293, 130);
             txtPlazoCredito.Margin = new Padding(3, 2, 3, 2);
             txtPlazoCredito.Name = "txtPlazoCredito";
-            txtPlazoCredito.PlaceholderText = "ej. 7 años";
+            txtPlazoCredito.PlaceholderText = "ej. 5 años";
             txtPlazoCredito.Size = new Size(187, 26);
             txtPlazoCredito.TabIndex = 25;
             // 
@@ -465,7 +465,7 @@
             txtFinanCredito.Location = new Point(293, 87);
             txtFinanCredito.Margin = new Padding(3, 2, 3, 2);
             txtFinanCredito.Name = "txtFinanCredito";
-            txtFinanCredito.PlaceholderText = "ej. 2.5%";
+            txtFinanCredito.PlaceholderText = "ej. 40%";
             txtFinanCredito.Size = new Size(187, 26);
             txtFinanCredito.TabIndex = 24;
             // 
@@ -474,7 +474,7 @@
             txtPlazoDep.Location = new Point(293, 41);
             txtPlazoDep.Margin = new Padding(3, 2, 3, 2);
             txtPlazoDep.Name = "txtPlazoDep";
-            txtPlazoDep.PlaceholderText = "ej. 7 años";
+            txtPlazoDep.PlaceholderText = "ej. 8 años";
             txtPlazoDep.Size = new Size(187, 26);
             txtPlazoDep.TabIndex = 23;
             // 
@@ -483,7 +483,7 @@
             txtGradFlujos.Location = new Point(6, 229);
             txtGradFlujos.Margin = new Padding(3, 2, 3, 2);
             txtGradFlujos.Name = "txtGradFlujos";
-            txtGradFlujos.PlaceholderText = "ej. 2.5%";
+            txtGradFlujos.PlaceholderText = "ej. 5%";
             txtGradFlujos.Size = new Size(187, 26);
             txtGradFlujos.TabIndex = 22;
             // 
@@ -492,7 +492,7 @@
             txtPrimRiesgMerc.Location = new Point(6, 179);
             txtPrimRiesgMerc.Margin = new Padding(3, 2, 3, 2);
             txtPrimRiesgMerc.Name = "txtPrimRiesgMerc";
-            txtPrimRiesgMerc.PlaceholderText = "ej. 2.5%";
+            txtPrimRiesgMerc.PlaceholderText = "ej. 8.6%";
             txtPrimRiesgMerc.Size = new Size(187, 26);
             txtPrimRiesgMerc.TabIndex = 21;
             // 
@@ -501,7 +501,7 @@
             txtTasaLibRiesgo.Location = new Point(6, 134);
             txtTasaLibRiesgo.Margin = new Padding(3, 2, 3, 2);
             txtTasaLibRiesgo.Name = "txtTasaLibRiesgo";
-            txtTasaLibRiesgo.PlaceholderText = "ej. 2.5%";
+            txtTasaLibRiesgo.PlaceholderText = "ej. 11%";
             txtTasaLibRiesgo.Size = new Size(187, 26);
             txtTasaLibRiesgo.TabIndex = 20;
             // 
@@ -510,7 +510,7 @@
             txtRecupSobreCosto.Location = new Point(6, 87);
             txtRecupSobreCosto.Margin = new Padding(3, 2, 3, 2);
             txtRecupSobreCosto.Name = "txtRecupSobreCosto";
-            txtRecupSobreCosto.PlaceholderText = "ej. 2.5%";
+            txtRecupSobreCosto.PlaceholderText = "ej. 1%";
             txtRecupSobreCosto.Size = new Size(187, 26);
             txtRecupSobreCosto.TabIndex = 19;
             // 
@@ -519,7 +519,7 @@
             txtInvEquiXPart.Location = new Point(6, 41);
             txtInvEquiXPart.Margin = new Padding(3, 2, 3, 2);
             txtInvEquiXPart.Name = "txtInvEquiXPart";
-            txtInvEquiXPart.PlaceholderText = "ej. 2000000";
+            txtInvEquiXPart.PlaceholderText = "ej. 55000000";
             txtInvEquiXPart.Size = new Size(187, 26);
             txtInvEquiXPart.TabIndex = 19;
             // 
@@ -689,9 +689,9 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.Location = new Point(984, 35);
+            panel2.Location = new Point(998, 35);
             panel2.Name = "panel2";
-            panel2.Size = new Size(292, 496);
+            panel2.Size = new Size(278, 496);
             panel2.TabIndex = 24;
             // 
             // FormEntradaDatos
@@ -706,24 +706,26 @@
             Controls.Add(txtFechaCreacion);
             Controls.Add(txtNombreEscenario);
             Controls.Add(label3);
-            Controls.Add(groupBox4);
+            Controls.Add(gpbInversion);
             Controls.Add(label25);
-            Controls.Add(groupBox3);
-            Controls.Add(groupBox2);
+            Controls.Add(gpbCostos);
+            Controls.Add(gpbPrecios);
             Controls.Add(btnTest);
-            Controls.Add(groupBox1);
+            Controls.Add(gpbMercado);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
+            MinimumSize = new Size(1293, 581);
             Name = "FormEntradaDatos";
             Text = "Modelo Financiero";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
-            groupBox4.ResumeLayout(false);
-            groupBox4.PerformLayout();
+            WindowState = FormWindowState.Maximized;
+            gpbMercado.ResumeLayout(false);
+            gpbMercado.PerformLayout();
+            gpbPrecios.ResumeLayout(false);
+            gpbPrecios.PerformLayout();
+            gpbCostos.ResumeLayout(false);
+            gpbCostos.PerformLayout();
+            gpbInversion.ResumeLayout(false);
+            gpbInversion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -738,18 +740,18 @@
         private Label label5;
         private Label label6;
         private Label label7;
-        private GroupBox groupBox1;
+        private GroupBox gpbMercado;
         private Button btnTest;
-        private GroupBox groupBox2;
+        private GroupBox gpbPrecios;
         private Label label8;
         private Label label9;
         private Label label11;
         private Label label13;
-        private GroupBox groupBox3;
+        private GroupBox gpbCostos;
         private Label label10;
         private Label label12;
         private Label label15;
-        private GroupBox groupBox4;
+        private GroupBox gpbInversion;
         private Label label14;
         private Label label16;
         private Label label17;

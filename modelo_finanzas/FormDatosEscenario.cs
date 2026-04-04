@@ -29,7 +29,7 @@ namespace modelo_finanzas
             txtVarNomPrecio.Text = escenario.Variacion_nominal_precio.ToString("P2");
             txtVarNomIPP.Text = escenario.Variacion_nominal_ipp.ToString("P2");
             txtValInvInicial.Text = escenario.Valor_inversion_inicial.ToString("C2");
-            txtCostoDeuda.Text = (escenario.Costo_deuda/100).ToString("P2");
+            txtCostoDeuda.Text = (escenario.Costo_deuda).ToString("P2");
             txtFinanCredito.Text = escenario.Financiado_con_credito.ToString("C2");
             txtFinanAportes.Text = escenario.Financiado_con_aportes.ToString("C2");
         }
