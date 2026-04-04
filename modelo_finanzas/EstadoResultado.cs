@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace modelo_finanzas
 {
-    public partial class EstadoResultados : Form
+    public partial class EstadoResultado : Form
     {
-        public EstadoResultados()
+        public EstadoResultado()
         {
             InitializeComponent();
         }

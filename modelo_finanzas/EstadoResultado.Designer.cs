@@ -1,6 +1,6 @@
 ﻿namespace modelo_finanzas
 {
-    partial class EstadoResultados
+    partial class EstadoResultado
     {
         /// <summary>
         /// Required designer variable.

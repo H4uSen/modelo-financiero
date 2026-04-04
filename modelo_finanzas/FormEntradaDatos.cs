@@ -244,7 +244,7 @@ namespace modelo_finanzas
                 DatosEscenarios escenarios = new DatosEscenarios();
                 Variables variables = new Variables();
                 Amortizacion amortizacion = new Amortizacion();
-                EstadoResultados estadoResultados = new EstadoResultados();
+                EstadoResultado estadoResultados = new EstadoResultado();
 
                 variables.IdEscenario = escenarioID;
                 variables.CalcularVariables(variables, datos, escenarios);
