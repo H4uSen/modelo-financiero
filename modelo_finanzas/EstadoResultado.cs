@@ -1,15 +1,15 @@
 ﻿using Microsoft.Data.SqlClient;
+using modelo_finanzas.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data.Common;
 
 namespace modelo_finanzas
 {
@@ -20,7 +20,7 @@ namespace modelo_finanzas
             InitializeComponent();
         }
 
-        private async void EstadoResultados_Load(object sender, EventArgs e)
+        private void EstadoResultados_Load(object sender, EventArgs e)
         {
             // Bloquear edición
             dgvEstadoResultado.ReadOnly = true;
@@ -49,11 +49,10 @@ namespace modelo_finanzas
             //string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=hausencito247_finanzas;Integrated Security=True;";
             string query = "SELECT anio, ventas, costo_ventas, utilidad_bruta, gastos_operativos, depreciacion, total_gastos, utilidad_operativa, gastos_financieros, otros_ingresos, neto_otros_ingresos, utilidad_antes_impuestos, impuestos, utilidad_neta, capital_trabajo FROM estadoResultados where id_escenario = 1 ORDER BY anio";
 
-            var db = DbConnection.Instance;
-            if(await db.TestConnectionAsync())
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                var conn = await db.GetConnectionAsync();
                 SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
                 MessageBox.Show("Conexión exitosa!");
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -79,6 +78,30 @@ namespace modelo_finanzas
                     colIndex++; // siguiente columna para el siguiente año
                 }
 
+                // ESTE ES PARA EL FORMATO NUMÉRICO
+                foreach (DataGridViewColumn col in dgvEstadoResultado.Columns)
+                {
+                    if (col.Index == 0 || col.Index == 1) continue; // Concepto no es numérico
+
+                    col.DefaultCellStyle.Format = "N0"; // Formato con comas sin decimales
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+
+                // Alinear primera columna
+                //dgvEstadoResultado.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                // Ajustar ancho automático
+                //dgvEstadoResultado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgvEstadoResultado.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                /*
+                //si después lo hago fijo este sería el código para poner un ancho fijo a las columnas de datos (excepto la primera)
+                for (int i = 1; i < dgvEstadoResultado.Columns.Count; i++)
+                {
+                    dgvEstadoResultado.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dgvEstadoResultado.Columns[i].Width = 120; // o el ancho que quieras
+                }
+
+                 */
                 // Ejemplo: poner en negrita la fila de Utilidad Bruta
                 dgvEstadoResultado.Rows[2].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
                 dgvEstadoResultado.Rows[5].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
@@ -100,54 +123,50 @@ namespace modelo_finanzas
 
                 conn.Close();
             }
-            ;
-                
+        }
+
+        /*private void EstadoResultados_Load(object sender, EventArgs e)
+        {
+            // Bloquear edición
+            dgvEstadoResultado.ReadOnly = true;
+            dgvEstadoResultado.AllowUserToAddRows = false;
+            //dgvEstadoResultado.AllowUserToAddColumns = false;
+            dgvEstadoResultado.AllowUserToDeleteRows = false;
+            // Agregar filas de texto en la primera columna
+            dgvEstadoResultado.Rows.Add("Ventas");
+            dgvEstadoResultado.Rows.Add("Costo de ventas");
+            dgvEstadoResultado.Rows.Add("UTILIDAD BRUTA");
+            dgvEstadoResultado.Rows.Add("Gastos operativos");
+            dgvEstadoResultado.Rows.Add("Depreciación");
+            dgvEstadoResultado.Rows.Add("TOTAL GASTOS");
+            dgvEstadoResultado.Rows.Add("UTILIDAD OPERACIONAL");
+            dgvEstadoResultado.Rows.Add("Gasto financiero");
+            dgvEstadoResultado.Rows.Add("Otros ingresos - recuperaciones");
+            dgvEstadoResultado.Rows.Add("NETO OTROS INGRESOS Y EGRESOS");
+            dgvEstadoResultado.Rows.Add("UTILIDAD ANTES DE IMPUESTOS");
+            dgvEstadoResultado.Rows.Add("Impuestos");
+            dgvEstadoResultado.Rows.Add("UTILIDAD NETA");
+            dgvEstadoResultado.Rows.Add("Capital de trabajo");
+
+            // Ejemplo: poner en negrita la fila de Utilidad Bruta
+            dgvEstadoResultado.Rows[2].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgvEstadoResultado.Rows[5].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgvEstadoResultado.Rows[6].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgvEstadoResultado.Rows[9].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgvEstadoResultado.Rows[10].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgvEstadoResultado.Rows[12].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+
+
+            // Ejemplo: poner en verde la fila de Utilidad Neta
+            //dgvEstadoResultado.Rows[12].DefaultCellStyle.BackColor = Color.LightGreen;
+            // 🔹 Aplicar color verde SOLO a las filas clave
+            dgvEstadoResultado.Rows[2].DefaultCellStyle.ForeColor = Color.Green;  // UTILIDAD BRUTA
+            //dgvEstadoResultado.Rows[5].DefaultCellStyle.ForeColor = Color.Green;  // TOTAL GASTOS
+            dgvEstadoResultado.Rows[6].DefaultCellStyle.ForeColor = Color.Green;  // UTILIDAD OPERACIONAL
+            //dgvEstadoResultado.Rows[9].DefaultCellStyle.ForeColor = Color.Green;  // NETO OTROS INGRESOS Y EGRESOS
+            dgvEstadoResultado.Rows[10].DefaultCellStyle.ForeColor = Color.Green; // UTILIDAD ANTES DE IMPUESTOS
+            dgvEstadoResultado.Rows[12].DefaultCellStyle.ForeColor = Color.Green; // UTILIDAD NETA
+
+        }*/
     }
-
-
-
-    /*private void EstadoResultados_Load(object sender, EventArgs e)
-    {
-        // Bloquear edición
-        dgvEstadoResultado.ReadOnly = true;
-        dgvEstadoResultado.AllowUserToAddRows = false;
-        //dgvEstadoResultado.AllowUserToAddColumns = false;
-        dgvEstadoResultado.AllowUserToDeleteRows = false;
-        // Agregar filas de texto en la primera columna
-        dgvEstadoResultado.Rows.Add("Ventas");
-        dgvEstadoResultado.Rows.Add("Costo de ventas");
-        dgvEstadoResultado.Rows.Add("UTILIDAD BRUTA");
-        dgvEstadoResultado.Rows.Add("Gastos operativos");
-        dgvEstadoResultado.Rows.Add("Depreciación");
-        dgvEstadoResultado.Rows.Add("TOTAL GASTOS");
-        dgvEstadoResultado.Rows.Add("UTILIDAD OPERACIONAL");
-        dgvEstadoResultado.Rows.Add("Gasto financiero");
-        dgvEstadoResultado.Rows.Add("Otros ingresos - recuperaciones");
-        dgvEstadoResultado.Rows.Add("NETO OTROS INGRESOS Y EGRESOS");
-        dgvEstadoResultado.Rows.Add("UTILIDAD ANTES DE IMPUESTOS");
-        dgvEstadoResultado.Rows.Add("Impuestos");
-        dgvEstadoResultado.Rows.Add("UTILIDAD NETA");
-        dgvEstadoResultado.Rows.Add("Capital de trabajo");
-
-        // Ejemplo: poner en negrita la fila de Utilidad Bruta
-        dgvEstadoResultado.Rows[2].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-        dgvEstadoResultado.Rows[5].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-        dgvEstadoResultado.Rows[6].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-        dgvEstadoResultado.Rows[9].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-        dgvEstadoResultado.Rows[10].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-        dgvEstadoResultado.Rows[12].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-
-
-        // Ejemplo: poner en verde la fila de Utilidad Neta
-        //dgvEstadoResultado.Rows[12].DefaultCellStyle.BackColor = Color.LightGreen;
-        // 🔹 Aplicar color verde SOLO a las filas clave
-        dgvEstadoResultado.Rows[2].DefaultCellStyle.ForeColor = Color.Green;  // UTILIDAD BRUTA
-        //dgvEstadoResultado.Rows[5].DefaultCellStyle.ForeColor = Color.Green;  // TOTAL GASTOS
-        dgvEstadoResultado.Rows[6].DefaultCellStyle.ForeColor = Color.Green;  // UTILIDAD OPERACIONAL
-        //dgvEstadoResultado.Rows[9].DefaultCellStyle.ForeColor = Color.Green;  // NETO OTROS INGRESOS Y EGRESOS
-        dgvEstadoResultado.Rows[10].DefaultCellStyle.ForeColor = Color.Green; // UTILIDAD ANTES DE IMPUESTOS
-        dgvEstadoResultado.Rows[12].DefaultCellStyle.ForeColor = Color.Green; // UTILIDAD NETA
-
-    }*/
-}
 }
