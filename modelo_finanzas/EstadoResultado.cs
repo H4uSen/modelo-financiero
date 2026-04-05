@@ -78,6 +78,30 @@ namespace modelo_finanzas
                     colIndex++; // siguiente columna para el siguiente año
                 }
 
+                // ESTE ES PARA EL FORMATO NUMÉRICO
+                foreach (DataGridViewColumn col in dgvEstadoResultado.Columns)
+                {
+                    if (col.Index == 0 || col.Index == 1) continue; // Concepto no es numérico
+
+                    col.DefaultCellStyle.Format = "N0"; // Formato con comas sin decimales
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+
+                // Alinear primera columna
+                //dgvEstadoResultado.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+                // Ajustar ancho automático
+                //dgvEstadoResultado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgvEstadoResultado.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                /*
+                //si después lo hago fijo este sería el código para poner un ancho fijo a las columnas de datos (excepto la primera)
+                for (int i = 1; i < dgvEstadoResultado.Columns.Count; i++)
+                {
+                    dgvEstadoResultado.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dgvEstadoResultado.Columns[i].Width = 120; // o el ancho que quieras
+                }
+
+                 */
                 // Ejemplo: poner en negrita la fila de Utilidad Bruta
                 dgvEstadoResultado.Rows[2].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
                 dgvEstadoResultado.Rows[5].DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
