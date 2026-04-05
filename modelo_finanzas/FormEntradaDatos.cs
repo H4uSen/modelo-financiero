@@ -1,3 +1,4 @@
+using modelo_finanzas.Forms.Salidas;
 using modelo_finanzas.Logic;
 using modelo_finanzas.Models;
 using modelo_finanzas.Services;
@@ -9,9 +10,14 @@ namespace modelo_finanzas
 {
     public partial class FormEntradaDatos : Form
     {
-        public FormEntradaDatos()
+        private DatosEntrada datosCargados;
+
+        public FormEntradaDatos(DatosEntrada datosExternos = null)
         {
             InitializeComponent();
+            this.AutoScroll = true;
+
+            datosCargados = datosExternos;
 
             txtNombreEscenario.MaxLength = 50;
             txtNombreEscenario.Tag = "optional";
@@ -47,12 +53,12 @@ namespace modelo_finanzas
             txtTasaImpositiva.TabIndex = 23;
             btnTest.TabIndex = 24;
             btnCancelar.TabIndex = 25;
-            btnGuardar.TabIndex = 26;
+            btnCalcular.TabIndex = 26;
 
             gpbMercado.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enter += InputValidator.removeFormat);
             gpbCostos.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enter += InputValidator.removeFormat);
             gpbInversion.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enter += InputValidator.removeFormat);
-            gpbInversion.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enter += InputValidator.removeFormat);   
+            gpbInversion.Controls.OfType<TextBox>().ToList().ForEach(tb => tb.Enter += InputValidator.removeFormat);
 
             #region Mercado y demanda
 
@@ -195,6 +201,54 @@ namespace modelo_finanzas
             txtTasaImpositiva.Validated += (s, e) => inputFormatter.decimalFormatter(s, e, "%");
 
             #endregion
+
+            this.Load += FormEntradaDatos_Load;
+        }
+
+        private void FormEntradaDatos_Load(object sender, EventArgs e)
+        {
+            if (datosCargados != null)
+            {
+                CargarDatosEnControles(datosCargados);
+                button3_Click(this, EventArgs.Empty);
+            }
+        }
+
+        private void CargarDatosEnControles(DatosEntrada d)
+        {
+            // Identificación
+            txtNombreEscenario.Text = d.NombreEscenario;
+            txtFechaCreacion.Text = d.FechaCreacion.ToString("G");
+
+            // Mercado y demanda
+            txtTamanioMercado.Text = d.TamanioMercado.ToString("N0");
+            txtCrecimientoAnualMerc.Text = (d.CrecimientoMercado * 100).ToString("0.00") + "%";
+            txtEncRealizadas.Text = d.Encuestas.ToString("N0");
+            txtObjeMer.Text = (d.ObjetivoMercado * 100).ToString("0.00") + "%";
+            txtManiComp.Text = d.PersonasInteresadas.ToString("N0");
+
+            // Costos
+            txtCostProdIni.Text = d.CostoProduccionInicial.ToString("N0");
+            txtCapTrab.Text = (d.CapitalTrabajo * 100).ToString("0.00") + "%";
+            txtGastOper.Text = (d.GastosOperativos * 100).ToString("0.00") + "%";
+
+            // Precios e inflacion
+            txtPrecioProducto.Text = d.PrecioInicial.ToString("N0");
+            txtIncRealPrec.Text = (d.IncrementoPrecio * 100).ToString("0.00") + "%";
+            txtIPP.Text = (d.Ipp * 100).ToString("0.00") + "%";
+            txtInflaAnual.Text = (d.Inflacion * 100).ToString("0.00") + "%";
+
+            // Inversion, financiamiento y otros
+            txtInvEquiXPart.Text = d.InversionEquipos.ToString("N0");
+            txtRecupSobreCosto.Text = (d.OtrosIngresos * 100).ToString("0.00") + "%";
+            txtTasaLibRiesgo.Text = (d.TasaLibreRiesgo * 100).ToString("0.00") + "%";
+            txtPrimRiesgMerc.Text = (d.PrimaRiesgoMercado * 100).ToString("0.00") + "%";
+            txtGradFlujos.Text = (d.GradienteFlujos * 100).ToString("0.00") + "%";
+            txtPlazoDep.Text = d.DepreciacionAnios.ToString() + " años";
+            txtFinanCredito.Text = (d.PorcentajeDeuda * 100).ToString("0.00") + "%";
+            txtPlazoCredito.Text = d.PlazoCredito.ToString() + " años";
+            txtBetaSector.Text = d.BetaSector.ToString("0.00");
+            txtTasaImpositiva.Text = (d.TasaImpuestos * 100).ToString("0.00") + "%";
         }
 
 
@@ -231,6 +285,12 @@ namespace modelo_finanzas
             InputValidator.integerValidation(txtTamanioMercado, e);
         }
 
+        DatosEntrada datos = new DatosEntrada();
+        DatosEscenarios escenarios = new DatosEscenarios();
+        Variables variables = new Variables();
+        Amortizacion amortizacion = new Amortizacion();
+        EstadoResultado estadoResultados = new EstadoResultado();
+
         private async void button3_Click(object sender, EventArgs e)
         {
             if (!FormValidator.ValidateRequired(this, errorProvider1))
@@ -241,86 +301,60 @@ namespace modelo_finanzas
 
             try
             {
-                DatosEntrada datos = new DatosEntrada();
-                DatosService controller = new DatosService();
+                // Assign a fresh time before storing just in case
+                txtFechaCreacion.Text = DateTime.Now.ToString("G");
+
                 datos.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ?
                     $"Escenario: {DateTime.Now.ToString("G")}"
                     : txtNombreEscenario.Text;
                 datos.FechaCreacion = DateTime.Parse(txtFechaCreacion.Text);
                 //Mercado y demanda
-                datos.TamanioMercado = SqlInt32.Parse(txtTamanioMercado.Text.Replace(",", ""));
-                datos.CrecimientoMercado = SqlDecimal.Parse(txtCrecimientoAnualMerc.Text.Replace("%", ""))/100;
-                datos.Encuestas = SqlInt32.Parse(txtEncRealizadas.Text.Replace(",", ""));
-                datos.ObjetivoMercado = SqlDecimal.Parse(txtObjeMer.Text.Replace("%", ""))/100;
-                datos.PersonasInteresadas = SqlInt32.Parse(txtManiComp.Text.Replace(",", ""));
+                datos.TamanioMercado = int.Parse(txtTamanioMercado.Text.Replace(",", ""));
+                datos.CrecimientoMercado = decimal.Parse(txtCrecimientoAnualMerc.Text.Replace("%", "")) / 100;
+                datos.Encuestas = int.Parse(txtEncRealizadas.Text.Replace(",", ""));
+                datos.ObjetivoMercado = decimal.Parse(txtObjeMer.Text.Replace("%", "")) / 100;
+                datos.PersonasInteresadas = int.Parse(txtManiComp.Text.Replace(",", ""));
                 //Costos
-                datos.CostoProduccionInicial = SqlMoney.Parse(txtCostProdIni.Text);
-                datos.CapitalTrabajo = SqlDecimal.Parse(txtCapTrab.Text.Replace("%", ""))/100;
-                datos.GastosOperativos = SqlDecimal.Parse(txtGastOper.Text.Replace("%", ""))/100;
+                datos.CostoProduccionInicial = decimal.Parse(txtCostProdIni.Text);
+                datos.CapitalTrabajo = decimal.Parse(txtCapTrab.Text.Replace("%", "")) / 100;
+                datos.GastosOperativos = decimal.Parse(txtGastOper.Text.Replace("%", "")) / 100;
                 //Precios e inflacion
-                datos.PrecioInicial = SqlMoney.Parse(txtPrecioProducto.Text);
-                datos.IncrementoPrecio = SqlDecimal.Parse(txtIncRealPrec.Text.Replace("%", ""))/100;
-                datos.Ipp = SqlDecimal.Parse(txtIPP.Text.Replace("%", ""))/100;
-                datos.Inflacion = SqlDecimal.Parse(txtInflaAnual.Text.Replace("%", "")) / 100;
+                datos.PrecioInicial = decimal.Parse(txtPrecioProducto.Text);
+                datos.IncrementoPrecio = decimal.Parse(txtIncRealPrec.Text.Replace("%", "")) / 100;
+                datos.Ipp = decimal.Parse(txtIPP.Text.Replace("%", "")) / 100;
+                datos.Inflacion = decimal.Parse(txtInflaAnual.Text.Replace("%", "")) / 100;
                 //Inversion, financiamiento y otros
-                datos.InversionEquipos = SqlMoney.Parse(txtInvEquiXPart.Text);
-                datos.OtrosIngresos = SqlDecimal.Parse(txtRecupSobreCosto.Text.Replace("%", "")) / 100;
-                datos.TasaLibreRiesgo = SqlDecimal.Parse(txtTasaLibRiesgo.Text.Replace("%", "")) / 100;
-                datos.PrimaRiesgoMercado = SqlDecimal.Parse(txtPrimRiesgMerc.Text.Replace("%", "")) / 100;
-                datos.GradienteFlujos = SqlDecimal.Parse(txtGradFlujos.Text.Replace("%", "")) / 100;
-                datos.DepreciacionAnios = SqlInt16.Parse(txtPlazoDep.Text.Replace(" años", ""));
-                datos.PorcentajeDeuda = SqlDecimal.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
-                datos.PlazoCredito = SqlInt16.Parse(txtPlazoCredito.Text.Replace(" años", ""));
-                datos.BetaSector = SqlDecimal.Parse(txtBetaSector.Text.Replace("%", "")) / 100;
-                datos.TasaImpuestos = SqlDecimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
+                datos.InversionEquipos = decimal.Parse(txtInvEquiXPart.Text);
+                datos.OtrosIngresos = decimal.Parse(txtRecupSobreCosto.Text.Replace("%", "")) / 100;
+                datos.TasaLibreRiesgo = decimal.Parse(txtTasaLibRiesgo.Text.Replace("%", "")) / 100;
+                datos.PrimaRiesgoMercado = decimal.Parse(txtPrimRiesgMerc.Text.Replace("%", "")) / 100;
+                datos.GradienteFlujos = decimal.Parse(txtGradFlujos.Text.Replace("%", "")) / 100;
+                datos.DepreciacionAnios = int.Parse(txtPlazoDep.Text.Replace(" años", ""));
+                datos.PorcentajeDeuda = decimal.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
+                datos.PlazoCredito = int.Parse(txtPlazoCredito.Text.Replace(" años", ""));
+                datos.BetaSector = decimal.Parse(txtBetaSector.Text.Replace("%", ""));
+                datos.TasaImpuestos = decimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
 
-                int escenarioID = await controller.InsertDatos(datos);
-                datos.Id = escenarioID;
-               
-
-                DatosEscenarios escenarios = new DatosEscenarios();
-                Variables variables = new Variables();
-                Amortizacion amortizacion = new Amortizacion();
-                EstadoResultado estadoResultados = new EstadoResultado();
-
-                variables.IdEscenario = escenarioID;
+                panel2.Controls.Clear();
+                
                 variables.CalcularVariables(variables, datos, escenarios);
-
-
                 //Calculo de datos de escenario
-                escenarios.Escenario_id = escenarioID;
                 escenarios.CalcularDatosEscenarios(escenarios, datos);
-                DatosEscenariosService escenariosService = new DatosEscenariosService();
-                int escenID = await escenariosService.InsertEscenario(escenarios);
-                if(escenID > 0)
-                {
-                    escenarios.Id = escenID;
-                }
-                else
-                {
-                    MessageBox.Show("Error al insertar los datos del escenario.");
-                    return;
-                }
-
-                amortizacion.IdEscenario = escenarioID;
                 amortizacion.CalcularAmortizacion(amortizacion, datos, variables, escenarios);
+                // estadoResultados.IdEscenario = escenarioID;
+                // estadoResultados.CalcularEstadoResultados(estadoResultados, variables, datos, escenarios, amortizacion);
 
-               // estadoResultados.IdEscenario = escenarioID;
-               // estadoResultados.CalcularEstadoResultados(estadoResultados, variables, datos, escenarios, amortizacion);
+                FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
+                OpenChildForm(formDatosEscenario, new Point(0, 0));
 
-                if (escenarioID > 0)
-                {
-                    FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
-                    OpenChildForm(formDatosEscenario, new Point(0,0));
-                    MessageBox.Show("Datos insertados correctamente.");
-                    //TODO: Limpiar formulario o redirigir a la pantalla de calculos
-                    //this.Close();
-                    //FormCalculos formCalculos = new FormCalculos();
-                }
-                else
-                {
-                    MessageBox.Show("Error al insertar los datos.");
-                }
+                //Calculo de costo de capital
+                CostoCapital costoCapital = new CostoCapital();
+                costoCapital.CalcularCostoCapital(escenarios, datos);
+                FormCostoCapital formCostoCapital = new FormCostoCapital(costoCapital);
+                OpenChildForm(formCostoCapital, new Point(215, 0));
+                //TODO: Limpiar formulario o redirigir a la pantalla de calculos
+                //this.Close();
+                //FormCalculos formCalculos = new FormCalculos();
             }
             catch (Exception ex)
             {
@@ -328,28 +362,27 @@ namespace modelo_finanzas
             }
         }
 
-        private Form activeForm;
-
         private void OpenChildForm(Form childForm, Point position)
         {
             // Close previous form if exists
-            if (activeForm != null)
-                activeForm.Close();
+            //if (activeForm != null)
+            //    activeForm.Close();
 
-            activeForm = childForm;
+            //activeForm = childForm;
 
             // Important settings
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
+            //childForm.Dock = DockStyle.Fill;
 
             // Add to panel
-            panel2.Controls.Clear();
-            panel2.Controls.Add(childForm);
-            panel2.Tag = childForm;
+            //panel2.Controls.Clear();
+            //panel2.Tag = childForm;
 
             //Set the position
             childForm.Location = position;
+
+            panel2.Controls.Add(childForm);
 
 
             childForm.BringToFront();
@@ -358,6 +391,51 @@ namespace modelo_finanzas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            MenuPrincipal menuPrincipal = new MenuPrincipal();
+            menuPrincipal.Show();
+            this.Dispose();
+        }
+
+        private async void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (datos != null)
+            {
+                txtFechaCreacion.Text = DateTime.Now.ToString("G");
+                datos.NombreEscenario = txtNombreEscenario.Text;
+            }
+
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                DatosService datosService = new DatosService();
+                int escenarioID = await datosService.InsertDatos(datos);
+
+                datos.Id = escenarioID;
+                variables.IdEscenario = escenarioID;
+                escenarios.Escenario_id = escenarioID;
+                amortizacion.IdEscenario = escenarioID;
+
+                DatosEscenariosService escenariosService = new DatosEscenariosService();
+                int escenID = await escenariosService.InsertEscenario(escenarios);
+                if (escenID > 0)
+                {
+                    escenarios.Id = escenID;
+                }
+                else
+                {
+                    MessageBox.Show("Error al insertar los datos del escenario.");
+                    return;
+                }
+                Cursor.Current = Cursors.Default;
+                MessageBox.Show("Datos guardados exitosamente");
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error al guardar los datos en la base de datos: \n" + ex.Message.ToString());
+                return;
+            } 
 
         }
     }

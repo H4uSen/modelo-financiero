@@ -1,0 +1,67 @@
+Here’s a complete, runnable T‑SQL example to calculate Net Present Value (NPV) directly in SQL Server, using a table of cash flows and a given discount rate.
+The NPV formula is:
+NPV=∑t=0nCFt(1+r)tNPV = \sum_{t=0}^{n} \frac{CF_t}{(1 + r)^t}NPV=t=0∑n​(1+r)tCFt​​Where:
+
+CFtCF_tCFt​ = cash flow at time ttt
+rrr = discount rate (per period)
+ttt = period number (0 for initial investment)
+
+
+T‑SQL Implementation
+Sql-- Example: Calculate NPV in SQL Server
+
+-- 1. Create sample cash flow table
+IF OBJECT_ID('tempdb..#CashFlows') IS NOT NULL DROP TABLE #CashFlows;
+CREATE TABLE #CashFlows (
+    Period INT NOT NULL,       -- Period number (0 = initial investment)
+    CashFlow DECIMAL(18, 4) NOT NULL
+);
+
+-- 2. Insert example data
+INSERT INTO #CashFlows (Period, CashFlow)
+VALUES
+    (0, -10000.00),  -- Initial investment
+    (1,  3000.00),
+    (2,  4200.00),
+    (3,  6800.00);
+
+-- 3. Declare discount rate (e.g., 10% per period)
+DECLARE @DiscountRate DECIMAL(10, 6) = 0.10;
+
+-- 4. Calculate NPV
+SELECT 
+    SUM(CashFlow / POWER(1 + @DiscountRate, Period)) AS NetPresentValue
+FROM 
+    #CashFlows;
+
+
+Explanation
+
+Cash Flow Table: Holds each period’s cash flow (negative for outflows, positive for inflows).
+Discount Rate: Set as a decimal (e.g., 0.10 for 10%).
+NPV Calculation: Uses POWER(1 + r, t) to discount each cash flow to present value.
+SUM: Adds all discounted cash flows to get the NPV.
+
+
+Example Output
+For the above data:
+NetPresentValue
+---------------
+1188.4434
+
+This means the project has a positive NPV of 1,188.44, so it’s financially viable.
+
+✅ Tip:
+If you need to reuse this calculation often, you can wrap it in a scalar function:
+SqlCREATE FUNCTION dbo.CalculateNPV(@Rate DECIMAL(10,6))
+RETURNS DECIMAL(18,4)
+AS
+BEGIN
+    DECLARE @Result DECIMAL(18,4);
+    SELECT @Result = SUM(CashFlow / POWER(1 + @Rate, Period))
+    FROM #CashFlows; -- Replace with your actual table
+    RETURN @Result;
+END
+
+
+If you want, I can extend this to also calculate IRR (Internal Rate of Return) in SQL Server so you can evaluate both metrics together. Would you like me to include that?

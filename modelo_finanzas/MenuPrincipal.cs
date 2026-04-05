@@ -46,8 +46,8 @@ namespace Prueba1
 
         private void btnCompararEscenarios_Click(object sender, EventArgs e)
         {
-            EscenariosGuardados vistaEscenariosGuardados = new EscenariosGuardados();
-            vistaEscenariosGuardados.Show();
+            FormCargarEscenario cargarEscenario = new FormCargarEscenario();
+            cargarEscenario.Show();
             this.Hide();
         }
 

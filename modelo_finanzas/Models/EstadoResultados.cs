@@ -47,9 +47,9 @@ namespace modelo_finanzas.Models
             // 3. GASTOS Y DEPRECIACIÓN
             estado.GastosOperativos = estado.Ventas * datosEntrada.GastosOperativos;
             // La depreciación tiene la regla que viste en el Excel:
-            if (estado.Anio.Value <= datosEntrada.DepreciacionAnios.Value)
+            if (estado.Anio.Value <= datosEntrada.DepreciacionAnios)
             {
-                estado.Depreciacion = escenarios.Valor_inversion_inicial / datosEntrada.DepreciacionAnios.Value;
+                estado.Depreciacion = escenarios.Valor_inversion_inicial / datosEntrada.DepreciacionAnios;
             }
             else
             {

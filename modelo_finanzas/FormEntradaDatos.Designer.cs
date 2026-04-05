@@ -84,9 +84,10 @@
             txtNombreEscenario = new TextBox();
             txtFechaCreacion = new TextBox();
             btnCancelar = new Button();
-            btnGuardar = new Button();
+            btnCalcular = new Button();
             errorProvider1 = new ErrorProvider(components);
             panel2 = new Panel();
+            btnGuardar = new Button();
             gpbMercado.SuspendLayout();
             gpbPrecios.SuspendLayout();
             gpbCostos.SuspendLayout();
@@ -168,7 +169,7 @@
             gpbMercado.Margin = new Padding(3, 2, 3, 2);
             gpbMercado.Name = "gpbMercado";
             gpbMercado.Padding = new Padding(3, 2, 3, 2);
-            gpbMercado.Size = new Size(470, 184);
+            gpbMercado.Size = new Size(497, 168);
             gpbMercado.TabIndex = 8;
             gpbMercado.TabStop = false;
             gpbMercado.Text = "Mercado y demanda";
@@ -219,10 +220,10 @@
             // btnTest
             // 
             btnTest.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnTest.Location = new Point(9, 498);
+            btnTest.Location = new Point(9, 870);
             btnTest.Margin = new Padding(3, 2, 3, 2);
             btnTest.Name = "btnTest";
-            btnTest.Size = new Size(128, 33);
+            btnTest.Size = new Size(101, 33);
             btnTest.TabIndex = 9;
             btnTest.Text = "test connection";
             btnTest.UseVisualStyleBackColor = false;
@@ -231,6 +232,7 @@
             // gpbPrecios
             // 
             gpbPrecios.AutoSize = true;
+            gpbPrecios.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             gpbPrecios.Controls.Add(txtInflaAnual);
             gpbPrecios.Controls.Add(txtIPP);
             gpbPrecios.Controls.Add(txtIncRealPrec);
@@ -241,11 +243,11 @@
             gpbPrecios.Controls.Add(label13);
             gpbPrecios.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             gpbPrecios.ForeColor = SystemColors.ActiveCaptionText;
-            gpbPrecios.Location = new Point(486, 24);
+            gpbPrecios.Location = new Point(9, 329);
             gpbPrecios.Margin = new Padding(3, 2, 3, 2);
             gpbPrecios.Name = "gpbPrecios";
             gpbPrecios.Padding = new Padding(3, 2, 3, 2);
-            gpbPrecios.Size = new Size(506, 194);
+            gpbPrecios.Size = new Size(498, 194);
             gpbPrecios.TabIndex = 9;
             gpbPrecios.TabStop = false;
             gpbPrecios.Text = "Precios e inflación";
@@ -334,11 +336,11 @@
             gpbCostos.Controls.Add(label15);
             gpbCostos.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             gpbCostos.ForeColor = SystemColors.ActiveCaptionText;
-            gpbCostos.Location = new Point(9, 216);
+            gpbCostos.Location = new Point(10, 193);
             gpbCostos.Margin = new Padding(3, 2, 3, 2);
             gpbCostos.Name = "gpbCostos";
             gpbCostos.Padding = new Padding(3, 2, 3, 2);
-            gpbCostos.Size = new Size(476, 188);
+            gpbCostos.Size = new Size(497, 136);
             gpbCostos.TabIndex = 9;
             gpbCostos.TabStop = false;
             gpbCostos.Text = "Costos";
@@ -402,6 +404,7 @@
             // 
             gpbInversion.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             gpbInversion.AutoSize = true;
+            gpbInversion.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             gpbInversion.Controls.Add(txtTasaImpositiva);
             gpbInversion.Controls.Add(txtBetaSector);
             gpbInversion.Controls.Add(txtPlazoCredito);
@@ -424,11 +427,11 @@
             gpbInversion.Controls.Add(label17);
             gpbInversion.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             gpbInversion.ForeColor = SystemColors.ActiveCaptionText;
-            gpbInversion.Location = new Point(492, 216);
+            gpbInversion.Location = new Point(9, 527);
             gpbInversion.Margin = new Padding(3, 2, 3, 2);
             gpbInversion.Name = "gpbInversion";
             gpbInversion.Padding = new Padding(3, 2, 3, 2);
-            gpbInversion.Size = new Size(500, 315);
+            gpbInversion.Size = new Size(486, 278);
             gpbInversion.TabIndex = 10;
             gpbInversion.TabStop = false;
             gpbInversion.Text = "Inversión, financiamiento y otros parámetros";
@@ -620,7 +623,7 @@
             label25.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.Location = new Point(10, 439);
+            label25.Location = new Point(10, 811);
             label25.Name = "label25";
             label25.Size = new Size(159, 20);
             label25.TabIndex = 18;
@@ -631,7 +634,7 @@
             label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(244, 437);
+            label3.Location = new Point(244, 809);
             label3.Name = "label3";
             label3.Size = new Size(131, 20);
             label3.TabIndex = 19;
@@ -641,7 +644,7 @@
             // 
             txtNombreEscenario.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txtNombreEscenario.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombreEscenario.Location = new Point(9, 459);
+            txtNombreEscenario.Location = new Point(9, 831);
             txtNombreEscenario.Margin = new Padding(3, 2, 3, 2);
             txtNombreEscenario.Name = "txtNombreEscenario";
             txtNombreEscenario.PlaceholderText = "ej. 'Escen: 2026-03-14'";
@@ -652,7 +655,7 @@
             // 
             txtFechaCreacion.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txtFechaCreacion.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtFechaCreacion.Location = new Point(241, 459);
+            txtFechaCreacion.Location = new Point(241, 831);
             txtFechaCreacion.Margin = new Padding(3, 2, 3, 2);
             txtFechaCreacion.Name = "txtFechaCreacion";
             txtFechaCreacion.Size = new Size(207, 27);
@@ -661,26 +664,26 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCancelar.Location = new Point(168, 498);
+            btnCancelar.Location = new Point(143, 870);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(128, 33);
+            btnCancelar.Size = new Size(86, 33);
             btnCancelar.TabIndex = 21;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
-            // btnGuardar
+            // btnCalcular
             // 
-            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnGuardar.Location = new Point(321, 498);
-            btnGuardar.Margin = new Padding(3, 2, 3, 2);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(128, 33);
-            btnGuardar.TabIndex = 22;
-            btnGuardar.Text = "Guardar y Calcular";
-            btnGuardar.UseVisualStyleBackColor = true;
-            btnGuardar.Click += button3_Click;
+            btnCalcular.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCalcular.Location = new Point(273, 870);
+            btnCalcular.Margin = new Padding(3, 2, 3, 2);
+            btnCalcular.Name = "btnCalcular";
+            btnCalcular.Size = new Size(92, 33);
+            btnCalcular.TabIndex = 22;
+            btnCalcular.Text = "Calcular";
+            btnCalcular.UseVisualStyleBackColor = true;
+            btnCalcular.Click += button3_Click;
             // 
             // errorProvider1
             // 
@@ -689,19 +692,34 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.Location = new Point(998, 35);
+            panel2.AutoScroll = true;
+            panel2.Location = new Point(507, 34);
             panel2.Name = "panel2";
-            panel2.Size = new Size(278, 496);
+            panel2.Size = new Size(535, 868);
             panel2.TabIndex = 24;
+            // 
+            // btnGuardar
+            // 
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnGuardar.Location = new Point(393, 870);
+            btnGuardar.Margin = new Padding(3, 2, 3, 2);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(92, 33);
+            btnGuardar.TabIndex = 25;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // FormEntradaDatos
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(1277, 542);
-            Controls.Add(panel2);
+            AutoSize = true;
+            ClientSize = new Size(1277, 914);
             Controls.Add(btnGuardar);
+            Controls.Add(panel2);
+            Controls.Add(btnCalcular);
             Controls.Add(btnCancelar);
             Controls.Add(txtFechaCreacion);
             Controls.Add(txtNombreEscenario);
@@ -714,8 +732,8 @@
             Controls.Add(gpbMercado);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
-            MinimumSize = new Size(1293, 581);
             Name = "FormEntradaDatos";
+            SizeGripStyle = SizeGripStyle.Show;
             Text = "Modelo Financiero";
             WindowState = FormWindowState.Maximized;
             gpbMercado.ResumeLayout(false);
@@ -788,8 +806,9 @@
         private TextBox txtNombreEscenario;
         private TextBox txtFechaCreacion;
         private Button btnCancelar;
-        private Button btnGuardar;
+        private Button btnCalcular;
         private ErrorProvider errorProvider1;
         private Panel panel2;
+        private Button btnGuardar;
     }
 }
