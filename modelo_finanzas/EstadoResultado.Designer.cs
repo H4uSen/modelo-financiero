@@ -99,13 +99,13 @@
             CAnio5.Name = "CAnio5";
             CAnio5.Width = 125;
             // 
-            // EstadoResultados
+            // EstadoResultado
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1113, 638);
             Controls.Add(dgvEstadoResultado);
-            Name = "EstadoResultados";
+            Name = "EstadoResultado";
             Text = "EstadoResultados";
             Load += EstadoResultados_Load;
             ((System.ComponentModel.ISupportInitialize)dgvEstadoResultado).EndInit();
