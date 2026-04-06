@@ -11,7 +11,7 @@ services:
       ACCEPT_EULA: Y
       MSSQL_BACKUP_DIR: /var/opt/mssql/backup:rw
     ports:
-      - "1433:1433"
+      - "1435:1433"
     volumes:
       - ./data:/var/opt/mssql/data:rw
       - ./data/log:/var/opt/mssql/log:rw

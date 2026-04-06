@@ -18,6 +18,7 @@ namespace modelo_finanzas
             InitializeComponent();
             this.CenterToScreen();
             this.Text = "Escenarios Guardados";
+            this.Width = 500;
 
             // Configuramos un FlowLayoutPanel dinámico para mostrar las tarjetas
             flowLayoutPanel1 = new FlowLayoutPanel

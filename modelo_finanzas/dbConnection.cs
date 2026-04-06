@@ -16,16 +16,18 @@ namespace modelo_finanzas
 
             string dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? "";
             string dbPass = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "";
+            string dbPort = Environment.GetEnvironmentVariable("DB_PORT") ?? "1433";
 
             var builder = new SqlConnectionStringBuilder
             {
-                DataSource = "localhost",
+                DataSource = $"localhost,{dbPort}",
                 InitialCatalog = "hausencito247_finanzas",
                 UserID = dbUser,
                 Password = dbPass,
                 Encrypt = true,
                 TrustServerCertificate = true, 
-                MultipleActiveResultSets = true
+                MultipleActiveResultSets = true,
+                
             };
 
             _connectionString = builder.ConnectionString;

@@ -20,7 +20,7 @@ namespace modelo_finanzas
             InitializeComponent();
         }
 
-        private void EstadoResultados_Load(object sender, EventArgs e)
+        private async void EstadoResultados_Load(object sender, EventArgs e)
         {
             // Bloquear edición
             dgvEstadoResultado.ReadOnly = true;
@@ -49,10 +49,14 @@ namespace modelo_finanzas
             //string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=hausencito247_finanzas;Integrated Security=True;";
             string query = "SELECT anio, ventas, costo_ventas, utilidad_bruta, gastos_operativos, depreciacion, total_gastos, utilidad_operativa, gastos_financieros, otros_ingresos, neto_otros_ingresos, utilidad_antes_impuestos, impuestos, utilidad_neta, capital_trabajo FROM estadoResultados where id_escenario = 1 ORDER BY anio";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            DbConnection db = DbConnection.Instance;
+            if(!await db.TestConnectionAsync())
+            {
+                throw new Exception("No se pudo conectar con la base de datos");
+            }
+            using (var conn = await db.GetConnectionAsync())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
-                conn.Open();
                 MessageBox.Show("Conexión exitosa!");
 
                 SqlDataReader reader = cmd.ExecuteReader();

@@ -345,13 +345,13 @@ namespace modelo_finanzas
                 // estadoResultados.CalcularEstadoResultados(estadoResultados, variables, datos, escenarios, amortizacion);
 
                 FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
-                OpenChildForm(formDatosEscenario, new Point(0, 0));
+                ChildForm.Open(formDatosEscenario, new Point(0, 0), panel2);
 
                 //Calculo de costo de capital
                 CostoCapital costoCapital = new CostoCapital();
                 costoCapital.CalcularCostoCapital(escenarios, datos);
                 FormCostoCapital formCostoCapital = new FormCostoCapital(costoCapital);
-                OpenChildForm(formCostoCapital, new Point(215, 0));
+                ChildForm.Open(formCostoCapital, new Point(215, 0), panel2);
                 //TODO: Limpiar formulario o redirigir a la pantalla de calculos
                 //this.Close();
                 //FormCalculos formCalculos = new FormCalculos();
@@ -362,32 +362,6 @@ namespace modelo_finanzas
             }
         }
 
-        private void OpenChildForm(Form childForm, Point position)
-        {
-            // Close previous form if exists
-            //if (activeForm != null)
-            //    activeForm.Close();
-
-            //activeForm = childForm;
-
-            // Important settings
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            //childForm.Dock = DockStyle.Fill;
-
-            // Add to panel
-            //panel2.Controls.Clear();
-            //panel2.Tag = childForm;
-
-            //Set the position
-            childForm.Location = position;
-
-            panel2.Controls.Add(childForm);
-
-
-            childForm.BringToFront();
-            childForm.Show();
-        }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {

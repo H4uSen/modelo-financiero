@@ -78,9 +78,8 @@ namespace modelo_finanzas.Logic
         {
             List<DatosEntrada> datosList = new List<DatosEntrada>();
             String query = "SELECT * FROM entradasEscenarios";
-            if (await db.TestConnectionAsync())
-            {
-                var connection = db.GetConnectionAsync().Result;
+
+                var connection = await db.GetConnectionAsync();
                 var command = new SqlCommand(query, connection);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -116,12 +115,8 @@ namespace modelo_finanzas.Logic
                     };
                     datosList.Add(datos);
                 }
+                datosList.Sort((a, b) => b.FechaCreacion.CompareTo(a.FechaCreacion));
                 return datosList;
-            }
-            else
-            {
-                throw new Exception("No se pudo establecer conexión con la base de datos en getAllDatos().");
-            }
         }
     }
 }

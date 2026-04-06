@@ -1,4 +1,5 @@
 ﻿using modelo_finanzas;
+using modelo_finanzas.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,10 @@ namespace Prueba1
             InitializeComponent();
             this.CenterToScreen();
             this.Text = "Menú Principal";
+
+            panel1.Width = 700;
+            FormCargarEscenario formCargar = new FormCargarEscenario();
+            ChildForm.Open(formCargar, new Point(0, 0), panel1);
         }
 
         private void button2_Click(object sender, EventArgs e)

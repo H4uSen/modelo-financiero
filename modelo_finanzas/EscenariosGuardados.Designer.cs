@@ -32,13 +32,12 @@
             // 
             // EscenariosGuardados
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(761, 554);
-            Margin = new Padding(3, 2, 3, 2);
+            ClientSize = new Size(465, 739);
             Name = "EscenariosGuardados";
             Text = "EscenariosGuardados";
-            FormClosed += this.EscenariosGuardados_FormClosed;
+            FormClosed += EscenariosGuardados_FormClosed;
             ResumeLayout(false);
         }
 

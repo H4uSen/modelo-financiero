@@ -33,15 +33,15 @@
             btnCargarEscenario = new Button();
             btnSalir = new Button();
             button1 = new Button();
+            panel1 = new Panel();
             SuspendLayout();
             // 
             // btnIngresarDatos
             // 
             btnIngresarDatos.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnIngresarDatos.Location = new Point(92, 32);
-            btnIngresarDatos.Margin = new Padding(3, 2, 3, 2);
+            btnIngresarDatos.Location = new Point(12, 42);
             btnIngresarDatos.Name = "btnIngresarDatos";
-            btnIngresarDatos.Size = new Size(289, 47);
+            btnIngresarDatos.Size = new Size(330, 63);
             btnIngresarDatos.TabIndex = 0;
             btnIngresarDatos.Text = "Ingresar Datos";
             btnIngresarDatos.UseVisualStyleBackColor = true;
@@ -50,10 +50,9 @@
             // btnEscenariosGuardados
             // 
             btnEscenariosGuardados.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEscenariosGuardados.Location = new Point(92, 265);
-            btnEscenariosGuardados.Margin = new Padding(3, 2, 3, 2);
+            btnEscenariosGuardados.Location = new Point(12, 245);
             btnEscenariosGuardados.Name = "btnEscenariosGuardados";
-            btnEscenariosGuardados.Size = new Size(276, 47);
+            btnEscenariosGuardados.Size = new Size(315, 63);
             btnEscenariosGuardados.TabIndex = 0;
             btnEscenariosGuardados.Text = "Resultado Escenario Actual";
             btnEscenariosGuardados.UseVisualStyleBackColor = true;
@@ -62,10 +61,9 @@
             // btnCargarEscenario
             // 
             btnCargarEscenario.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCargarEscenario.Location = new Point(92, 83);
-            btnCargarEscenario.Margin = new Padding(3, 2, 3, 2);
+            btnCargarEscenario.Location = new Point(12, 111);
             btnCargarEscenario.Name = "btnCargarEscenario";
-            btnCargarEscenario.Size = new Size(289, 47);
+            btnCargarEscenario.Size = new Size(330, 63);
             btnCargarEscenario.TabIndex = 0;
             btnCargarEscenario.Text = "Cargar escenario guardado";
             btnCargarEscenario.UseVisualStyleBackColor = true;
@@ -74,10 +72,9 @@
             // btnSalir
             // 
             btnSalir.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalir.Location = new Point(92, 316);
-            btnSalir.Margin = new Padding(3, 2, 3, 2);
+            btnSalir.Location = new Point(12, 314);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(114, 47);
+            btnSalir.Size = new Size(130, 63);
             btnSalir.TabIndex = 0;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
@@ -86,26 +83,33 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(92, 217);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Location = new Point(12, 180);
             button1.Name = "button1";
-            button1.Size = new Size(224, 44);
+            button1.Size = new Size(256, 59);
             button1.TabIndex = 1;
             button1.Text = "Procesos Financieros";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // panel1
+            // 
+            panel1.Location = new Point(367, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(467, 472);
+            panel1.TabIndex = 2;
+            // 
             // MenuPrincipal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(457, 372);
+            ClientSize = new Size(846, 496);
+            Controls.Add(panel1);
             Controls.Add(button1);
             Controls.Add(btnSalir);
             Controls.Add(btnCargarEscenario);
             Controls.Add(btnEscenariosGuardados);
             Controls.Add(btnIngresarDatos);
-            Margin = new Padding(3, 2, 3, 2);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "MenuPrincipal";
             Text = "MenuPrincipal";
             ResumeLayout(false);
@@ -118,5 +122,6 @@
         private Button btnCargarEscenario;
         private Button btnSalir;
         private Button button1;
+        private Panel panel1;
     }
 }
