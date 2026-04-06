@@ -16,6 +16,7 @@ namespace modelo_finanzas
         {
             InitializeComponent();
             this.AutoScroll = true;
+            panel2.BackColor = Color.AliceBlue;
 
             datosCargados = datosExternos;
 
@@ -301,7 +302,6 @@ namespace modelo_finanzas
 
             try
             {
-                // Assign a fresh time before storing just in case
                 txtFechaCreacion.Text = DateTime.Now.ToString("G");
 
                 datos.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ?
@@ -336,7 +336,7 @@ namespace modelo_finanzas
                 datos.TasaImpuestos = decimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
 
                 panel2.Controls.Clear();
-                
+
                 variables.CalcularVariables(variables, datos, escenarios);
                 //Calculo de datos de escenario
                 escenarios.CalcularDatosEscenarios(escenarios, datos);
@@ -351,7 +351,7 @@ namespace modelo_finanzas
                 CostoCapital costoCapital = new CostoCapital();
                 costoCapital.CalcularCostoCapital(escenarios, datos);
                 FormCostoCapital formCostoCapital = new FormCostoCapital(costoCapital);
-                ChildForm.Open(formCostoCapital, new Point(215, 0), panel2);
+                ChildForm.Open(formCostoCapital, new Point(240, 0), panel2);
                 //TODO: Limpiar formulario o redirigir a la pantalla de calculos
                 //this.Close();
                 //FormCalculos formCalculos = new FormCalculos();
@@ -409,7 +409,12 @@ namespace modelo_finanzas
 
                 MessageBox.Show("Error al guardar los datos en la base de datos: \n" + ex.Message.ToString());
                 return;
-            } 
+            }
+
+        }
+
+        private void txtNombreEscenario_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

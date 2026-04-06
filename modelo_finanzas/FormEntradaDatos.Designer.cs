@@ -208,10 +208,9 @@
             // 
             // btnTest
             // 
-            btnTest.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnTest.Location = new Point(10, 996);
+            btnTest.Location = new Point(8, 864);
             btnTest.Name = "btnTest";
-            btnTest.Size = new Size(115, 44);
+            btnTest.Size = new Size(115, 55);
             btnTest.TabIndex = 9;
             btnTest.Text = "test connection";
             btnTest.UseVisualStyleBackColor = false;
@@ -377,7 +376,6 @@
             // 
             // gpbInversion
             // 
-            gpbInversion.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             gpbInversion.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             gpbInversion.Controls.Add(txtTasaImpositiva);
             gpbInversion.Controls.Add(txtBetaSector);
@@ -582,10 +580,9 @@
             // 
             // label25
             // 
-            label25.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.Location = new Point(11, 926);
+            label25.Location = new Point(9, 794);
             label25.Name = "label25";
             label25.Size = new Size(202, 25);
             label25.TabIndex = 18;
@@ -593,10 +590,9 @@
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(279, 923);
+            label3.Location = new Point(277, 791);
             label3.Name = "label3";
             label3.Size = new Size(168, 25);
             label3.TabIndex = 19;
@@ -604,29 +600,27 @@
             // 
             // txtNombreEscenario
             // 
-            txtNombreEscenario.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txtNombreEscenario.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombreEscenario.Location = new Point(10, 955);
+            txtNombreEscenario.Location = new Point(8, 823);
             txtNombreEscenario.Name = "txtNombreEscenario";
             txtNombreEscenario.PlaceholderText = "ej. 'Escen: 2026-03-14'";
             txtNombreEscenario.Size = new Size(239, 32);
             txtNombreEscenario.TabIndex = 16;
+            txtNombreEscenario.TextChanged += txtNombreEscenario_TextChanged;
             // 
             // txtFechaCreacion
             // 
-            txtFechaCreacion.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txtFechaCreacion.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtFechaCreacion.Location = new Point(275, 955);
+            txtFechaCreacion.Location = new Point(273, 823);
             txtFechaCreacion.Name = "txtFechaCreacion";
             txtFechaCreacion.Size = new Size(236, 32);
             txtFechaCreacion.TabIndex = 20;
             // 
             // btnCancelar
             // 
-            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCancelar.Location = new Point(163, 996);
+            btnCancelar.Location = new Point(161, 864);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(98, 44);
+            btnCancelar.Size = new Size(98, 55);
             btnCancelar.TabIndex = 21;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -634,10 +628,9 @@
             // 
             // btnCalcular
             // 
-            btnCalcular.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCalcular.Location = new Point(312, 996);
+            btnCalcular.Location = new Point(299, 864);
             btnCalcular.Name = "btnCalcular";
-            btnCalcular.Size = new Size(105, 44);
+            btnCalcular.Size = new Size(105, 55);
             btnCalcular.TabIndex = 22;
             btnCalcular.Text = "Calcular";
             btnCalcular.UseVisualStyleBackColor = true;
@@ -649,20 +642,19 @@
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.AutoScroll = true;
             panel2.Location = new Point(558, 242);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1195, 812);
+            panel2.Size = new Size(893, 677);
             panel2.TabIndex = 24;
             // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnGuardar.Location = new Point(449, 996);
+            btnGuardar.Location = new Point(447, 864);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(105, 44);
+            btnGuardar.Size = new Size(105, 55);
             btnGuardar.TabIndex = 25;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -672,7 +664,8 @@
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1759, 1055);
+            AutoScroll = true;
+            ClientSize = new Size(1476, 938);
             Controls.Add(btnGuardar);
             Controls.Add(panel2);
             Controls.Add(btnCalcular);
