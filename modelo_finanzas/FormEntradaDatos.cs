@@ -290,7 +290,7 @@ namespace modelo_finanzas
         DatosEscenarios escenarios = new DatosEscenarios();
         Variables variables = new Variables();
         Amortizacion amortizacion = new Amortizacion();
-        EstadoResultado estadoResultados = new EstadoResultado();
+        EstadoResultados estadoResultados = new EstadoResultados();
 
         private async void button3_Click(object sender, EventArgs e)
         {
@@ -337,6 +337,15 @@ namespace modelo_finanzas
                   datos.BetaSector = decimal.Parse(txtBetaSector.Text.Replace("%", ""));
                   datos.TasaImpuestos = decimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
 
+                List<Variables> listaVariables = variables.CalcularVariables(variables, datos, escenarios);
+                escenarios.CalcularDatosEscenarios(escenarios, datos);
+                amortizacion.CalcularAmortizacion(amortizacion, datos, variables, escenarios);
+                estadoResultados.CalcularEstado(datos,variables,escenarios,amortizacion);
+                CostoCapital costoCapital = new CostoCapital();
+                costoCapital.CalcularCostoCapital(escenarios, datos);
+
+                FormEstadoResultado formestadoresultado = new FormEstadoResultado(datos.Id);
+                ChildForm.Open(formestadoresultado, new Point(500, 0), panel2);
                   panel2.Controls.Clear();     
                   // Primero calcular escenario
                  // variables.CalcularVariables(variables, datos, escenarios);
@@ -374,6 +383,13 @@ namespace modelo_finanzas
             FormVariables formVariables = new FormVariables(datos, escenarios);
             formVariables.Show();
 
+                FormCostoCapital formCostoCapital = new FormCostoCapital(costoCapital);
+                ChildForm.Open(formCostoCapital, new Point(240, 0), panel2);
+                //TODO: Limpiar formulario o redirigir a la pantalla de calculos
+                //this.Close();
+                //FormCalculos formCalculos = new FormCalculos();
+            
+    
         }
 
 

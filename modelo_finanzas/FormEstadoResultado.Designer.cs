@@ -1,6 +1,6 @@
 ﻿namespace modelo_finanzas
 {
-    partial class EstadoResultado
+    partial class FormEstadoResultado
     {
         /// <summary>
         /// Required designer variable.
@@ -43,10 +43,11 @@
             // 
             dgvEstadoResultado.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEstadoResultado.Columns.AddRange(new DataGridViewColumn[] { CEstadoResultado, CAnio0, CAnio1, CAnio2, CAnio3, CAnio4, CAnio5 });
-            dgvEstadoResultado.Location = new Point(12, 125);
+            dgvEstadoResultado.Location = new Point(1, 11);
+            dgvEstadoResultado.Margin = new Padding(3, 2, 3, 2);
             dgvEstadoResultado.Name = "dgvEstadoResultado";
             dgvEstadoResultado.RowHeadersWidth = 51;
-            dgvEstadoResultado.Size = new Size(1089, 501);
+            dgvEstadoResultado.Size = new Size(953, 376);
             dgvEstadoResultado.TabIndex = 0;
             // 
             // CEstadoResultado
@@ -101,10 +102,11 @@
             // 
             // EstadoResultado
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1113, 638);
+            ClientSize = new Size(957, 401);
             Controls.Add(dgvEstadoResultado);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "EstadoResultado";
             Text = "EstadoResultados";
             Load += EstadoResultados_Load;

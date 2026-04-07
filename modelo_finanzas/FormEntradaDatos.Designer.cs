@@ -98,18 +98,20 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(8, 31);
+            label2.Location = new Point(6, 25);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(152, 20);
+            label2.Size = new Size(122, 15);
             label2.TabIndex = 1;
             label2.Text = "Tamaño del mercado:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(7, 88);
+            label4.Location = new Point(6, 70);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(234, 20);
+            label4.Size = new Size(187, 15);
             label4.TabIndex = 3;
             label4.Text = "% crecimiento anual del mercado:";
             label4.Click += label4_Click;
@@ -117,27 +119,30 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(7, 155);
+            label5.Location = new Point(6, 124);
+            label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(147, 20);
+            label5.Size = new Size(116, 15);
             label5.TabIndex = 4;
             label5.Text = "Encuestas realizadas:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(288, 91);
+            label6.Location = new Point(230, 73);
+            label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(159, 20);
+            label6.Size = new Size(128, 15);
             label6.TabIndex = 5;
             label6.Text = "Manifestaron comprar:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(288, 32);
+            label7.Location = new Point(230, 26);
+            label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(167, 20);
+            label7.Size = new Size(132, 15);
             label7.TabIndex = 6;
             label7.Text = "% objetivo de mercado:";
             // 
@@ -155,62 +160,67 @@
             gpbMercado.Controls.Add(label5);
             gpbMercado.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             gpbMercado.ForeColor = SystemColors.ActiveCaptionText;
-            gpbMercado.Location = new Point(11, 12);
+            gpbMercado.Location = new Point(9, 10);
+            gpbMercado.Margin = new Padding(2, 2, 2, 2);
             gpbMercado.Name = "gpbMercado";
-            gpbMercado.Size = new Size(541, 224);
+            gpbMercado.Padding = new Padding(2, 2, 2, 2);
+            gpbMercado.Size = new Size(433, 179);
             gpbMercado.TabIndex = 8;
             gpbMercado.TabStop = false;
             gpbMercado.Text = "Mercado y demanda";
             // 
             // txtObjeMer
             // 
-            txtObjeMer.Location = new Point(288, 53);
+            txtObjeMer.Location = new Point(230, 42);
+            txtObjeMer.Margin = new Padding(2, 2, 2, 2);
             txtObjeMer.Name = "txtObjeMer";
             txtObjeMer.PlaceholderText = "ej. 4%";
-            txtObjeMer.Size = new Size(213, 27);
+            txtObjeMer.Size = new Size(171, 23);
             txtObjeMer.TabIndex = 15;
             // 
             // txtManiComp
             // 
-            txtManiComp.Location = new Point(287, 119);
+            txtManiComp.Location = new Point(230, 95);
+            txtManiComp.Margin = new Padding(2, 2, 2, 2);
             txtManiComp.Name = "txtManiComp";
             txtManiComp.PlaceholderText = "ej. 9";
-            txtManiComp.Size = new Size(213, 27);
+            txtManiComp.Size = new Size(171, 23);
             txtManiComp.TabIndex = 14;
             // 
             // txtEncRealizadas
             // 
-            txtEncRealizadas.Location = new Point(7, 179);
-            txtEncRealizadas.Margin = new Padding(3, 4, 3, 4);
+            txtEncRealizadas.Location = new Point(6, 143);
+            txtEncRealizadas.Margin = new Padding(2, 3, 2, 3);
             txtEncRealizadas.Name = "txtEncRealizadas";
             txtEncRealizadas.PlaceholderText = "ej. 400";
-            txtEncRealizadas.Size = new Size(243, 27);
+            txtEncRealizadas.Size = new Size(195, 23);
             txtEncRealizadas.TabIndex = 13;
             // 
             // txtCrecimientoAnualMerc
             // 
-            txtCrecimientoAnualMerc.Location = new Point(7, 117);
-            txtCrecimientoAnualMerc.Margin = new Padding(3, 4, 3, 4);
+            txtCrecimientoAnualMerc.Location = new Point(6, 94);
+            txtCrecimientoAnualMerc.Margin = new Padding(2, 3, 2, 3);
             txtCrecimientoAnualMerc.Name = "txtCrecimientoAnualMerc";
             txtCrecimientoAnualMerc.PlaceholderText = "ej. 2.0%";
-            txtCrecimientoAnualMerc.Size = new Size(243, 27);
+            txtCrecimientoAnualMerc.Size = new Size(195, 23);
             txtCrecimientoAnualMerc.TabIndex = 12;
             // 
             // txtTamanioMercado
             // 
-            txtTamanioMercado.Location = new Point(7, 53);
-            txtTamanioMercado.Margin = new Padding(3, 4, 3, 4);
+            txtTamanioMercado.Location = new Point(6, 42);
+            txtTamanioMercado.Margin = new Padding(2, 3, 2, 3);
             txtTamanioMercado.Name = "txtTamanioMercado";
             txtTamanioMercado.PlaceholderText = "ej. 800,000";
-            txtTamanioMercado.Size = new Size(243, 27);
+            txtTamanioMercado.Size = new Size(195, 23);
             txtTamanioMercado.TabIndex = 11;
             txtTamanioMercado.KeyPress += txtTamanioMercado_KeyPress;
             // 
             // btnTest
             // 
-            btnTest.Location = new Point(8, 864);
+            btnTest.Location = new Point(6, 691);
+            btnTest.Margin = new Padding(2, 2, 2, 2);
             btnTest.Name = "btnTest";
-            btnTest.Size = new Size(115, 55);
+            btnTest.Size = new Size(92, 44);
             btnTest.TabIndex = 9;
             btnTest.Text = "test connection";
             btnTest.UseVisualStyleBackColor = false;
@@ -229,79 +239,89 @@
             gpbPrecios.Controls.Add(label13);
             gpbPrecios.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             gpbPrecios.ForeColor = SystemColors.ActiveCaptionText;
-            gpbPrecios.Location = new Point(10, 242);
+            gpbPrecios.Location = new Point(8, 194);
+            gpbPrecios.Margin = new Padding(2, 2, 2, 2);
             gpbPrecios.Name = "gpbPrecios";
-            gpbPrecios.Size = new Size(542, 191);
+            gpbPrecios.Padding = new Padding(2, 2, 2, 2);
+            gpbPrecios.Size = new Size(434, 153);
             gpbPrecios.TabIndex = 9;
             gpbPrecios.TabStop = false;
             gpbPrecios.Text = "Precios e inflación";
             // 
             // txtInflaAnual
             // 
-            txtInflaAnual.Location = new Point(288, 55);
+            txtInflaAnual.Location = new Point(230, 44);
+            txtInflaAnual.Margin = new Padding(2, 2, 2, 2);
             txtInflaAnual.Name = "txtInflaAnual";
             txtInflaAnual.PlaceholderText = "ej. 3.5%";
-            txtInflaAnual.Size = new Size(213, 27);
+            txtInflaAnual.Size = new Size(171, 23);
             txtInflaAnual.TabIndex = 18;
             // 
             // txtIPP
             // 
-            txtIPP.Location = new Point(289, 143);
+            txtIPP.Location = new Point(231, 114);
+            txtIPP.Margin = new Padding(2, 2, 2, 2);
             txtIPP.Name = "txtIPP";
             txtIPP.PlaceholderText = "ej. 1%";
-            txtIPP.Size = new Size(213, 27);
+            txtIPP.Size = new Size(171, 23);
             txtIPP.TabIndex = 18;
             // 
             // txtIncRealPrec
             // 
-            txtIncRealPrec.Location = new Point(6, 143);
+            txtIncRealPrec.Location = new Point(5, 114);
+            txtIncRealPrec.Margin = new Padding(2, 2, 2, 2);
             txtIncRealPrec.Name = "txtIncRealPrec";
             txtIncRealPrec.PlaceholderText = "ej. 0.8%";
-            txtIncRealPrec.Size = new Size(213, 27);
+            txtIncRealPrec.Size = new Size(171, 23);
             txtIncRealPrec.TabIndex = 18;
             // 
             // txtPrecioProducto
             // 
-            txtPrecioProducto.Location = new Point(7, 55);
+            txtPrecioProducto.Location = new Point(6, 44);
+            txtPrecioProducto.Margin = new Padding(2, 2, 2, 2);
             txtPrecioProducto.Name = "txtPrecioProducto";
             txtPrecioProducto.PlaceholderText = "ej. 7200";
-            txtPrecioProducto.Size = new Size(213, 27);
+            txtPrecioProducto.Size = new Size(171, 23);
             txtPrecioProducto.TabIndex = 18;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(7, 29);
+            label8.Location = new Point(6, 23);
+            label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(143, 20);
+            label8.Size = new Size(114, 15);
             label8.TabIndex = 1;
             label8.Text = "Precio del producto:";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(288, 32);
+            label9.Location = new Point(230, 26);
+            label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(212, 20);
+            label9.Size = new Size(168, 15);
             label9.TabIndex = 2;
             label9.Text = "% de inflación anual esperado:";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(7, 100);
+            label11.Location = new Point(6, 80);
+            label11.Margin = new Padding(2, 0, 2, 0);
             label11.Name = "label11";
-            label11.Size = new Size(243, 40);
+            label11.Size = new Size(191, 30);
             label11.TabIndex = 3;
             label11.Text = "% de incremento real al precio por \r\nencima de inflación:";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(289, 120);
+            label13.Location = new Point(231, 96);
+            label13.Margin = new Padding(2, 0, 2, 0);
             label13.Name = "label13";
-            label13.Size = new Size(223, 20);
+            label13.Size = new Size(177, 15);
             label13.TabIndex = 4;
             label13.Text = "% de IPP adicional a la inflación:";
             // 
@@ -315,62 +335,70 @@
             gpbCostos.Controls.Add(label15);
             gpbCostos.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             gpbCostos.ForeColor = SystemColors.ActiveCaptionText;
-            gpbCostos.Location = new Point(558, 22);
+            gpbCostos.Location = new Point(446, 18);
+            gpbCostos.Margin = new Padding(2, 2, 2, 2);
             gpbCostos.Name = "gpbCostos";
-            gpbCostos.Size = new Size(568, 214);
+            gpbCostos.Padding = new Padding(2, 2, 2, 2);
+            gpbCostos.Size = new Size(454, 171);
             gpbCostos.TabIndex = 9;
             gpbCostos.TabStop = false;
             gpbCostos.Text = "Costos";
             // 
             // txtGastOper
             // 
-            txtGastOper.Location = new Point(267, 55);
+            txtGastOper.Location = new Point(214, 44);
+            txtGastOper.Margin = new Padding(2, 2, 2, 2);
             txtGastOper.Name = "txtGastOper";
             txtGastOper.PlaceholderText = "ej. 25%";
-            txtGastOper.Size = new Size(213, 27);
+            txtGastOper.Size = new Size(171, 23);
             txtGastOper.TabIndex = 17;
             // 
             // txtCapTrab
             // 
-            txtCapTrab.Location = new Point(7, 116);
+            txtCapTrab.Location = new Point(6, 93);
+            txtCapTrab.Margin = new Padding(2, 2, 2, 2);
             txtCapTrab.Name = "txtCapTrab";
             txtCapTrab.PlaceholderText = "ej. 9%";
-            txtCapTrab.Size = new Size(213, 27);
+            txtCapTrab.Size = new Size(171, 23);
             txtCapTrab.TabIndex = 16;
             // 
             // txtCostProdIni
             // 
-            txtCostProdIni.Location = new Point(7, 55);
+            txtCostProdIni.Location = new Point(6, 44);
+            txtCostProdIni.Margin = new Padding(2, 2, 2, 2);
             txtCostProdIni.Name = "txtCostProdIni";
             txtCostProdIni.PlaceholderText = "ej. 3500";
-            txtCostProdIni.Size = new Size(213, 27);
+            txtCostProdIni.Size = new Size(171, 23);
             txtCostProdIni.TabIndex = 16;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(7, 29);
+            label10.Location = new Point(6, 23);
+            label10.Margin = new Padding(2, 0, 2, 0);
             label10.Name = "label10";
-            label10.Size = new Size(193, 20);
+            label10.Size = new Size(155, 15);
             label10.TabIndex = 1;
             label10.Text = "Costo de producción inicial:";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(267, 27);
+            label12.Location = new Point(214, 22);
+            label12.Margin = new Padding(2, 0, 2, 0);
             label12.Name = "label12";
-            label12.Size = new Size(253, 20);
+            label12.Size = new Size(200, 15);
             label12.TabIndex = 2;
             label12.Text = "% de gastos operativos sobre ventas:";
             // 
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(6, 92);
+            label15.Location = new Point(5, 74);
+            label15.Margin = new Padding(2, 0, 2, 0);
             label15.Name = "label15";
-            label15.Size = new Size(254, 20);
+            label15.Size = new Size(199, 15);
             label15.TabIndex = 3;
             label15.Text = "% de capital de trabajo sobre ventas:";
             // 
@@ -399,153 +427,172 @@
             gpbInversion.Controls.Add(label17);
             gpbInversion.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             gpbInversion.ForeColor = SystemColors.ActiveCaptionText;
-            gpbInversion.Location = new Point(10, 439);
+            gpbInversion.Location = new Point(8, 351);
+            gpbInversion.Margin = new Padding(2, 2, 2, 2);
             gpbInversion.Name = "gpbInversion";
-            gpbInversion.Size = new Size(542, 341);
+            gpbInversion.Padding = new Padding(2, 2, 2, 2);
+            gpbInversion.Size = new Size(434, 273);
             gpbInversion.TabIndex = 10;
             gpbInversion.TabStop = false;
             gpbInversion.Text = "Inversión, financiamiento y otros parámetros";
             // 
             // txtTasaImpositiva
             // 
-            txtTasaImpositiva.Location = new Point(286, 301);
+            txtTasaImpositiva.Location = new Point(229, 241);
+            txtTasaImpositiva.Margin = new Padding(2, 2, 2, 2);
             txtTasaImpositiva.Name = "txtTasaImpositiva";
             txtTasaImpositiva.PlaceholderText = "ej. 34%";
-            txtTasaImpositiva.Size = new Size(213, 27);
+            txtTasaImpositiva.Size = new Size(171, 23);
             txtTasaImpositiva.TabIndex = 27;
             // 
             // txtBetaSector
             // 
-            txtBetaSector.Location = new Point(286, 248);
+            txtBetaSector.Location = new Point(229, 198);
+            txtBetaSector.Margin = new Padding(2, 2, 2, 2);
             txtBetaSector.Name = "txtBetaSector";
             txtBetaSector.PlaceholderText = "ej. 0.8";
-            txtBetaSector.Size = new Size(213, 27);
+            txtBetaSector.Size = new Size(171, 23);
             txtBetaSector.TabIndex = 26;
             // 
             // txtPlazoCredito
             // 
-            txtPlazoCredito.Location = new Point(286, 192);
+            txtPlazoCredito.Location = new Point(229, 154);
+            txtPlazoCredito.Margin = new Padding(2, 2, 2, 2);
             txtPlazoCredito.Name = "txtPlazoCredito";
             txtPlazoCredito.PlaceholderText = "ej. 5 años";
-            txtPlazoCredito.Size = new Size(213, 27);
+            txtPlazoCredito.Size = new Size(171, 23);
             txtPlazoCredito.TabIndex = 25;
             // 
             // txtFinanCredito
             // 
-            txtFinanCredito.Location = new Point(286, 139);
+            txtFinanCredito.Location = new Point(229, 111);
+            txtFinanCredito.Margin = new Padding(2, 2, 2, 2);
             txtFinanCredito.Name = "txtFinanCredito";
             txtFinanCredito.PlaceholderText = "ej. 40%";
-            txtFinanCredito.Size = new Size(213, 27);
+            txtFinanCredito.Size = new Size(171, 23);
             txtFinanCredito.TabIndex = 24;
             // 
             // txtPlazoDep
             // 
-            txtPlazoDep.Location = new Point(286, 66);
+            txtPlazoDep.Location = new Point(229, 53);
+            txtPlazoDep.Margin = new Padding(2, 2, 2, 2);
             txtPlazoDep.Name = "txtPlazoDep";
             txtPlazoDep.PlaceholderText = "ej. 8 años";
-            txtPlazoDep.Size = new Size(213, 27);
+            txtPlazoDep.Size = new Size(171, 23);
             txtPlazoDep.TabIndex = 23;
             // 
             // txtGradFlujos
             // 
-            txtGradFlujos.Location = new Point(9, 301);
+            txtGradFlujos.Location = new Point(7, 241);
+            txtGradFlujos.Margin = new Padding(2, 2, 2, 2);
             txtGradFlujos.Name = "txtGradFlujos";
             txtGradFlujos.PlaceholderText = "ej. 5%";
-            txtGradFlujos.Size = new Size(213, 27);
+            txtGradFlujos.Size = new Size(171, 23);
             txtGradFlujos.TabIndex = 22;
             // 
             // txtPrimRiesgMerc
             // 
-            txtPrimRiesgMerc.Location = new Point(7, 248);
+            txtPrimRiesgMerc.Location = new Point(6, 198);
+            txtPrimRiesgMerc.Margin = new Padding(2, 2, 2, 2);
             txtPrimRiesgMerc.Name = "txtPrimRiesgMerc";
             txtPrimRiesgMerc.PlaceholderText = "ej. 8.6%";
-            txtPrimRiesgMerc.Size = new Size(213, 27);
+            txtPrimRiesgMerc.Size = new Size(171, 23);
             txtPrimRiesgMerc.TabIndex = 21;
             // 
             // txtTasaLibRiesgo
             // 
-            txtTasaLibRiesgo.Location = new Point(6, 192);
+            txtTasaLibRiesgo.Location = new Point(5, 154);
+            txtTasaLibRiesgo.Margin = new Padding(2, 2, 2, 2);
             txtTasaLibRiesgo.Name = "txtTasaLibRiesgo";
             txtTasaLibRiesgo.PlaceholderText = "ej. 11%";
-            txtTasaLibRiesgo.Size = new Size(213, 27);
+            txtTasaLibRiesgo.Size = new Size(171, 23);
             txtTasaLibRiesgo.TabIndex = 20;
             // 
             // txtRecupSobreCosto
             // 
-            txtRecupSobreCosto.Location = new Point(5, 139);
+            txtRecupSobreCosto.Location = new Point(4, 111);
+            txtRecupSobreCosto.Margin = new Padding(2, 2, 2, 2);
             txtRecupSobreCosto.Name = "txtRecupSobreCosto";
             txtRecupSobreCosto.PlaceholderText = "ej. 1%";
-            txtRecupSobreCosto.Size = new Size(213, 27);
+            txtRecupSobreCosto.Size = new Size(171, 23);
             txtRecupSobreCosto.TabIndex = 19;
             // 
             // txtInvEquiXPart
             // 
-            txtInvEquiXPart.Location = new Point(5, 66);
+            txtInvEquiXPart.Location = new Point(4, 53);
+            txtInvEquiXPart.Margin = new Padding(2, 2, 2, 2);
             txtInvEquiXPart.Name = "txtInvEquiXPart";
             txtInvEquiXPart.PlaceholderText = "ej. 55000000";
-            txtInvEquiXPart.Size = new Size(213, 27);
+            txtInvEquiXPart.Size = new Size(171, 23);
             txtInvEquiXPart.TabIndex = 19;
             // 
             // label24
             // 
             label24.AutoSize = true;
-            label24.Location = new Point(286, 278);
+            label24.Location = new Point(229, 222);
+            label24.Margin = new Padding(2, 0, 2, 0);
             label24.Name = "label24";
-            label24.Size = new Size(149, 20);
+            label24.Size = new Size(118, 15);
             label24.TabIndex = 10;
             label24.Text = "% de tasa impositiva:";
             // 
             // label23
             // 
             label23.AutoSize = true;
-            label23.Location = new Point(5, 278);
+            label23.Location = new Point(4, 222);
+            label23.Margin = new Padding(2, 0, 2, 0);
             label23.Name = "label23";
-            label23.Size = new Size(197, 20);
+            label23.Size = new Size(155, 15);
             label23.TabIndex = 9;
             label23.Text = "% de gradiente de los flujos:";
             // 
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new Point(6, 222);
+            label22.Location = new Point(5, 178);
+            label22.Margin = new Padding(2, 0, 2, 0);
             label22.Name = "label22";
-            label22.Size = new Size(221, 20);
+            label22.Size = new Size(174, 15);
             label22.TabIndex = 8;
             label22.Text = "% prima de riesgo del mercado:";
             // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(286, 222);
+            label21.Location = new Point(229, 178);
+            label21.Margin = new Padding(2, 0, 2, 0);
             label21.Name = "label21";
-            label21.Size = new Size(111, 20);
+            label21.Size = new Size(87, 15);
             label21.TabIndex = 7;
             label21.Text = "Beta del sector:";
             // 
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(5, 169);
+            label20.Location = new Point(4, 135);
+            label20.Margin = new Padding(2, 0, 2, 0);
             label20.Name = "label20";
-            label20.Size = new Size(176, 20);
+            label20.Size = new Size(137, 15);
             label20.TabIndex = 6;
             label20.Text = "% de tasa libre de riesgo:";
             // 
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(286, 169);
+            label19.Location = new Point(229, 135);
+            label19.Margin = new Padding(2, 0, 2, 0);
             label19.Name = "label19";
-            label19.Size = new Size(124, 20);
+            label19.Size = new Size(97, 15);
             label19.TabIndex = 5;
             label19.Text = "Plazo del crédito:";
             // 
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(286, 116);
+            label18.Location = new Point(229, 93);
+            label18.Margin = new Padding(2, 0, 2, 0);
             label18.Name = "label18";
-            label18.Size = new Size(177, 20);
+            label18.Size = new Size(142, 15);
             label18.TabIndex = 4;
             label18.Text = "% financiado con crédito:";
             // 
@@ -553,18 +600,20 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.Location = new Point(6, 23);
+            label14.Location = new Point(5, 18);
+            label14.Margin = new Padding(2, 0, 2, 0);
             label14.Name = "label14";
-            label14.Size = new Size(201, 40);
+            label14.Size = new Size(161, 30);
             label14.TabIndex = 1;
             label14.Text = "Inversión en equipos X punto\r\n de participación:";
             // 
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(286, 43);
+            label16.Location = new Point(229, 34);
+            label16.Margin = new Padding(2, 0, 2, 0);
             label16.Name = "label16";
-            label16.Size = new Size(159, 20);
+            label16.Size = new Size(125, 15);
             label16.TabIndex = 2;
             label16.Text = "Plazo de depreciación:";
             label16.Click += label16_Click;
@@ -572,9 +621,10 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(5, 96);
+            label17.Location = new Point(4, 77);
+            label17.Margin = new Padding(2, 0, 2, 0);
             label17.Name = "label17";
-            label17.Size = new Size(231, 40);
+            label17.Size = new Size(183, 30);
             label17.TabIndex = 3;
             label17.Text = "% de recuperaciones sobre costo \r\nde ventas:";
             // 
@@ -582,9 +632,10 @@
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.Location = new Point(9, 794);
+            label25.Location = new Point(7, 635);
+            label25.Margin = new Padding(2, 0, 2, 0);
             label25.Name = "label25";
-            label25.Size = new Size(202, 25);
+            label25.Size = new Size(159, 20);
             label25.TabIndex = 18;
             label25.Text = "Nombre del escenario:";
             // 
@@ -592,35 +643,39 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(277, 791);
+            label3.Location = new Point(222, 633);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(168, 25);
+            label3.Size = new Size(131, 20);
             label3.TabIndex = 19;
             label3.Text = "Fecha de creación:";
             // 
             // txtNombreEscenario
             // 
             txtNombreEscenario.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombreEscenario.Location = new Point(8, 823);
+            txtNombreEscenario.Location = new Point(6, 658);
+            txtNombreEscenario.Margin = new Padding(2, 2, 2, 2);
             txtNombreEscenario.Name = "txtNombreEscenario";
             txtNombreEscenario.PlaceholderText = "ej. 'Escen: 2026-03-14'";
-            txtNombreEscenario.Size = new Size(239, 32);
+            txtNombreEscenario.Size = new Size(192, 27);
             txtNombreEscenario.TabIndex = 16;
             txtNombreEscenario.TextChanged += txtNombreEscenario_TextChanged;
             // 
             // txtFechaCreacion
             // 
             txtFechaCreacion.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtFechaCreacion.Location = new Point(273, 823);
+            txtFechaCreacion.Location = new Point(218, 658);
+            txtFechaCreacion.Margin = new Padding(2, 2, 2, 2);
             txtFechaCreacion.Name = "txtFechaCreacion";
-            txtFechaCreacion.Size = new Size(236, 32);
+            txtFechaCreacion.Size = new Size(190, 27);
             txtFechaCreacion.TabIndex = 20;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(161, 864);
+            btnCancelar.Location = new Point(129, 691);
+            btnCancelar.Margin = new Padding(2, 2, 2, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(98, 55);
+            btnCancelar.Size = new Size(78, 44);
             btnCancelar.TabIndex = 21;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -628,9 +683,10 @@
             // 
             // btnCalcular
             // 
-            btnCalcular.Location = new Point(299, 864);
+            btnCalcular.Location = new Point(239, 691);
+            btnCalcular.Margin = new Padding(2, 2, 2, 2);
             btnCalcular.Name = "btnCalcular";
-            btnCalcular.Size = new Size(105, 55);
+            btnCalcular.Size = new Size(84, 44);
             btnCalcular.TabIndex = 22;
             btnCalcular.Text = "Calcular";
             btnCalcular.UseVisualStyleBackColor = true;
@@ -644,17 +700,18 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.AutoScroll = true;
-            panel2.Location = new Point(558, 242);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(446, 194);
+            panel2.Margin = new Padding(2, 3, 2, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(893, 677);
+            panel2.Size = new Size(714, 542);
             panel2.TabIndex = 24;
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(447, 864);
+            btnGuardar.Location = new Point(358, 691);
+            btnGuardar.Margin = new Padding(2, 2, 2, 2);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(105, 55);
+            btnGuardar.Size = new Size(84, 44);
             btnGuardar.TabIndex = 25;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -662,10 +719,10 @@
             // 
             // FormEntradaDatos
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
-            ClientSize = new Size(1476, 938);
+            ClientSize = new Size(1181, 754);
             Controls.Add(btnGuardar);
             Controls.Add(panel2);
             Controls.Add(btnCalcular);
@@ -679,6 +736,7 @@
             Controls.Add(gpbPrecios);
             Controls.Add(btnTest);
             Controls.Add(gpbMercado);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormEntradaDatos";
             SizeGripStyle = SizeGripStyle.Show;
             Text = "Modelo Financiero";
