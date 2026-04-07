@@ -1,4 +1,5 @@
 ﻿using modelo_finanzas;
+using modelo_finanzas.Models;
 using modelo_finanzas.Utils;
 using System;
 using System.Collections.Generic;
@@ -61,17 +62,15 @@ namespace Prueba1
             Application.Exit();
         }
 
-        private async void btnTest_Click(object sender, EventArgs e)
+
+
+        private void btnVariables_Click(object sender, EventArgs e)
         {
-            var db = DbConnection.Instance;
-            if (await db.TestConnectionAsync())
-            {
-                MessageBox.Show("Conexión exitosa a la base de datos.");
-            }
-            else
-            {
-                MessageBox.Show("Error al conectar a la base de datos.");
-            }
+            DatosEntrada de = new DatosEntrada();
+            DatosEscenarios ds = new DatosEscenarios();
+
+            FormVariables frm = new FormVariables(de, ds);
+            frm.Show();
         }
     }
 }

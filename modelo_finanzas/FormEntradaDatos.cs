@@ -294,48 +294,48 @@ namespace modelo_finanzas
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            if (!FormValidator.ValidateRequired(this, errorProvider1))
-            {
-                MessageBox.Show("Rellene los campos marcados.");
-                return;
-            }
+            /*
 
-            try
-            {
-                txtFechaCreacion.Text = DateTime.Now.ToString("G");
+              if (!FormValidator.ValidateRequired(this, errorProvider1))
+              {
+                  MessageBox.Show("Rellene los campos marcados.");
+                  return;
+              }
 
-                datos.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ?
-                    $"Escenario: {DateTime.Now.ToString("G")}"
-                    : txtNombreEscenario.Text;
-                datos.FechaCreacion = DateTime.Parse(txtFechaCreacion.Text);
-                //Mercado y demanda
-                datos.TamanioMercado = int.Parse(txtTamanioMercado.Text.Replace(",", ""));
-                datos.CrecimientoMercado = decimal.Parse(txtCrecimientoAnualMerc.Text.Replace("%", "")) / 100;
-                datos.Encuestas = int.Parse(txtEncRealizadas.Text.Replace(",", ""));
-                datos.ObjetivoMercado = decimal.Parse(txtObjeMer.Text.Replace("%", "")) / 100;
-                datos.PersonasInteresadas = int.Parse(txtManiComp.Text.Replace(",", ""));
-                //Costos
-                datos.CostoProduccionInicial = decimal.Parse(txtCostProdIni.Text);
-                datos.CapitalTrabajo = decimal.Parse(txtCapTrab.Text.Replace("%", "")) / 100;
-                datos.GastosOperativos = decimal.Parse(txtGastOper.Text.Replace("%", "")) / 100;
-                //Precios e inflacion
-                datos.PrecioInicial = decimal.Parse(txtPrecioProducto.Text);
-                datos.IncrementoPrecio = decimal.Parse(txtIncRealPrec.Text.Replace("%", "")) / 100;
-                datos.Ipp = decimal.Parse(txtIPP.Text.Replace("%", "")) / 100;
-                datos.Inflacion = decimal.Parse(txtInflaAnual.Text.Replace("%", "")) / 100;
-                //Inversion, financiamiento y otros
-                datos.InversionEquipos = decimal.Parse(txtInvEquiXPart.Text);
-                datos.OtrosIngresos = decimal.Parse(txtRecupSobreCosto.Text.Replace("%", "")) / 100;
-                datos.TasaLibreRiesgo = decimal.Parse(txtTasaLibRiesgo.Text.Replace("%", "")) / 100;
-                datos.PrimaRiesgoMercado = decimal.Parse(txtPrimRiesgMerc.Text.Replace("%", "")) / 100;
-                datos.GradienteFlujos = decimal.Parse(txtGradFlujos.Text.Replace("%", "")) / 100;
-                datos.DepreciacionAnios = int.Parse(txtPlazoDep.Text.Replace(" años", ""));
-                datos.PorcentajeDeuda = decimal.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
-                datos.PlazoCredito = int.Parse(txtPlazoCredito.Text.Replace(" años", ""));
-                datos.BetaSector = decimal.Parse(txtBetaSector.Text.Replace("%", ""));
-                datos.TasaImpuestos = decimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
+              try
+              {
+                  txtFechaCreacion.Text = DateTime.Now.ToString("G");
 
-                panel2.Controls.Clear();
+                  datos.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ?
+                      $"Escenario: {DateTime.Now.ToString("G")}"
+                      : txtNombreEscenario.Text;
+                  datos.FechaCreacion = DateTime.Parse(txtFechaCreacion.Text);
+                  //Mercado y demanda
+                  datos.TamanioMercado = int.Parse(txtTamanioMercado.Text.Replace(",", ""));
+                  datos.CrecimientoMercado = decimal.Parse(txtCrecimientoAnualMerc.Text.Replace("%", "")) / 100;
+                  datos.Encuestas = int.Parse(txtEncRealizadas.Text.Replace(",", ""));
+                  datos.ObjetivoMercado = decimal.Parse(txtObjeMer.Text.Replace("%", "")) / 100;
+                  datos.PersonasInteresadas = int.Parse(txtManiComp.Text.Replace(",", ""));
+                  //Costos
+                  datos.CostoProduccionInicial = decimal.Parse(txtCostProdIni.Text);
+                  datos.CapitalTrabajo = decimal.Parse(txtCapTrab.Text.Replace("%", "")) / 100;
+                  datos.GastosOperativos = decimal.Parse(txtGastOper.Text.Replace("%", "")) / 100;
+                  //Precios e inflacion
+                  datos.PrecioInicial = decimal.Parse(txtPrecioProducto.Text);
+                  datos.IncrementoPrecio = decimal.Parse(txtIncRealPrec.Text.Replace("%", "")) / 100;
+                  datos.Ipp = decimal.Parse(txtIPP.Text.Replace("%", "")) / 100;
+                  datos.Inflacion = decimal.Parse(txtInflaAnual.Text.Replace("%", "")) / 100;
+                  //Inversion, financiamiento y otros
+                  datos.InversionEquipos = decimal.Parse(txtInvEquiXPart.Text);
+                  datos.OtrosIngresos = decimal.Parse(txtRecupSobreCosto.Text.Replace("%", "")) / 100;
+                  datos.TasaLibreRiesgo = decimal.Parse(txtTasaLibRiesgo.Text.Replace("%", "")) / 100;
+                  datos.PrimaRiesgoMercado = decimal.Parse(txtPrimRiesgMerc.Text.Replace("%", "")) / 100;
+                  datos.GradienteFlujos = decimal.Parse(txtGradFlujos.Text.Replace("%", "")) / 100;
+                  datos.DepreciacionAnios = int.Parse(txtPlazoDep.Text.Replace(" años", ""));
+                  datos.PorcentajeDeuda = decimal.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
+                  datos.PlazoCredito = int.Parse(txtPlazoCredito.Text.Replace(" años", ""));
+                  datos.BetaSector = decimal.Parse(txtBetaSector.Text.Replace("%", ""));
+                  datos.TasaImpuestos = decimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
 
                 List<Variables> listaVariables = variables.CalcularVariables(variables, datos, escenarios);
                 escenarios.CalcularDatosEscenarios(escenarios, datos);
@@ -346,20 +346,50 @@ namespace modelo_finanzas
 
                 FormEstadoResultado formestadoresultado = new FormEstadoResultado(datos.Id);
                 ChildForm.Open(formestadoresultado, new Point(500, 0), panel2);
+                  panel2.Controls.Clear();     
+                  // Primero calcular escenario
+                 // variables.CalcularVariables(variables, datos, escenarios);
+                  //Calculo de datos de escenario
+                //  escenarios.CalcularDatosEscenarios(escenarios, datos);
 
-                FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
-                ChildForm.Open(formDatosEscenario, new Point(0, 0), panel2);
+                  // Luego abrir el FormVariables que hará el cálculo y llenado del DataGridView
+                  FormVariables formVariables = new FormVariables(datos, escenarios);
+                  formVariables.Show();
+
+
+                  amortizacion.CalcularAmortizacion(amortizacion, datos, variables, escenarios);
+                  // estadoResultados.IdEscenario = escenarioID;
+                  // estadoResultados.CalcularEstadoResultados(estadoResultados, variables, datos, escenarios, amortizacion);
+
+                  FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
+                  ChildForm.Open(formDatosEscenario, new Point(0, 0), panel2);
+
+                  //Calculo de costo de capital
+                  CostoCapital costoCapital = new CostoCapital();
+                  costoCapital.CalcularCostoCapital(escenarios, datos);
+                  FormCostoCapital formCostoCapital = new FormCostoCapital(costoCapital);
+                  ChildForm.Open(formCostoCapital, new Point(240, 0), panel2);
+                  //TODO: Limpiar formulario o redirigir a la pantalla de calculos
+                  //this.Close();
+                  //FormCalculos formCalculos = new FormCalculos();
+              }
+              catch (Exception ex)
+              {
+                  MessageBox.Show("Error al procesar los datos de entrada: \n" + ex.Message.ToString());
+              }*/
+
+
+            //Probar a Abrir FormVariables directamente con los datos cargados (aunque estén vacíos)
+            FormVariables formVariables = new FormVariables(datos, escenarios);
+            formVariables.Show();
 
                 FormCostoCapital formCostoCapital = new FormCostoCapital(costoCapital);
                 ChildForm.Open(formCostoCapital, new Point(240, 0), panel2);
                 //TODO: Limpiar formulario o redirigir a la pantalla de calculos
                 //this.Close();
                 //FormCalculos formCalculos = new FormCalculos();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al procesar los datos de entrada: \n" + ex.Message.ToString());
-            }
+            
+    
         }
 
 
@@ -385,7 +415,7 @@ namespace modelo_finanzas
                 int escenarioID = await datosService.InsertDatos(datos);
 
                 datos.Id = escenarioID;
-                variables.IdEscenario = escenarioID;
+               // variables.IdEscenario = escenarioID;
                 escenarios.Escenario_id = escenarioID;
                 amortizacion.IdEscenario = escenarioID;
 

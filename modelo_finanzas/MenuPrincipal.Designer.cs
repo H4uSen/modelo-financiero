@@ -34,7 +34,7 @@
             btnSalir = new Button();
             button1 = new Button();
             panel1 = new Panel();
-            btnTest = new Button();
+            bntVariables = new Button();
             SuspendLayout();
             // 
             // btnIngresarDatos
@@ -76,7 +76,7 @@
             // btnSalir
             // 
             btnSalir.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalir.Location = new Point(10, 235);
+            btnSalir.Location = new Point(10, 236);
             btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(114, 47);
@@ -105,24 +105,22 @@
             panel1.Size = new Size(409, 354);
             panel1.TabIndex = 2;
             // 
-            // btnTest
+            // bntVariables
             // 
-            btnTest.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnTest.Location = new Point(189, 333);
-            btnTest.Margin = new Padding(3, 2, 3, 2);
-            btnTest.Name = "btnTest";
-            btnTest.Size = new Size(126, 30);
-            btnTest.TabIndex = 3;
-            btnTest.Text = "Test connection";
-            btnTest.UseVisualStyleBackColor = true;
-            btnTest.Click += btnTest_Click;
+            bntVariables.Location = new Point(29, 305);
+            bntVariables.Name = "bntVariables";
+            bntVariables.Size = new Size(247, 55);
+            bntVariables.TabIndex = 3;
+            bntVariables.Text = "button2";
+            bntVariables.UseVisualStyleBackColor = true;
+            bntVariables.Click += btnVariables_Click;
             // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(740, 372);
-            Controls.Add(btnTest);
+            Controls.Add(bntVariables);
             Controls.Add(panel1);
             Controls.Add(button1);
             Controls.Add(btnSalir);
@@ -144,6 +142,6 @@
         private Button btnSalir;
         private Button button1;
         private Panel panel1;
-        private Button btnTest;
+        private Button bntVariables;
     }
 }
