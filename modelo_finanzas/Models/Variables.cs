@@ -9,17 +9,17 @@ namespace modelo_finanzas.Models
 {
     public class Variables
     {
-        public SqlInt32 Id { get; set; }
-        public SqlInt32 IdEscenario { get; set; }
+        public int Id { get; set; }
+        public int IdEscenario { get; set; }
 
-        public SqlInt32 Anio { get; set; }
-        public SqlDecimal TamanioMercado { get; set; } = 0;
-        public SqlDecimal ParticipacionMercado { get; set; } = 0;
-        public SqlInt32 UnidadesVendidas { get; set; } = 0;
-        public SqlMoney PrecioVenta { get; set; } = 0;
-        public SqlMoney CostoProduccion { get; set; } = 0;
+        public int Anio { get; set; }
+        public decimal TamanioMercado { get; set; } = 0;
+        public decimal ParticipacionMercado { get; set; } = 0;
+        public int UnidadesVendidas { get; set; } = 0;
+        public decimal PrecioVenta { get; set; } = 0;
+        public decimal CostoProduccion { get; set; } = 0;
 
-        public void CalcularVariables(Variables variables, DatosEntrada datosEntrada, DatosEscenarios datosEscenarios)
+        public List<Variables> CalcularVariables(Variables variables, DatosEntrada datosEntrada, DatosEscenarios datosEscenarios)
         {
             //TODO: Implementar la lógica para calcular las variables a partir de los datos de entrada y los datos de escenarios
         }

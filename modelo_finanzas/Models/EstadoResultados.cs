@@ -11,26 +11,95 @@ namespace modelo_finanzas.Models
 {
     public class EstadoResultados
     {
-        public SqlInt32 Id { get; set; }
-        public SqlInt32 IdEscenario { get; set; }
+        public int Id { get; set; }
+        public int IdEscenario { get; set; }
 
-        public SqlInt32 Anio { get; set; }
-        public SqlDecimal Ventas { get; set; } = 0;
-        public SqlDecimal CostoVentas { get; set; } = 0;
-        public SqlDecimal UtilidadBruta { get; set; } = 0;
-        public SqlDecimal GastosOperativos { get; set; } = 0;
-        public SqlDecimal Depreciacion { get; set; } = 0;
-        public SqlDecimal TotalGastos { get; set; } = 0;
-        public SqlDecimal UtilidadOperativa { get; set; } = 0;
-        public SqlDecimal GastosFinancieros { get; set; } = 0;
-        public SqlDecimal OtrosIngresos { get; set; } = 0;
-        public SqlDecimal NetoOtrosIngresos { get; set; } = 0;
-        public SqlDecimal UtilidadAntesImpuestos { get; set; } = 0;
-        public SqlDecimal Impuestos { get; set; } = 0;
-        public SqlDecimal UtilidadNeta { get; set; } = 0;
-        public SqlDecimal CapitalTrabajo { get; set; } = 0;
+        public int Anio { get; set; }
+        public decimal Ventas { get; set; } = 0;
+        public decimal CostoVentas { get; set; } = 0;
+        public decimal UtilidadBruta { get; set; } = 0;
+        public decimal GastosOperativos { get; set; } = 0;
+        public decimal Depreciacion { get; set; } = 0;
+        public decimal TotalGastos { get; set; } = 0;
+        public decimal UtilidadOperativa { get; set; } = 0;
+        public decimal GastosFinancieros { get; set; } = 0;
+        public decimal OtrosIngresos { get; set; } = 0;
+        public decimal NetoOtrosIngresos { get; set; } = 0;
+        public decimal UtilidadAntesImpuestos { get; set; } = 0;
+        public decimal Impuestos { get; set; } = 0;
+        public decimal UtilidadNeta { get; set; } = 0;
+        public decimal CapitalTrabajo { get; set; } = 0;
 
-       
+        public List<EstadoResultados> CalcularEstado(DatosEntrada entrada, List<Variables> variables,
+            DatosEscenarios escenarios, List<Amortizacion> amortizaciones)
+        {
+            try
+            {
+                if (variables.Count != 6)
+                    throw new Exception("La lista de variables debe contener 6 elementos.");
+
+                if (amortizaciones.Count != 6)
+                    throw new Exception("La lista de amortizaciones debe contener 6 elementos.");
+
+                List<EstadoResultados> fila = new List<EstadoResultados>();
+                for (int i = 0; i < 6; i++)
+                {
+                    var variable = variables[i];
+                    var amortizacion = amortizaciones[i];
+                    var estado = new EstadoResultados();
+
+                    estado.Anio = variable.Anio;
+
+                    decimal unidades = variable.UnidadesVendidas;
+                    decimal precio = variable.PrecioVenta;
+                    decimal costoUnitario = variable.CostoProduccion;
+                    decimal porcGastosOp = entrada.GastosOperativos;
+                    decimal inversionInicial = escenarios.Valor_inversion_inicial;
+                    int vidaUtil = entrada.DepreciacionAnios;
+                    decimal intereses = amortizacion.Interes;
+                    decimal tasaImp = entrada.TasaImpuestos;
+                    decimal porcCapTrabajo = entrada.CapitalTrabajo;
+                    decimal porcOtrosIng = entrada.OtrosIngresos;
+
+                    // --- LÓGICA DE CÁLCULO (Tu lógica de negocio) ---
+                    estado.Ventas = unidades * precio;
+                    estado.CostoVentas = unidades * costoUnitario;
+                    estado.UtilidadBruta = estado.Ventas - estado.CostoVentas;
+
+                    estado.GastosOperativos = estado.Ventas * porcGastosOp;
+
+                    // Regla de Depreciación
+                    estado.Depreciacion = (estado.Anio <= vidaUtil) ? (inversionInicial / vidaUtil) : 0;
+
+                    estado.TotalGastos = estado.GastosOperativos + estado.Depreciacion;
+                    estado.UtilidadOperativa = estado.UtilidadBruta - estado.TotalGastos;
+
+                    // Parte Financiera
+                    estado.GastosFinancieros = intereses;
+                    estado.OtrosIngresos = estado.CostoVentas * porcOtrosIng; // Otros ingresos según tu código
+                    estado.NetoOtrosIngresos = estado.OtrosIngresos - estado.GastosFinancieros;
+
+                    estado.UtilidadAntesImpuestos = estado.UtilidadOperativa + estado.NetoOtrosIngresos;
+
+                    // Regla de Impuestos: Solo si hay ganancia
+                    estado.Impuestos = (estado.UtilidadAntesImpuestos > 0) ? (estado.UtilidadAntesImpuestos * tasaImp) : 0;
+
+                    estado.UtilidadNeta = estado.UtilidadAntesImpuestos - estado.Impuestos;
+
+                    // Cálculo de Capital de Trabajo pedido
+                    estado.CapitalTrabajo = estado.Ventas * porcCapTrabajo;
+
+                    fila.Add(estado);
+                }
+
+                return fila;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al generar estado de resultados: " + ex.Message);
+            }
+        }
+
         /*public void CalcularEstadoResultados(EstadoResultados estado, Variables variables, DatosEntrada datosEntrada, DatosEscenarios escenarios, Amortizacion amortizacion)
         {
             //TODO: Implementar la lógica de cálculo del estado de resultados utilizando las variables y datos de entrada
@@ -86,5 +155,7 @@ namespace modelo_finanzas.Models
              estado.UtilidadNeta = estado.UtilidadAntesImpuestos - estado.Impuestos;
              estado.CapitalTrabajo = estado.Ventas * datosEntrada.CapitalTrabajo;
          }*/
+
+
     }
 }

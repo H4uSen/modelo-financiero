@@ -290,7 +290,7 @@ namespace modelo_finanzas
         DatosEscenarios escenarios = new DatosEscenarios();
         Variables variables = new Variables();
         Amortizacion amortizacion = new Amortizacion();
-        EstadoResultado estadoResultados = new EstadoResultado();
+        EstadoResultados estadoResultados = new EstadoResultados();
 
         private async void button3_Click(object sender, EventArgs e)
         {
@@ -337,19 +337,19 @@ namespace modelo_finanzas
 
                 panel2.Controls.Clear();
 
-                variables.CalcularVariables(variables, datos, escenarios);
-                //Calculo de datos de escenario
+                List<Variables> listaVariables = variables.CalcularVariables(variables, datos, escenarios);
                 escenarios.CalcularDatosEscenarios(escenarios, datos);
                 amortizacion.CalcularAmortizacion(amortizacion, datos, variables, escenarios);
-                // estadoResultados.IdEscenario = escenarioID;
-                // estadoResultados.CalcularEstadoResultados(estadoResultados, variables, datos, escenarios, amortizacion);
+                estadoResultados.CalcularEstado(datos,variables,escenarios,amortizacion);
+                CostoCapital costoCapital = new CostoCapital();
+                costoCapital.CalcularCostoCapital(escenarios, datos);
+
+                FormEstadoResultado formestadoresultado = new FormEstadoResultado(datos.Id);
+                ChildForm.Open(formestadoresultado, new Point(500, 0), panel2);
 
                 FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
                 ChildForm.Open(formDatosEscenario, new Point(0, 0), panel2);
 
-                //Calculo de costo de capital
-                CostoCapital costoCapital = new CostoCapital();
-                costoCapital.CalcularCostoCapital(escenarios, datos);
                 FormCostoCapital formCostoCapital = new FormCostoCapital(costoCapital);
                 ChildForm.Open(formCostoCapital, new Point(240, 0), panel2);
                 //TODO: Limpiar formulario o redirigir a la pantalla de calculos

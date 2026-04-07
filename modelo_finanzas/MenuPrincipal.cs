@@ -58,7 +58,20 @@ namespace Prueba1
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit(); 
+            Application.Exit();
+        }
+
+        private async void btnTest_Click(object sender, EventArgs e)
+        {
+            var db = DbConnection.Instance;
+            if (await db.TestConnectionAsync())
+            {
+                MessageBox.Show("Conexión exitosa a la base de datos.");
+            }
+            else
+            {
+                MessageBox.Show("Error al conectar a la base de datos.");
+            }
         }
     }
 }
