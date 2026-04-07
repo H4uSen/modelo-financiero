@@ -38,11 +38,11 @@
             // dgvTablaAmortiCredito
             // 
             dgvTablaAmortiCredito.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTablaAmortiCredito.Location = new Point(24, 195);
+            dgvTablaAmortiCredito.Location = new Point(24, 194);
             dgvTablaAmortiCredito.Margin = new Padding(3, 2, 3, 2);
             dgvTablaAmortiCredito.Name = "dgvTablaAmortiCredito";
             dgvTablaAmortiCredito.RowHeadersWidth = 51;
-            dgvTablaAmortiCredito.Size = new Size(644, 186);
+            dgvTablaAmortiCredito.Size = new Size(644, 187);
             dgvTablaAmortiCredito.TabIndex = 0;
             dgvTablaAmortiCredito.CellContentClick += dgvTablaAmortiCredito_CellContentClick;
             // 
@@ -61,7 +61,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(24, 150);
+            label1.Location = new Point(24, 147);
             label1.Name = "label1";
             label1.Size = new Size(162, 21);
             label1.TabIndex = 3;
