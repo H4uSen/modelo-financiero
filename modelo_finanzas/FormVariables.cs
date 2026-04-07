@@ -21,15 +21,35 @@ namespace modelo_finanzas
             InitializeComponent();
             datosEntrada = de;
             datosEscenarios = ds;
+            this.Load += FormVariables_Load;
         }
 
         private void FormVariables_Load(object sender, EventArgs e)
         {
+
+      
             ConfigurarTabla();
-            CalcularYMostrar(datosEntrada, datosEscenarios);
+            /*
+            //datos de prueba (para verificar)
+            DatosEntrada de = new DatosEntrada()
+            {
+                TamanioMercado = 800000,
+                ObjetivoMercado = 0.04m,
+                PrecioInicial = 7200,
+                CostoProduccionInicial = 3500,
+                CrecimientoMercado = 0.02m,
+            };
+
+            DatosEscenarios ds = new DatosEscenarios()
+            {
+                Mercado_esperado_anio1 = 0.0225m,          // 2.25%
+                Variacion_nominal_precio = 0.0433m,        // 4.33%
+                Variacion_nominal_ipp = 0.0454m,
+            };
+            
+             CalcularYMostrar(de, ds);*/
         }
 
- 
         private void ConfigurarTabla()
         {
             dataGridView1.Columns.Clear();
@@ -75,18 +95,44 @@ namespace modelo_finanzas
                 anterior = v;
             }
 
-            //  LLENAR TABLA CORRECTAMENTE
+            // LLENAR TABLA
             for (int col = 0; col <= 5; col++)
             {
                 var v = lista[col];
 
-                dataGridView1.Rows[0].Cells[col + 1].Value = Math.Round(v.TamanioMercado, 0);
-                dataGridView1.Rows[1].Cells[col + 1].Value = v.ParticipacionMercado;
-                dataGridView1.Rows[2].Cells[col + 1].Value = v.UnidadesVendidas;
-                dataGridView1.Rows[3].Cells[col + 1].Value = Math.Round(v.PrecioVenta, 0);
-                dataGridView1.Rows[4].Cells[col + 1].Value = Math.Round(v.CostoProduccion, 0);
+                // Tamaño del mercado siempre se muestra
+                dataGridView1.Rows[0].Cells[col + 1].Value =
+                    Math.Round(v.TamanioMercado, 0, MidpointRounding.AwayFromZero).ToString("N0");
+
+                // Participación en el mercado
+                if (col == 0)
+                    dataGridView1.Rows[1].Cells[col + 1].Value = ""; // Año 0 en blanco
+                else
+                    dataGridView1.Rows[1].Cells[col + 1].Value = v.ParticipacionMercado.ToString("P2");
+
+                // Precio de venta
+                if (col == 0)
+                    dataGridView1.Rows[3].Cells[col + 1].Value = 0; // Año 0
+                else
+                    dataGridView1.Rows[3].Cells[col + 1].Value =
+                        Math.Round(v.PrecioVenta, 0, MidpointRounding.AwayFromZero).ToString("N0");
+
+                // Costo de producción
+                if (col == 0)
+                    dataGridView1.Rows[4].Cells[col + 1].Value = 0; // Año 0
+                else
+                    dataGridView1.Rows[4].Cells[col + 1].Value =
+                        Math.Round(v.CostoProduccion, 0, MidpointRounding.AwayFromZero).ToString("N0");
+
+                // Unidades vendidas
+                if (col == 0)
+                    dataGridView1.Rows[2].Cells[col + 1].Value = 0; // Año 0
+                else
+                    dataGridView1.Rows[2].Cells[col + 1].Value =
+                        v.UnidadesVendidas.ToString("N0");
             }
         }
+
     }
 }
 

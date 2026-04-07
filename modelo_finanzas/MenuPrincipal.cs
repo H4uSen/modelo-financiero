@@ -1,4 +1,5 @@
 ﻿using modelo_finanzas;
+using modelo_finanzas.Models;
 using modelo_finanzas.Utils;
 using System;
 using System.Collections.Generic;
@@ -61,10 +62,15 @@ namespace Prueba1
             Application.Exit();
         }
 
-      /* private void btnVariables_Click(object sender, EventArgs e)
+
+
+        private void btnVariables_Click(object sender, EventArgs e)
         {
-            FormVariables frm = new FormVariables();
+            DatosEntrada de = new DatosEntrada();
+            DatosEscenarios ds = new DatosEscenarios();
+
+            FormVariables frm = new FormVariables(de, ds);
             frm.Show();
-        }*/
+        }
     }
 }

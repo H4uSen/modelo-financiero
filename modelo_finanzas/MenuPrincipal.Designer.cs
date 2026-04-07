@@ -34,6 +34,7 @@
             btnSalir = new Button();
             button1 = new Button();
             panel1 = new Panel();
+            bntVariables = new Button();
             SuspendLayout();
             // 
             // btnIngresarDatos
@@ -104,11 +105,22 @@
             panel1.Size = new Size(409, 354);
             panel1.TabIndex = 2;
             // 
+            // bntVariables
+            // 
+            bntVariables.Location = new Point(29, 305);
+            bntVariables.Name = "bntVariables";
+            bntVariables.Size = new Size(247, 55);
+            bntVariables.TabIndex = 3;
+            bntVariables.Text = "button2";
+            bntVariables.UseVisualStyleBackColor = true;
+            bntVariables.Click += btnVariables_Click;
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(740, 372);
+            Controls.Add(bntVariables);
             Controls.Add(panel1);
             Controls.Add(button1);
             Controls.Add(btnSalir);
@@ -130,5 +142,6 @@
         private Button btnSalir;
         private Button button1;
         private Panel panel1;
+        private Button bntVariables;
     }
 }
