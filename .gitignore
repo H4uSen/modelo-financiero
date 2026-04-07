@@ -129,3 +129,4 @@ Form1.resx
 *.la
 *.la
 /modelo_finanzas/.env
+mssql/data/
