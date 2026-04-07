@@ -131,4 +131,6 @@ Form1.resx
 /modelo_finanzas/.env
 .env
 mssql/data/
+mssql/.env
+
 
