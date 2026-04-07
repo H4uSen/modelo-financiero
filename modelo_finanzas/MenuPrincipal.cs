@@ -58,7 +58,13 @@ namespace Prueba1
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit(); 
+            Application.Exit();
         }
+
+      /* private void btnVariables_Click(object sender, EventArgs e)
+        {
+            FormVariables frm = new FormVariables();
+            frm.Show();
+        }*/
     }
 }

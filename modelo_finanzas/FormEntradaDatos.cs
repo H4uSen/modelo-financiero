@@ -293,6 +293,8 @@ namespace modelo_finanzas
 
         private async void button3_Click(object sender, EventArgs e)
         {
+          
+
             if (!FormValidator.ValidateRequired(this, errorProvider1))
             {
                 MessageBox.Show("Rellene los campos marcados.");
@@ -333,13 +335,18 @@ namespace modelo_finanzas
                 datos.PorcentajeDeuda = decimal.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
                 datos.PlazoCredito = int.Parse(txtPlazoCredito.Text.Replace(" años", ""));
                 datos.BetaSector = decimal.Parse(txtBetaSector.Text.Replace("%", ""));
-                datos.TasaImpuestos = decimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
+                datos.TasaImpuestos = decimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;*/
 
                 panel2.Controls.Clear();
-                
-                variables.CalcularVariables(variables, datos, escenarios);
-                //Calculo de datos de escenario
+
+                // Primero calcular escenario
                 escenarios.CalcularDatosEscenarios(escenarios, datos);
+
+                // Luego abrir el FormVariables que hará el cálculo y llenado del DataGridView
+                FormVariables formVariables = new FormVariables(datos, escenarios);
+                formVariables.Show();
+
+
                 amortizacion.CalcularAmortizacion(amortizacion, datos, variables, escenarios);
                 // estadoResultados.IdEscenario = escenarioID;
                 // estadoResultados.CalcularEstadoResultados(estadoResultados, variables, datos, escenarios, amortizacion);
