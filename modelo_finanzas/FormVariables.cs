@@ -13,41 +13,25 @@ namespace modelo_finanzas
 {
     public partial class FormVariables : Form
     {
-        private DatosEntrada datosEntrada;
-        private DatosEscenarios datosEscenarios;
+        private readonly DatosEntrada _datosEntrada;
+        private readonly DatosEscenarios _datosEscenarios;
 
         public FormVariables(DatosEntrada de, DatosEscenarios ds)
         {
             InitializeComponent();
-            datosEntrada = de;
-            datosEscenarios = ds;
+            _datosEntrada = de;
+            _datosEscenarios = ds;
             this.Load += FormVariables_Load;
+            dataGridView1.RowHeadersVisible = false;
+
+            dataGridView1.Enabled = false;
         }
 
         private void FormVariables_Load(object sender, EventArgs e)
         {
-
-      
             ConfigurarTabla();
-            /*
-            //datos de prueba (para verificar)
-            DatosEntrada de = new DatosEntrada()
-            {
-                TamanioMercado = 800000,
-                ObjetivoMercado = 0.04m,
-                PrecioInicial = 7200,
-                CostoProduccionInicial = 3500,
-                CrecimientoMercado = 0.02m,
-            };
-
-            DatosEscenarios ds = new DatosEscenarios()
-            {
-                Mercado_esperado_anio1 = 0.0225m,          // 2.25%
-                Variacion_nominal_precio = 0.0433m,        // 4.33%
-                Variacion_nominal_ipp = 0.0454m,
-            };
             
-             CalcularYMostrar(de, ds);*/
+             CalcularYMostrar(_datosEntrada, _datosEscenarios);
         }
 
         private void ConfigurarTabla()
@@ -84,16 +68,7 @@ namespace modelo_finanzas
             Variables anterior = null;
 
             // Generar datos Año 0 a Año 5
-            for (int i = 0; i <= 5; i++)
-            {
-                Variables v = new Variables();
-                v.Anio = i;
-
-                v.CalcularVariables(v, de, ds, anterior);
-
-                lista.Add(v);
-                anterior = v;
-            }
+            lista = new Variables().CalcularVariables(de, ds);
 
             // LLENAR TABLA
             for (int col = 0; col <= 5; col++)
@@ -112,21 +87,21 @@ namespace modelo_finanzas
 
                 // Precio de venta
                 if (col == 0)
-                    dataGridView1.Rows[3].Cells[col + 1].Value = 0; // Año 0
+                    dataGridView1.Rows[3].Cells[col + 1].Value = ""; // Año 0
                 else
                     dataGridView1.Rows[3].Cells[col + 1].Value =
                         Math.Round(v.PrecioVenta, 0, MidpointRounding.AwayFromZero).ToString("N0");
 
                 // Costo de producción
                 if (col == 0)
-                    dataGridView1.Rows[4].Cells[col + 1].Value = 0; // Año 0
+                    dataGridView1.Rows[4].Cells[col + 1].Value = ""; // Año 0
                 else
                     dataGridView1.Rows[4].Cells[col + 1].Value =
                         Math.Round(v.CostoProduccion, 0, MidpointRounding.AwayFromZero).ToString("N0");
 
                 // Unidades vendidas
                 if (col == 0)
-                    dataGridView1.Rows[2].Cells[col + 1].Value = 0; // Año 0
+                    dataGridView1.Rows[2].Cells[col + 1].Value = ""; // Año 0
                 else
                     dataGridView1.Rows[2].Cells[col + 1].Value =
                         v.UnidadesVendidas.ToString("N0");

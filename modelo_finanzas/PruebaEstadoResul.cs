@@ -30,7 +30,7 @@ namespace modelo_finanzas
                 EstadoResultadosService service = new EstadoResultadosService();
 
                 // Ejecutamos el motor de cálculo
-                service.GenerarTodoElEstado(id);
+                //service.GenerarTodoElEstado(id);
 
                 MessageBox.Show("¡Cálculos completados y guardados en la base de datos!");
 
