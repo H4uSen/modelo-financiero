@@ -17,10 +17,10 @@ namespace modelo_finanzas.Services
 
             double i = tasaAnual / 100;
 
-        
+         
             lista.Add(new Amortizacion
             {
-                Anio = 0,
+                anio = 0,
                 SaldoFinal = (decimal)montoPrestamo
             });
 
@@ -46,7 +46,7 @@ namespace modelo_finanzas.Services
 
                 lista.Add(new Amortizacion
                 {
-                    Anio = a,
+                    anio = a,
                     SaldoInicial = Math.Round(saldoInicial, 2),
                     Cuota = Math.Round(cuota, 2),
                     Interes = Math.Round(interes, 2),
@@ -80,7 +80,7 @@ namespace modelo_finanzas.Services
                     using (var cmd = new SqlCommand(insertQuery, connection))
                     {
                         cmd.Parameters.AddWithValue("@id", escenarioId);
-                        cmd.Parameters.AddWithValue("@anio", fila.Anio);
+                        cmd.Parameters.AddWithValue("@anio", fila.anio);
                         cmd.Parameters.AddWithValue("@ini", fila.SaldoInicial);
                         cmd.Parameters.AddWithValue("@cuota", fila.Cuota);
                         cmd.Parameters.AddWithValue("@int", fila.Interes);

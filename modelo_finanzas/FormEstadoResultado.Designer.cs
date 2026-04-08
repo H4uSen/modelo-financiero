@@ -47,7 +47,7 @@
             dgvEstadoResultado.Margin = new Padding(3, 2, 3, 2);
             dgvEstadoResultado.Name = "dgvEstadoResultado";
             dgvEstadoResultado.RowHeadersWidth = 51;
-            dgvEstadoResultado.Size = new Size(953, 376);
+            dgvEstadoResultado.Size = new Size(953, 218);
             dgvEstadoResultado.TabIndex = 0;
             // 
             // CEstadoResultado
@@ -100,14 +100,14 @@
             CAnio5.Name = "CAnio5";
             CAnio5.Width = 125;
             // 
-            // EstadoResultado
+            // FormEstadoResultado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(957, 401);
+            ClientSize = new Size(942, 237);
             Controls.Add(dgvEstadoResultado);
             Margin = new Padding(3, 2, 3, 2);
-            Name = "EstadoResultado";
+            Name = "FormEstadoResultado";
             Text = "EstadoResultados";
             Load += EstadoResultados_Load;
             ((System.ComponentModel.ISupportInitialize)dgvEstadoResultado).EndInit();
