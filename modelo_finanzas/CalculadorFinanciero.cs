@@ -8,10 +8,21 @@ namespace modelo_finanzas
 {
     public class CalculadorFinanciero
     {
+        // Contador global de cálculos realizados en toda la aplicación
+        public static int TotalCalculosRealizados = 0;
+        public static double F127 = 0;
+        public static double F126= 0;
+        public static double G126 = 0;
+
+
         // Esta función es la que "hará la magia"
         // Recibe: La clase con los 22 datos fijos + los 2 datos que van a variar
         public double CalcularSoloVPN(EscenarioFinanciero datosEntrada, double inflacionVariable, double objetivoMercadoVariable)
         {
+
+            // 1. Aumentamos el contador cada vez que se llama a esta función
+            TotalCalculosRealizados++;
+
             // --- Mercado y Producto ---
             double tamanoActualMercado = datosEntrada.tamanoActualMercado;          // 1
             double crecimientoMercado = datosEntrada.crecimientoMercado;            // 2 (2.00%)
@@ -341,6 +352,19 @@ namespace modelo_finanzas
             // 5. Ahora sí, para la variable vpnFinal que muestras en el cuadro, 
             // la redondeamos a entero para que se vea "limpia"
             double vpnFinal = Math.Round(vpnBrutoCompleto, 0);
+
+            if (TotalCalculosRealizados==19)
+            {
+                F126 = vpnFinal;
+            }
+            else if (TotalCalculosRealizados==20)
+            {
+                G126 = vpnFinal;
+            }
+            else if (TotalCalculosRealizados==24)
+            {
+                F127 = vpnFinal;
+            }
 
             return vpn2;
         }

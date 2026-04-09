@@ -72,5 +72,11 @@ namespace Prueba1
             FormVariables frm = new FormVariables(de, ds);
             frm.Show();
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            FormVariacionPorcentalVPN variacionPorcentalVPN = new FormVariacionPorcentalVPN();
+            variacionPorcentalVPN.Show();
+        }
     }
 }
