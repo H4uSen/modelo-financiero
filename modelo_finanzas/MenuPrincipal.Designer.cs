@@ -35,6 +35,7 @@
             button1 = new Button();
             panel1 = new Panel();
             bntVariables = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // btnIngresarDatos
@@ -115,11 +116,23 @@
             bntVariables.UseVisualStyleBackColor = true;
             bntVariables.Click += btnVariables_Click;
             // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Location = new Point(147, 236);
+            button2.Name = "button2";
+            button2.Size = new Size(129, 47);
+            button2.TabIndex = 4;
+            button2.Text = "Variación VPN";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click_1;
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(740, 372);
+            Controls.Add(button2);
             Controls.Add(bntVariables);
             Controls.Add(panel1);
             Controls.Add(button1);
@@ -143,5 +156,6 @@
         private Button button1;
         private Panel panel1;
         private Button bntVariables;
+        private Button button2;
     }
 }
