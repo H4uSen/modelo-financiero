@@ -286,25 +286,31 @@ namespace modelo_finanzas
             InputValidator.integerValidation(txtTamanioMercado, e);
         }
 
-        DatosEntrada datos = new DatosEntrada();
-        DatosEscenarios escenarios = new DatosEscenarios();
-        Variables variables = new Variables();
-        Amortizacion amortizacion = new Amortizacion();
-        EstadoResultados estadoResultados = new EstadoResultados();
+        private  DatosEntrada datos = new DatosEntrada();
+        private  DatosEscenarios escenarios = new DatosEscenarios();
+        private  Variables variables = new Variables();
+        private  List<Variables> listaVariables = new List<Variables>();
+        private  Amortizacion amortizacion = new Amortizacion();
+        private  List<Amortizacion> listaAmortizaciones = new List<Amortizacion>();
+        private  EstadoResultados estadoResultados = new EstadoResultados();
+        private  List<EstadoResultados> listaEstados = new List<EstadoResultados>();
+        private CostoCapital costoCapital = new CostoCapital();
+        private FlujoCajaLibre flujoCaja = new FlujoCajaLibre();
+        private List<FlujoCajaLibre> listaFlujos = new List<FlujoCajaLibre>();
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            
-            
 
-              if (!FormValidator.ValidateRequired(this, errorProvider1))
-              {
-                  MessageBox.Show("Rellene los campos marcados.");
-                  return;
-              }
 
-              try
-              {
+
+            if (!FormValidator.ValidateRequired(this, errorProvider1))
+            {
+                MessageBox.Show("Rellene los campos marcados.");
+                return;
+            }
+
+            try
+            {
                 txtFechaCreacion.Text = DateTime.Now.ToString("G");
 
                 datos.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ?
@@ -340,12 +346,10 @@ namespace modelo_finanzas
 
 
                 escenarios.CalcularDatosEscenarios(escenarios, datos);
-                List<Variables> listaVariables = variables.CalcularVariables(datos, escenarios);
-                List<Amortizacion> listaAmortizaciones = amortizacion.Calcular(datos);
-                List<EstadoResultados> listaEstados = estadoResultados.Calcular(datos,listaVariables,escenarios,listaAmortizaciones);
-                CostoCapital costoCapital = new CostoCapital();
-                costoCapital.CalcularCostoCapital(escenarios, datos);
-
+                listaVariables = variables.CalcularVariables(datos, escenarios);
+                listaAmortizaciones = amortizacion.Calcular(datos);
+                listaEstados = estadoResultados.Calcular(datos, listaVariables, escenarios, listaAmortizaciones);
+                listaFlujos = flujoCaja.Calcular(datos, escenarios, listaEstados);
 
                 panel2.Controls.Clear();
                 FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
@@ -361,18 +365,11 @@ namespace modelo_finanzas
                 ChildForm.Open(formestadoresultado, new Point(190, 300), panel2);
 
 
-                //FormCostoCapital formCostoCapital = new FormCostoCapital(costoCapital);
-                //  ChildForm.Open(formCostoCapital, new Point(240, 0), panel2);
-
             }
-              catch (Exception ex)
-              {
-                  MessageBox.Show("Error al procesar los datos de entrada: \n" + ex.Message.ToString());
-              }
-
-
-            
-    
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar los datos de entrada: \n" + ex.Message.ToString());
+            }
         }
 
 
@@ -398,7 +395,7 @@ namespace modelo_finanzas
                 int escenarioID = await datosService.InsertDatos(datos);
 
                 datos.Id = escenarioID;
-               // variables.IdEscenario = escenarioID;
+                // variables.IdEscenario = escenarioID;
                 escenarios.Escenario_id = escenarioID;
                 amortizacion.IdEscenario = escenarioID;
 
@@ -428,6 +425,18 @@ namespace modelo_finanzas
 
         private void txtNombreEscenario_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnSalidas_Click(object sender, EventArgs e)
+        {
+            costoCapital.CalcularCostoCapital(escenarios, datos);
+            List<FlujoCajaLibre> flujos = flujoCaja.Calcular(datos, escenarios, listaEstados);
+
+            FormSalidas formSalidas = new FormSalidas(
+                costoCapital,
+                flujos);
+            formSalidas.Show();
 
         }
     }

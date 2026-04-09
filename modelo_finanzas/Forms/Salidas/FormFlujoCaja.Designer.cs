@@ -28,35 +28,95 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dgvFlujoCaja = new DataGridView();
+            Concepto = new DataGridViewTextBoxColumn();
+            Anio0 = new DataGridViewTextBoxColumn();
+            Anio1 = new DataGridViewTextBoxColumn();
+            anio2 = new DataGridViewTextBoxColumn();
+            Anio3 = new DataGridViewTextBoxColumn();
+            Anio4 = new DataGridViewTextBoxColumn();
+            Anio5 = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dgvFlujoCaja).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvFlujoCaja
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(9, 16);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(772, 318);
-            dataGridView1.TabIndex = 0;
+            dgvFlujoCaja.AllowUserToAddRows = false;
+            dgvFlujoCaja.AllowUserToDeleteRows = false;
+            dgvFlujoCaja.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFlujoCaja.Columns.AddRange(new DataGridViewColumn[] { Concepto, Anio0, Anio1, anio2, Anio3, Anio4, Anio5 });
+            dgvFlujoCaja.Enabled = false;
+            dgvFlujoCaja.Location = new Point(6, 12);
+            dgvFlujoCaja.Name = "dgvFlujoCaja";
+            dgvFlujoCaja.ReadOnly = true;
+            dgvFlujoCaja.RowHeadersVisible = false;
+            dgvFlujoCaja.RowHeadersWidth = 15;
+            dgvFlujoCaja.Size = new Size(772, 318);
+            dgvFlujoCaja.TabIndex = 0;
+            // 
+            // Concepto
+            // 
+            Concepto.HeaderText = "Flujo Caja";
+            Concepto.Name = "Concepto";
+            Concepto.ReadOnly = true;
+            // 
+            // Anio0
+            // 
+            Anio0.HeaderText = "Año 0";
+            Anio0.Name = "Anio0";
+            Anio0.ReadOnly = true;
+            // 
+            // Anio1
+            // 
+            Anio1.HeaderText = "Año 1";
+            Anio1.Name = "Anio1";
+            Anio1.ReadOnly = true;
+            // 
+            // anio2
+            // 
+            anio2.HeaderText = "Año 2";
+            anio2.Name = "anio2";
+            anio2.ReadOnly = true;
+            // 
+            // Anio3
+            // 
+            Anio3.HeaderText = "Año 3";
+            Anio3.Name = "Anio3";
+            Anio3.ReadOnly = true;
+            // 
+            // Anio4
+            // 
+            Anio4.HeaderText = "Año 4";
+            Anio4.Name = "Anio4";
+            Anio4.ReadOnly = true;
+            // 
+            // Anio5
+            // 
+            Anio5.HeaderText = "Año 5";
+            Anio5.Name = "Anio5";
+            Anio5.ReadOnly = true;
             // 
             // FormFlujoCaja
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(791, 450);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvFlujoCaja);
             Name = "FormFlujoCaja";
             Text = "FormFlujoCaja";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvFlujoCaja).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgvFlujoCaja;
+        private DataGridViewTextBoxColumn Concepto;
+        private DataGridViewTextBoxColumn Anio0;
+        private DataGridViewTextBoxColumn Anio1;
+        private DataGridViewTextBoxColumn anio2;
+        private DataGridViewTextBoxColumn Anio3;
+        private DataGridViewTextBoxColumn Anio4;
+        private DataGridViewTextBoxColumn Anio5;
     }
 }

@@ -87,6 +87,7 @@
             errorProvider1 = new ErrorProvider(components);
             panel2 = new Panel();
             btnGuardar = new Button();
+            btnSalidas = new Button();
             gpbMercado.SuspendLayout();
             gpbPrecios.SuspendLayout();
             gpbCostos.SuspendLayout();
@@ -703,7 +704,7 @@
             panel2.Location = new Point(397, 145);
             panel2.Margin = new Padding(2, 3, 2, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(729, 639);
+            panel2.Size = new Size(695, 639);
             panel2.TabIndex = 24;
             // 
             // btnGuardar
@@ -717,12 +718,23 @@
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
+            // btnSalidas
+            // 
+            btnSalidas.Location = new Point(858, 102);
+            btnSalidas.Name = "btnSalidas";
+            btnSalidas.Size = new Size(152, 32);
+            btnSalidas.TabIndex = 26;
+            btnSalidas.Text = "Ver salidas";
+            btnSalidas.UseVisualStyleBackColor = true;
+            btnSalidas.Click += btnSalidas_Click;
+            // 
             // FormEntradaDatos
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
             ClientSize = new Size(1181, 783);
+            Controls.Add(btnSalidas);
             Controls.Add(btnGuardar);
             Controls.Add(panel2);
             Controls.Add(btnCalcular);
@@ -813,5 +825,6 @@
         private ErrorProvider errorProvider1;
         private Panel panel2;
         private Button btnGuardar;
+        private Button btnSalidas;
     }
 }

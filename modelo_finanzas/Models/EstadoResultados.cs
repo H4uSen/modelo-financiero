@@ -69,7 +69,7 @@ namespace modelo_finanzas.Models
                     estado.GastosOperativos = estado.Ventas * porcGastosOp;
 
                     // Regla de Depreciación
-                    estado.Depreciacion = (estado.Anio <= vidaUtil) ? (inversionInicial / vidaUtil) : 0;
+                    estado.Depreciacion = (estado.Anio <= vidaUtil) ? (i != 0)? (inversionInicial / vidaUtil):0 : 0;
 
                     estado.TotalGastos = estado.GastosOperativos + estado.Depreciacion;
                     estado.UtilidadOperativa = estado.UtilidadBruta - estado.TotalGastos;

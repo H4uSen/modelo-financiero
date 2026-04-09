@@ -61,9 +61,9 @@ namespace modelo_finanzas
             {
 
                     //int colIndex = 2; // la primera columna (0) es el concepto, empezamos a llenar desde la columna 1
-                    for(int i = 2; i <= _estados.Count; i++)
+                    for(int i = 1; i <= _estados.Count; i++)
                     {
-                        int colIndex = i - 2;
+                        int colIndex = i - 1;
                         dgvEstadoResultado.Rows[0].Cells[i].Value = _estados[colIndex].Ventas;
                         dgvEstadoResultado.Rows[1].Cells[i].Value = _estados[colIndex].CostoVentas;
                         dgvEstadoResultado.Rows[2].Cells[i].Value = _estados[colIndex].UtilidadBruta;
