@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dgvEstadoResultado = new DataGridView();
             CEstadoResultado = new DataGridViewTextBoxColumn();
             CAnio0 = new DataGridViewTextBoxColumn();
@@ -43,11 +44,21 @@
             // 
             dgvEstadoResultado.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEstadoResultado.Columns.AddRange(new DataGridViewColumn[] { CEstadoResultado, CAnio0, CAnio1, CAnio2, CAnio3, CAnio4, CAnio5 });
-            dgvEstadoResultado.Location = new Point(1, 11);
+            dgvEstadoResultado.Enabled = false;
+            dgvEstadoResultado.Location = new Point(2, 2);
             dgvEstadoResultado.Margin = new Padding(3, 2, 3, 2);
             dgvEstadoResultado.Name = "dgvEstadoResultado";
-            dgvEstadoResultado.RowHeadersWidth = 51;
-            dgvEstadoResultado.Size = new Size(953, 218);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvEstadoResultado.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvEstadoResultado.RowHeadersVisible = false;
+            dgvEstadoResultado.RowHeadersWidth = 20;
+            dgvEstadoResultado.Size = new Size(870, 276);
             dgvEstadoResultado.TabIndex = 0;
             // 
             // CEstadoResultado
@@ -104,7 +115,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(942, 237);
+            ClientSize = new Size(876, 277);
             Controls.Add(dgvEstadoResultado);
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormEstadoResultado";

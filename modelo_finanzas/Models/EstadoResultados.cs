@@ -30,7 +30,7 @@ namespace modelo_finanzas.Models
         public decimal UtilidadNeta { get; set; } = 0;
         public decimal CapitalTrabajo { get; set; } = 0;
 
-        public List<EstadoResultados> CalcularEstado(DatosEntrada entrada, List<Variables> variables,
+        public List<EstadoResultados> Calcular(DatosEntrada entrada, List<Variables> variables,
             DatosEscenarios escenarios, List<Amortizacion> amortizaciones)
         {
             try

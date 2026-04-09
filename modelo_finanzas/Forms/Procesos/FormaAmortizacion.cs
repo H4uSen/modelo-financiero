@@ -24,7 +24,9 @@ namespace Prueba1
             dgvTablaAmortiCredito.DataSource = null;
             dgvTablaAmortiCredito.CellFormatting += dgvTablaAmortiCredito_CellFormatting;
 
-        EjecutarCalculoAutomatico(amortizaciones);
+            EjecutarCalculoAutomatico(amortizaciones);
+            
+
         }
 
         private void dgvTablaAmortiCredito_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -121,7 +123,7 @@ namespace Prueba1
 
         private void FormaAmortizacion_Load(object sender, EventArgs e)
         {
-
+            dgvTablaAmortiCredito.ClearSelection();
         }
         private DataTable PivotAmortizacion(List<Amortizacion> amortizaciones)
         {

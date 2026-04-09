@@ -38,21 +38,21 @@
             // dgvTablaAmortiCredito
             // 
             dgvTablaAmortiCredito.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTablaAmortiCredito.Location = new Point(3, 32);
+            dgvTablaAmortiCredito.Location = new Point(3, 24);
             dgvTablaAmortiCredito.Margin = new Padding(3, 2, 3, 2);
             dgvTablaAmortiCredito.Name = "dgvTablaAmortiCredito";
             dgvTablaAmortiCredito.RowHeadersWidth = 51;
-            dgvTablaAmortiCredito.Size = new Size(644, 187);
+            dgvTablaAmortiCredito.Size = new Size(520, 160);
             dgvTablaAmortiCredito.TabIndex = 0;
             dgvTablaAmortiCredito.CellContentClick += dgvTablaAmortiCredito_CellContentClick;
             // 
             // lblCuotaFija
             // 
             lblCuotaFija.AutoSize = true;
-            lblCuotaFija.Font = new Font("Segoe UI", 19F);
-            lblCuotaFija.Location = new Point(73, 221);
+            lblCuotaFija.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCuotaFija.Location = new Point(71, 187);
             lblCuotaFija.Name = "lblCuotaFija";
-            lblCuotaFija.Size = new Size(83, 36);
+            lblCuotaFija.Size = new Size(51, 21);
             lblCuotaFija.TabIndex = 2;
             lblCuotaFija.Text = "Cuota";
             lblCuotaFija.Click += lblCuotaFija_Click;
@@ -60,10 +60,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(3, 9);
+            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(3, 2);
             label1.Name = "label1";
-            label1.Size = new Size(162, 21);
+            label1.Size = new Size(158, 20);
             label1.TabIndex = 3;
             label1.Text = "Tabla de Amortizacion";
             label1.Click += label1_Click;
@@ -71,17 +71,17 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 221);
+            label2.Location = new Point(3, 188);
             label2.Name = "label2";
-            label2.Size = new Size(64, 15);
+            label2.Size = new Size(70, 15);
             label2.TabIndex = 4;
-            label2.Text = "CuotaFinal";
+            label2.Text = "Cuota Final:";
             // 
             // FormaAmortizacion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(653, 264);
+            ClientSize = new Size(527, 212);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblCuotaFija);

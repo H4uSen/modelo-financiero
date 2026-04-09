@@ -342,7 +342,7 @@ namespace modelo_finanzas
                 escenarios.CalcularDatosEscenarios(escenarios, datos);
                 List<Variables> listaVariables = variables.CalcularVariables(datos, escenarios);
                 List<Amortizacion> listaAmortizaciones = amortizacion.Calcular(datos);
-                //estadoResultados.CalcularEstado(datos,listaVariables,escenarios);
+                List<EstadoResultados> listaEstados = estadoResultados.Calcular(datos,listaVariables,escenarios,listaAmortizaciones);
                 CostoCapital costoCapital = new CostoCapital();
                 costoCapital.CalcularCostoCapital(escenarios, datos);
 
@@ -352,13 +352,13 @@ namespace modelo_finanzas
                 ChildForm.Open(formDatosEscenario, new Point(0, 0), panel2);
 
                 FormVariables formVariables = new FormVariables(datos, escenarios);
-                ChildForm.Open(formVariables, new Point(250, 0), panel2);
+                ChildForm.Open(formVariables, new Point(190, 0), panel2);
 
                 FormaAmortizacion formaAmortizacion = new FormaAmortizacion(listaAmortizaciones);
-                ChildForm.Open(formaAmortizacion, new Point(250, 250), panel2);
+                ChildForm.Open(formaAmortizacion, new Point(800, 0), panel2);
 
-                //FormEstadoResultado formestadoresultado = new FormEstadoResultado(datos.Id);
-                //ChildForm.Open(formestadoresultado, new Point(500, 0), panel2);
+                FormEstadoResultado formestadoresultado = new FormEstadoResultado(listaEstados);
+                ChildForm.Open(formestadoresultado, new Point(190, 300), panel2);
 
 
                 //FormCostoCapital formCostoCapital = new FormCostoCapital(costoCapital);
