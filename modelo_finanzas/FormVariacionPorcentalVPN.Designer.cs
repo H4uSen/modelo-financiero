@@ -28,33 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dgvInflacion = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dgvInflacion).BeginInit();
+            dgvVariacion = new DataGridView();
+            btnVariacion = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvVariacion).BeginInit();
             SuspendLayout();
             // 
-            // dgvInflacion
+            // dgvVariacion
             // 
-            dgvInflacion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvInflacion.Location = new Point(37, 46);
-            dgvInflacion.Name = "dgvInflacion";
-            dgvInflacion.Size = new Size(583, 206);
-            dgvInflacion.TabIndex = 0;
+            dgvVariacion.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvVariacion.Location = new Point(37, 46);
+            dgvVariacion.Name = "dgvVariacion";
+            dgvVariacion.Size = new Size(583, 206);
+            dgvVariacion.TabIndex = 0;
+            // 
+            // btnVariacion
+            // 
+            btnVariacion.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVariacion.Location = new Point(248, 272);
+            btnVariacion.Name = "btnVariacion";
+            btnVariacion.Size = new Size(129, 44);
+            btnVariacion.TabIndex = 1;
+            btnVariacion.Text = "Variación VPN";
+            btnVariacion.UseVisualStyleBackColor = true;
+            btnVariacion.Click += btnVariacion_Click;
             // 
             // FormVariacionPorcentalVPN
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(658, 283);
-            Controls.Add(dgvInflacion);
+            ClientSize = new Size(658, 344);
+            Controls.Add(btnVariacion);
+            Controls.Add(dgvVariacion);
             Name = "FormVariacionPorcentalVPN";
             Text = "FormVariacionPorcentalVPN";
             Load += FormVariacionPorcentalVPN_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvInflacion).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvVariacion).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dgvInflacion;
+        private DataGridView dgvVariacion;
+        private Button btnVariacion;
     }
 }
