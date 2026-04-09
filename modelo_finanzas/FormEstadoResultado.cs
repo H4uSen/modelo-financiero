@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using modelo_finanzas.Models;
 using modelo_finanzas.Services;
 using System;
 using System.Collections.Generic;
@@ -15,20 +16,26 @@ namespace modelo_finanzas
 {
     public partial class FormEstadoResultado : Form
     {
-        private readonly int _idEscenario;
-        public FormEstadoResultado(int idEscenario)
+        private readonly List<EstadoResultados> _estados;
+        public FormEstadoResultado(List<EstadoResultados> estados)
         {
             InitializeComponent();
-            _idEscenario = idEscenario;
+            _estados = estados;
         }
 
-        private async void EstadoResultados_Load(object sender, EventArgs e)
+        private void EstadoResultados_Load(object sender, EventArgs e)
         {
-            MessageBox.Show($"El escenario a evaluar es: {_idEscenario} ");
             // Bloquear edición
             dgvEstadoResultado.ReadOnly = true;
             dgvEstadoResultado.AllowUserToAddRows = false;
             dgvEstadoResultado.AllowUserToDeleteRows = false;
+
+            dgvEstadoResultado.Dock = DockStyle.Fill;
+            dgvEstadoResultado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEstadoResultado.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            
+            //dgvEstadoResultado.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            //dgvEstadoResultado.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
             // Paso 1: Definir las filas fijas
             dgvEstadoResultado.Rows.Add("Ventas");
@@ -50,42 +57,27 @@ namespace modelo_finanzas
             // string connectionString = "Server=TU_SERVIDOR;Database=TU_BASE;User Id=USUARIO;Password=CLAVE;";
             //string connectionString = "Server=MSI\\LOCALDB#1ACB50EC;Database=hausencito247_finanzas;Integrated Security=True;";
             //string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=hausencito247_finanzas;Integrated Security=True;";
-            string query = $"SELECT anio, ventas, costo_ventas, utilidad_bruta, gastos_operativos, depreciacion, total_gastos, utilidad_operativa, gastos_financieros, otros_ingresos, neto_otros_ingresos, utilidad_antes_impuestos, impuestos, utilidad_neta, capital_trabajo FROM estadoResultados where id_escenario = {_idEscenario} ORDER BY anio";
-
-            DbConnection db = DbConnection.Instance;
-            if(!await db.TestConnectionAsync())
-            {
-                throw new Exception("No se pudo conectar con la base de datos");
-            }
             try
             {
 
-
-
-                using (var conn = await db.GetConnectionAsync())
-                {
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    //MessageBox.Show("Conexión exitosa!");
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    int colIndex = 2; // la primera columna (0) es el concepto, empezamos a llenar desde la columna 1
-                    while (reader.Read())
+                    //int colIndex = 2; // la primera columna (0) es el concepto, empezamos a llenar desde la columna 1
+                    for(int i = 2; i <= _estados.Count; i++)
                     {
-                        dgvEstadoResultado.Rows[0].Cells[colIndex].Value = reader["ventas"];
-                        dgvEstadoResultado.Rows[1].Cells[colIndex].Value = reader["costo_ventas"];
-                        dgvEstadoResultado.Rows[2].Cells[colIndex].Value = reader["utilidad_bruta"];
-                        dgvEstadoResultado.Rows[3].Cells[colIndex].Value = reader["gastos_operativos"];
-                        dgvEstadoResultado.Rows[4].Cells[colIndex].Value = reader["depreciacion"];
-                        dgvEstadoResultado.Rows[5].Cells[colIndex].Value = reader["total_gastos"];
-                        dgvEstadoResultado.Rows[6].Cells[colIndex].Value = reader["utilidad_operativa"];
-                        dgvEstadoResultado.Rows[7].Cells[colIndex].Value = reader["gastos_financieros"];
-                        dgvEstadoResultado.Rows[8].Cells[colIndex].Value = reader["otros_ingresos"];
-                        dgvEstadoResultado.Rows[9].Cells[colIndex].Value = reader["neto_otros_ingresos"];
-                        dgvEstadoResultado.Rows[10].Cells[colIndex].Value = reader["utilidad_antes_impuestos"];
-                        dgvEstadoResultado.Rows[11].Cells[colIndex].Value = reader["impuestos"];
-                        dgvEstadoResultado.Rows[12].Cells[colIndex].Value = reader["utilidad_neta"];
-                        dgvEstadoResultado.Rows[13].Cells[colIndex].Value = reader["capital_trabajo"];
+                        int colIndex = i - 2;
+                        dgvEstadoResultado.Rows[0].Cells[i].Value = _estados[colIndex].Ventas;
+                        dgvEstadoResultado.Rows[1].Cells[i].Value = _estados[colIndex].CostoVentas;
+                        dgvEstadoResultado.Rows[2].Cells[i].Value = _estados[colIndex].UtilidadBruta;
+                        dgvEstadoResultado.Rows[3].Cells[i].Value = _estados[colIndex].GastosOperativos;
+                        dgvEstadoResultado.Rows[4].Cells[i].Value = _estados[colIndex].Depreciacion;
+                        dgvEstadoResultado.Rows[5].Cells[i].Value = _estados[colIndex].TotalGastos;
+                        dgvEstadoResultado.Rows[6].Cells[i].Value = _estados[colIndex].UtilidadOperativa;
+                        dgvEstadoResultado.Rows[7].Cells[i].Value = _estados[colIndex].GastosFinancieros;
+                        dgvEstadoResultado.Rows[8].Cells[i].Value = _estados[colIndex].OtrosIngresos;
+                        dgvEstadoResultado.Rows[9].Cells[i].Value = _estados[colIndex].NetoOtrosIngresos;
+                        dgvEstadoResultado.Rows[10].Cells[i].Value = _estados[colIndex].UtilidadAntesImpuestos;
+                        dgvEstadoResultado.Rows[11].Cells[i].Value = _estados[colIndex].Impuestos;
+                        dgvEstadoResultado.Rows[12].Cells[i].Value = _estados[colIndex].UtilidadNeta;
+                        dgvEstadoResultado.Rows[13].Cells[i].Value = _estados[colIndex].CapitalTrabajo;
 
                         colIndex++; // siguiente columna para el siguiente año
                     }
@@ -133,9 +125,10 @@ namespace modelo_finanzas
                     dgvEstadoResultado.Rows[10].DefaultCellStyle.ForeColor = Color.Green; // UTILIDAD ANTES DE IMPUESTOS
                     dgvEstadoResultado.Rows[12].DefaultCellStyle.ForeColor = Color.Green; // UTILIDAD NETA
 
-                    conn.Close();
-                }
-            }catch(Exception ex)
+                    dgvEstadoResultado.ClearSelection();
+
+            }
+            catch(Exception ex)
             {
                 throw new Exception($"Error con el estado de resultados:{ex.Message}");
             }

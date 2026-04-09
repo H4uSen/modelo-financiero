@@ -30,6 +30,7 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dataGridView1 = new DataGridView();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -38,26 +39,39 @@
             dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(4, 6);
+            dataGridView1.Location = new Point(3, 22);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(791, 158);
+            dataGridView1.Size = new Size(520, 178);
             dataGridView1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(2, 1);
+            label1.Name = "label1";
+            label1.Size = new Size(129, 20);
+            label1.TabIndex = 4;
+            label1.Text = "Tabla de Variables";
             // 
             // FormVariables
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 171);
+            ClientSize = new Size(535, 212);
+            Controls.Add(label1);
             Controls.Add(dataGridView1);
             Name = "FormVariables";
             Text = "Form1";
             Load += FormVariables_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dataGridView1;
+        private Label label1;
     }
 }

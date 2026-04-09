@@ -19,19 +19,25 @@ namespace modelo_finanzas
         public FormVariables(DatosEntrada de, DatosEscenarios ds)
         {
             InitializeComponent();
+
             _datosEntrada = de;
             _datosEscenarios = ds;
+            this.Enabled = false;
             this.Load += FormVariables_Load;
             dataGridView1.RowHeadersVisible = false;
-
             dataGridView1.Enabled = false;
+            
+            
         }
 
         private void FormVariables_Load(object sender, EventArgs e)
         {
             ConfigurarTabla();
-            
-             CalcularYMostrar(_datosEntrada, _datosEscenarios);
+
+
+            CalcularYMostrar(_datosEntrada, _datosEscenarios);
+            dataGridView1.ClearSelection();
+
         }
 
         private void ConfigurarTabla()
@@ -40,7 +46,7 @@ namespace modelo_finanzas
             dataGridView1.Rows.Clear();
 
             // Que el DataGridView ocupe todo el formulario
-            dataGridView1.Dock = DockStyle.Fill;
+            //dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
