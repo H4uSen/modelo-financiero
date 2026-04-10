@@ -1,4 +1,5 @@
-﻿using System;
+﻿using modelo_finanzas.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -165,7 +166,7 @@ namespace modelo_finanzas
                 for (int j = -2; j <= 2; j++)
                 {
                     double inflacionCol = inflacionBase + (j * salto);
-                    double vpnCalculado = motor.CalcularSoloVPN(datosBase, inflacionCol, objetivoFila);
+                    double vpnCalculado = motor.CalcularSoloVPN(datosBase, inflacionCol, objetivoFila);                    
                     dgvVariacion.Rows[nFila].Cells[j + 3].Value = vpnCalculado.ToString("N1");
                 }
             }

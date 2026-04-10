@@ -343,7 +343,7 @@
             gpbCostos.Margin = new Padding(2);
             gpbCostos.Name = "gpbCostos";
             gpbCostos.Padding = new Padding(2);
-            gpbCostos.Size = new Size(454, 131);
+            gpbCostos.Size = new Size(421, 131);
             gpbCostos.TabIndex = 9;
             gpbCostos.TabStop = false;
             gpbCostos.Text = "Costos";
@@ -647,7 +647,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(244, 635);
+            label3.Location = new Point(209, 636);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(131, 20);
@@ -661,17 +661,17 @@
             txtNombreEscenario.Margin = new Padding(2);
             txtNombreEscenario.Name = "txtNombreEscenario";
             txtNombreEscenario.PlaceholderText = "ej. 'Escen: 2026-03-14'";
-            txtNombreEscenario.Size = new Size(220, 27);
+            txtNombreEscenario.Size = new Size(181, 27);
             txtNombreEscenario.TabIndex = 16;
             txtNombreEscenario.TextChanged += txtNombreEscenario_TextChanged;
             // 
             // txtFechaCreacion
             // 
             txtFechaCreacion.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtFechaCreacion.Location = new Point(244, 658);
+            txtFechaCreacion.Location = new Point(208, 658);
             txtFechaCreacion.Margin = new Padding(2);
             txtFechaCreacion.Name = "txtFechaCreacion";
-            txtFechaCreacion.Size = new Size(142, 27);
+            txtFechaCreacion.Size = new Size(172, 27);
             txtFechaCreacion.TabIndex = 20;
             // 
             // btnCancelar
@@ -708,7 +708,7 @@
             panel2.Location = new Point(397, 145);
             panel2.Margin = new Padding(2, 3, 2, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(593, 540);
+            panel2.Size = new Size(685, 540);
             panel2.TabIndex = 24;
             // 
             // btnGuardar
@@ -724,7 +724,7 @@
             // 
             // btnSalidas
             // 
-            btnSalidas.Location = new Point(858, 102);
+            btnSalidas.Location = new Point(825, 102);
             btnSalidas.Name = "btnSalidas";
             btnSalidas.Size = new Size(217, 32);
             btnSalidas.TabIndex = 26;
@@ -734,7 +734,7 @@
             // 
             // btnAnalisisSensiVPN
             // 
-            btnAnalisisSensiVPN.Location = new Point(856, 64);
+            btnAnalisisSensiVPN.Location = new Point(823, 64);
             btnAnalisisSensiVPN.Name = "btnAnalisisSensiVPN";
             btnAnalisisSensiVPN.Size = new Size(219, 32);
             btnAnalisisSensiVPN.TabIndex = 27;
@@ -744,7 +744,7 @@
             // 
             // btnAnalisisVPN
             // 
-            btnAnalisisVPN.Location = new Point(856, 25);
+            btnAnalisisVPN.Location = new Point(823, 25);
             btnAnalisisVPN.Name = "btnAnalisisVPN";
             btnAnalisisVPN.Size = new Size(219, 32);
             btnAnalisisVPN.TabIndex = 28;
@@ -757,7 +757,7 @@
             pnlFlujoResultados.AutoSize = true;
             pnlFlujoResultados.Location = new Point(397, 686);
             pnlFlujoResultados.Name = "pnlFlujoResultados";
-            pnlFlujoResultados.Size = new Size(593, 97);
+            pnlFlujoResultados.Size = new Size(685, 97);
             pnlFlujoResultados.TabIndex = 29;
             // 
             // FormEntradaDatos
@@ -765,7 +765,7 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
-            ClientSize = new Size(1181, 792);
+            ClientSize = new Size(1273, 792);
             Controls.Add(pnlFlujoResultados);
             Controls.Add(btnAnalisisVPN);
             Controls.Add(btnAnalisisSensiVPN);
@@ -864,5 +864,6 @@
         private Button btnAnalisisSensiVPN;
         private Button btnAnalisisVPN;
         private Panel pnlFlujoResultados;
+        private Button button1;
     }
 }

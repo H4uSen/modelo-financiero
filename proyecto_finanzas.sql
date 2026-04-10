@@ -166,6 +166,7 @@ GO
 --TABLA para hacer la relacion de un escenario con sus resultados
 -- y preparar el analisis de VPN de acuerdo a la variacion
 -- del IPC y el objetivo de participacion de mercado
+SELECT * FROM analisis_vpn
 CREATE TABLE analisis_vpn
 (
     id                              int identity (1,1) primary key,

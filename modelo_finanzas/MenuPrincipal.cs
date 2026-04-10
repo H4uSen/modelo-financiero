@@ -78,5 +78,18 @@ namespace Prueba1
             FormVariacionPorcentalVPN variacionPorcentalVPN = new FormVariacionPorcentalVPN();
             variacionPorcentalVPN.Show();
         }
+
+        private async void button1_Click_1(object sender, EventArgs e)
+        {
+            var con = DbConnection.Instance;
+            if (await con.TestConnectionAsync())
+            {
+                MessageBox.Show("Conexión exitosa a la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique la configuración.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

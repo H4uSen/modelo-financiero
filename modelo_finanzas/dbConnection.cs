@@ -23,11 +23,11 @@ namespace modelo_finanzas
                 DataSource = $"localhost,{dbPort}",
                 InitialCatalog = "hausencito247_finanzas",
                 UserID = dbUser,
+                ConnectTimeout = 5,
                 Password = dbPass,
                 Encrypt = true,
                 TrustServerCertificate = true, 
                 MultipleActiveResultSets = true,
-                
             };
 
             _connectionString = builder.ConnectionString;
