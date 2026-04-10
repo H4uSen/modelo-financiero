@@ -17,13 +17,15 @@ namespace modelo_finanzas
     {
         private readonly CostoCapital _costoCapital;
         private readonly List<FlujoCajaLibre> _flujos;
+        private readonly FlujoCajaResultado _cajaResultado;
 
-        public FormSalidas(CostoCapital costoCapital, List<FlujoCajaLibre> flujos)
+        public FormSalidas(CostoCapital costoCapital, List<FlujoCajaLibre> flujos, FlujoCajaResultado cajaResultado)
         {
             InitializeComponent();
             _costoCapital = costoCapital;
-            this.Load += FormSalidas_Load;
             _flujos = flujos;
+            _cajaResultado = cajaResultado;
+            this.Load += FormSalidas_Load;
         }
 
         private void FormSalidas_Load(object? sender, EventArgs e)
@@ -33,6 +35,14 @@ namespace modelo_finanzas
 
             FormFlujoCaja formFlujoCaja = new FormFlujoCaja(_flujos);
             ChildForm.Open(formFlujoCaja, new Point(0, 0), pnlFlujoCaja);
+
+            FormFlujoCajaResultados formFlujoCajaResultados = new FormFlujoCajaResultados(_cajaResultado);
+            ChildForm.Open(formFlujoCajaResultados, new Point(0, 0), pnlCajaResultados);
+
+        }
+
+        private void FormSalidas_Load_1(object sender, EventArgs e)
+        {
 
         }
     }

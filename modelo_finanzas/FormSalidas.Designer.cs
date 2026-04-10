@@ -30,6 +30,7 @@
         {
             pnlCostoCapital = new Panel();
             pnlFlujoCaja = new Panel();
+            pnlCajaResultados = new Panel();
             SuspendLayout();
             // 
             // pnlCostoCapital
@@ -44,19 +45,29 @@
             pnlFlujoCaja.AutoSize = true;
             pnlFlujoCaja.Location = new Point(204, 1);
             pnlFlujoCaja.Name = "pnlFlujoCaja";
-            pnlFlujoCaja.Size = new Size(509, 289);
+            pnlFlujoCaja.Size = new Size(0, 0);
             pnlFlujoCaja.TabIndex = 1;
+            // 
+            // pnlCajaResultados
+            // 
+            pnlCajaResultados.AutoSize = true;
+            pnlCajaResultados.Location = new Point(204, 236);
+            pnlCajaResultados.Name = "pnlCajaResultados";
+            pnlCajaResultados.Size = new Size(650, 151);
+            pnlCajaResultados.TabIndex = 2;
             // 
             // FormSalidas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(989, 450);
+            Controls.Add(pnlCajaResultados);
             Controls.Add(pnlFlujoCaja);
             Controls.Add(pnlCostoCapital);
             Name = "FormSalidas";
             Text = "FormSalidas";
+            Load += FormSalidas_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -65,5 +76,6 @@
 
         private Panel pnlCostoCapital;
         private Panel pnlFlujoCaja;
+        private Panel pnlCajaResultados;
     }
 }

@@ -17,7 +17,7 @@ namespace modelo_finanzas
         public FormFlujoCaja(List<FlujoCajaLibre> flujos)
         {
             InitializeComponent();
-            this.Enabled = false;
+            dgvFlujoCaja.Enabled = false;
             _flujos = flujos;  
             this.Load += FormFlujoCaja_Load;
         }
@@ -58,7 +58,7 @@ namespace modelo_finanzas
                 dgvFlujoCaja.Rows[10].Cells[col + 1].Value = flujo.FlujoCajaLibreValor.ToString("N0");
             }
 
-
+            dgvFlujoCaja.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
         }
     }

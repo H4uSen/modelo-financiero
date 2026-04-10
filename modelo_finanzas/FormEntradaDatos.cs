@@ -286,7 +286,7 @@ namespace modelo_finanzas
             InputValidator.integerValidation(txtTamanioMercado, e);
         }
 
-        private  DatosEntrada datos = new DatosEntrada();
+        private  DatosEntrada entrada = new DatosEntrada();
         private  DatosEscenarios escenarios = new DatosEscenarios();
         private  Variables variables = new Variables();
         private  List<Variables> listaVariables = new List<Variables>();
@@ -297,6 +297,7 @@ namespace modelo_finanzas
         private CostoCapital costoCapital = new CostoCapital();
         private FlujoCajaLibre flujoCaja = new FlujoCajaLibre();
         private List<FlujoCajaLibre> listaFlujos = new List<FlujoCajaLibre>();
+        private FlujoCajaResultado resultadoCajaLibre = new FlujoCajaResultado();
 
         private async void button3_Click(object sender, EventArgs e)
         {
@@ -313,49 +314,49 @@ namespace modelo_finanzas
             {
                 txtFechaCreacion.Text = DateTime.Now.ToString("G");
 
-                datos.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ?
+                entrada.NombreEscenario = (txtNombreEscenario.Text.Length == 0) ?
                 $"Escenario: {DateTime.Now.ToString("G")}"
                 : txtNombreEscenario.Text;
-                datos.FechaCreacion = DateTime.Parse(txtFechaCreacion.Text);
+                entrada.FechaCreacion = DateTime.Parse(txtFechaCreacion.Text);
                 //Mercado y demanda
-                datos.TamanioMercado = int.Parse(txtTamanioMercado.Text.Replace(",", ""));
-                datos.CrecimientoMercado = decimal.Parse(txtCrecimientoAnualMerc.Text.Replace("%", "")) / 100;
-                datos.Encuestas = int.Parse(txtEncRealizadas.Text.Replace(",", ""));
-                datos.ObjetivoMercado = decimal.Parse(txtObjeMer.Text.Replace("%", "")) / 100;
-                datos.PersonasInteresadas = int.Parse(txtManiComp.Text.Replace(",", ""));
+                entrada.TamanioMercado = int.Parse(txtTamanioMercado.Text.Replace(",", ""));
+                entrada.CrecimientoMercado = decimal.Parse(txtCrecimientoAnualMerc.Text.Replace("%", "")) / 100;
+                entrada.Encuestas = int.Parse(txtEncRealizadas.Text.Replace(",", ""));
+                entrada.ObjetivoMercado = decimal.Parse(txtObjeMer.Text.Replace("%", "")) / 100;
+                entrada.PersonasInteresadas = int.Parse(txtManiComp.Text.Replace(",", ""));
                 //Costos
-                datos.CostoProduccionInicial = decimal.Parse(txtCostProdIni.Text);
-                datos.CapitalTrabajo = decimal.Parse(txtCapTrab.Text.Replace("%", "")) / 100;
-                datos.GastosOperativos = decimal.Parse(txtGastOper.Text.Replace("%", "")) / 100;
+                entrada.CostoProduccionInicial = decimal.Parse(txtCostProdIni.Text);
+                entrada.CapitalTrabajo = decimal.Parse(txtCapTrab.Text.Replace("%", "")) / 100;
+                entrada.GastosOperativos = decimal.Parse(txtGastOper.Text.Replace("%", "")) / 100;
                 //Precios e inflacion
-                datos.PrecioInicial = decimal.Parse(txtPrecioProducto.Text);
-                datos.IncrementoPrecio = decimal.Parse(txtIncRealPrec.Text.Replace("%", "")) / 100;
-                datos.Ipp = decimal.Parse(txtIPP.Text.Replace("%", "")) / 100;
-                datos.Inflacion = decimal.Parse(txtInflaAnual.Text.Replace("%", "")) / 100;
+                entrada.PrecioInicial = decimal.Parse(txtPrecioProducto.Text);
+                entrada.IncrementoPrecio = decimal.Parse(txtIncRealPrec.Text.Replace("%", "")) / 100;
+                entrada.Ipp = decimal.Parse(txtIPP.Text.Replace("%", "")) / 100;
+                entrada.Inflacion = decimal.Parse(txtInflaAnual.Text.Replace("%", "")) / 100;
                 //Inversion, financiamiento y otros
-                datos.InversionEquipos = decimal.Parse(txtInvEquiXPart.Text);
-                datos.OtrosIngresos = decimal.Parse(txtRecupSobreCosto.Text.Replace("%", "")) / 100;
-                datos.TasaLibreRiesgo = decimal.Parse(txtTasaLibRiesgo.Text.Replace("%", "")) / 100;
-                datos.PrimaRiesgoMercado = decimal.Parse(txtPrimRiesgMerc.Text.Replace("%", "")) / 100;
-                datos.GradienteFlujos = decimal.Parse(txtGradFlujos.Text.Replace("%", "")) / 100;
-                datos.DepreciacionAnios = int.Parse(txtPlazoDep.Text.Replace(" años", ""));
-                datos.PorcentajeDeuda = decimal.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
-                datos.PlazoCredito = int.Parse(txtPlazoCredito.Text.Replace(" años", ""));
-                datos.BetaSector = decimal.Parse(txtBetaSector.Text.Replace("%", ""));
-                datos.TasaImpuestos = decimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
+                entrada.InversionEquipos = decimal.Parse(txtInvEquiXPart.Text);
+                entrada.OtrosIngresos = decimal.Parse(txtRecupSobreCosto.Text.Replace("%", "")) / 100;
+                entrada.TasaLibreRiesgo = decimal.Parse(txtTasaLibRiesgo.Text.Replace("%", "")) / 100;
+                entrada.PrimaRiesgoMercado = decimal.Parse(txtPrimRiesgMerc.Text.Replace("%", "")) / 100;
+                entrada.GradienteFlujos = decimal.Parse(txtGradFlujos.Text.Replace("%", "")) / 100;
+                entrada.DepreciacionAnios = int.Parse(txtPlazoDep.Text.Replace(" años", ""));
+                entrada.PorcentajeDeuda = decimal.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
+                entrada.PlazoCredito = int.Parse(txtPlazoCredito.Text.Replace(" años", ""));
+                entrada.BetaSector = decimal.Parse(txtBetaSector.Text.Replace("%", ""));
+                entrada.TasaImpuestos = decimal.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
 
 
-                escenarios.CalcularDatosEscenarios(escenarios, datos);
-                listaVariables = variables.CalcularVariables(datos, escenarios);
-                listaAmortizaciones = amortizacion.Calcular(datos);
-                listaEstados = estadoResultados.Calcular(datos, listaVariables, escenarios, listaAmortizaciones);
-                listaFlujos = flujoCaja.Calcular(datos, escenarios, listaEstados);
+                escenarios.CalcularDatosEscenarios(escenarios, entrada);
+                listaVariables = variables.CalcularVariables(entrada, escenarios);
+                listaAmortizaciones = amortizacion.Calcular(entrada);
+                listaEstados = estadoResultados.Calcular(entrada, listaVariables, escenarios, listaAmortizaciones);
+                listaFlujos = flujoCaja.Calcular(entrada, escenarios, listaEstados);
 
                 panel2.Controls.Clear();
                 FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
                 ChildForm.Open(formDatosEscenario, new Point(0, 0), panel2);
 
-                FormVariables formVariables = new FormVariables(datos, escenarios);
+                FormVariables formVariables = new FormVariables(entrada, escenarios);
                 ChildForm.Open(formVariables, new Point(190, 0), panel2);
 
                 FormaAmortizacion formaAmortizacion = new FormaAmortizacion(listaAmortizaciones);
@@ -382,19 +383,19 @@ namespace modelo_finanzas
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (datos != null)
+            if (entrada != null)
             {
                 txtFechaCreacion.Text = DateTime.Now.ToString("G");
-                datos.NombreEscenario = txtNombreEscenario.Text;
+                entrada.NombreEscenario = txtNombreEscenario.Text;
             }
 
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
                 DatosService datosService = new DatosService();
-                int escenarioID = await datosService.InsertDatos(datos);
+                int escenarioID = await datosService.InsertDatos(entrada);
 
-                datos.Id = escenarioID;
+                entrada.Id = escenarioID;
                 // variables.IdEscenario = escenarioID;
                 escenarios.Escenario_id = escenarioID;
                 amortizacion.IdEscenario = escenarioID;
@@ -430,12 +431,15 @@ namespace modelo_finanzas
 
         private void btnSalidas_Click(object sender, EventArgs e)
         {
-            costoCapital.CalcularCostoCapital(escenarios, datos);
-            List<FlujoCajaLibre> flujos = flujoCaja.Calcular(datos, escenarios, listaEstados);
+            costoCapital.CalcularCostoCapital(escenarios, entrada);
+            List<FlujoCajaLibre> flujos = flujoCaja.Calcular(entrada, escenarios, listaEstados);
+
+            resultadoCajaLibre.Calcular(flujos,escenarios,costoCapital,entrada);
 
             FormSalidas formSalidas = new FormSalidas(
                 costoCapital,
-                flujos);
+                flujos,
+                resultadoCajaLibre);
             formSalidas.Show();
 
         }

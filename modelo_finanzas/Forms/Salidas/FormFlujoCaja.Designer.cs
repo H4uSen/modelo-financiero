@@ -46,12 +46,12 @@
             dgvFlujoCaja.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvFlujoCaja.Columns.AddRange(new DataGridViewColumn[] { Concepto, Anio0, Anio1, anio2, Anio3, Anio4, Anio5 });
             dgvFlujoCaja.Enabled = false;
-            dgvFlujoCaja.Location = new Point(6, 12);
+            dgvFlujoCaja.Location = new Point(5, 4);
             dgvFlujoCaja.Name = "dgvFlujoCaja";
             dgvFlujoCaja.ReadOnly = true;
             dgvFlujoCaja.RowHeadersVisible = false;
             dgvFlujoCaja.RowHeadersWidth = 15;
-            dgvFlujoCaja.Size = new Size(772, 318);
+            dgvFlujoCaja.Size = new Size(772, 220);
             dgvFlujoCaja.TabIndex = 0;
             // 
             // Concepto
@@ -100,7 +100,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(791, 450);
+            AutoSize = true;
+            ClientSize = new Size(781, 170);
             Controls.Add(dgvFlujoCaja);
             Name = "FormFlujoCaja";
             Text = "FormFlujoCaja";

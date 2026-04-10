@@ -151,6 +151,7 @@ CREATE TABLE resultados_caja_libre
 
     valor_terminal            DECIMAL(18, 2) DEFAULT 0,
     valor_presente_flujos     DECIMAL(18, 2) DEFAULT 0,
+    valor_presente_terminal   DECIMAL(18, 2) DEFAULT 0,
     valor_mercado_negocio     DECIMAL(18, 2) DEFAULT 0,
     inversion_inicial_activos DECIMAL(18, 2) DEFAULT 0,
     valor_presente_neto       DECIMAL(18, 2) DEFAULT 0,
