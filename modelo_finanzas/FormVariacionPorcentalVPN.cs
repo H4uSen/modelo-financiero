@@ -16,6 +16,8 @@ namespace modelo_finanzas
         {
             InitializeComponent();
             this.Load += FormVariacionPorcentalVPN_Load;
+            this.Load += calcularVariacion;
+            dgvVariacion.Enabled = false;
         }
 
         private void FormVariacionPorcentalVPN_Load(object sender, EventArgs e)
@@ -85,7 +87,7 @@ namespace modelo_finanzas
              dgvVariacion.ClearSelection();*/
         }
 
-        private void btnVariacion_Click(object sender, EventArgs e)
+        private void calcularVariacion(object sender, EventArgs e)
         {
             if (dgvVariacion.Columns.Count == 0)
             {
@@ -191,6 +193,11 @@ namespace modelo_finanzas
 
              MessageBox.Show(mensaje, "Reporte del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
              */
+
+        }
+        private void btnVariacion_Click(object sender, EventArgs e)
+        {
+            
         }
 
 

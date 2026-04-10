@@ -9,47 +9,59 @@ namespace modelo_finanzas.Services
     public class EstadoResultadosService
     {
 
-        private async void InsertarFilaSql(EstadoResultados f)
+        public async Task<int> InsertEstadoResultados(EstadoResultados datos)
         {
-            try
-            {
-                // Query basado en las columnas exactas de tu tabla estadoResultados
-                string sql = @"INSERT INTO estadoResultados 
-                (id_escenario, anio, ventas, costo_ventas, utilidad_bruta, gastos_operativos, depreciacion, 
-                 total_gastos, utilidad_operativa, gastos_financieros, otros_ingresos, neto_otros_ingresos, 
-                 utilidad_antes_impuestos, impuestos, utilidad_neta, capital_trabajo) 
-                VALUES 
-                (@id, @anio, @v, @cv, @ub, @go, @dep, @tg, @uo, @gf, @oi, @noi, @uai, @imp, @un, @ct)";
-                var db = DbConnection.Instance;
-                using (SqlConnection connInsert = await db.GetConnectionAsync())
-                {
-                    using (SqlCommand cmd = new SqlCommand(sql, connInsert))
-                    {
-                        cmd.Parameters.AddWithValue("@id", f.IdEscenario);
-                        cmd.Parameters.AddWithValue("@anio", f.Anio);
-                        cmd.Parameters.AddWithValue("@v", f.Ventas);
-                        cmd.Parameters.AddWithValue("@cv", f.CostoVentas);
-                        cmd.Parameters.AddWithValue("@ub", f.UtilidadBruta);
-                        cmd.Parameters.AddWithValue("@go", f.GastosOperativos);
-                        cmd.Parameters.AddWithValue("@dep", f.Depreciacion);
-                        cmd.Parameters.AddWithValue("@tg", f.TotalGastos);
-                        cmd.Parameters.AddWithValue("@uo", f.UtilidadOperativa);
-                        cmd.Parameters.AddWithValue("@gf", f.GastosFinancieros);
-                        cmd.Parameters.AddWithValue("@oi", f.OtrosIngresos);
-                        cmd.Parameters.AddWithValue("@noi", f.NetoOtrosIngresos);
-                        cmd.Parameters.AddWithValue("@uai", f.UtilidadAntesImpuestos);
-                        cmd.Parameters.AddWithValue("@imp", f.Impuestos);
-                        cmd.Parameters.AddWithValue("@un", f.UtilidadNeta);
-                        cmd.Parameters.AddWithValue("@ct", f.CapitalTrabajo);
-                        cmd.ExecuteNonQuery();
-                        connInsert.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
+            DbConnection db = DbConnection.Instance;
 
-                throw new Exception("Error al insertar fila en estadoResultados: " + ex.Message);
+            if (!await db.TestConnectionAsync())
+            {
+                throw new Exception("EstadoResultadosService: No se pudo conectar a la base de datos");
+            }
+
+            using (SqlConnection conn = await db.GetConnectionAsync())
+            {
+                string query = @"
+                    INSERT INTO estadoResultados
+                    (
+                        id_escenario, anio, ventas, costo_ventas, utilidad_bruta,
+                        gastos_operativos, depreciacion, total_gastos, utilidad_operativa,
+                        gastos_financieros, otros_ingresos, neto_otros_ingresos,
+                        utilidad_antes_impuestos, impuestos, utilidad_neta, capital_trabajo
+                    )
+                    VALUES
+                    (
+                        @id_escenario, @anio, @ventas, @costo_ventas, @utilidad_bruta,
+                        @gastos_operativos, @depreciacion, @total_gastos, @utilidad_operativa,
+                        @gastos_financieros, @otros_ingresos, @neto_otros_ingresos,
+                        @utilidad_antes_impuestos, @impuestos, @utilidad_neta, @capital_trabajo
+                    );
+
+                    SELECT SCOPE_IDENTITY();
+                ";
+
+                var cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@id_escenario", datos.IdEscenario);
+                cmd.Parameters.AddWithValue("@anio", datos.Anio);
+                cmd.Parameters.AddWithValue("@ventas", datos.Ventas);
+                cmd.Parameters.AddWithValue("@costo_ventas", datos.CostoVentas);
+                cmd.Parameters.AddWithValue("@utilidad_bruta", datos.UtilidadBruta);
+                cmd.Parameters.AddWithValue("@gastos_operativos", datos.GastosOperativos);
+                cmd.Parameters.AddWithValue("@depreciacion", datos.Depreciacion);
+                cmd.Parameters.AddWithValue("@total_gastos", datos.TotalGastos);
+                cmd.Parameters.AddWithValue("@utilidad_operativa", datos.UtilidadOperativa);
+                cmd.Parameters.AddWithValue("@gastos_financieros", datos.GastosFinancieros);
+                cmd.Parameters.AddWithValue("@otros_ingresos", datos.OtrosIngresos);
+                cmd.Parameters.AddWithValue("@neto_otros_ingresos", datos.NetoOtrosIngresos);
+                cmd.Parameters.AddWithValue("@utilidad_antes_impuestos", datos.UtilidadAntesImpuestos);
+                cmd.Parameters.AddWithValue("@impuestos", datos.Impuestos);
+                cmd.Parameters.AddWithValue("@utilidad_neta", datos.UtilidadNeta);
+                cmd.Parameters.AddWithValue("@capital_trabajo", datos.CapitalTrabajo);
+
+                var result = await cmd.ExecuteScalarAsync();
+                conn.Close();
+
+                return Convert.ToInt32(result);
             }
         }
     }

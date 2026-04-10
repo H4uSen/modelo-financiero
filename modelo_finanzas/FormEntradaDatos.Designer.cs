@@ -90,6 +90,7 @@
             btnSalidas = new Button();
             btnAnalisisSensiVPN = new Button();
             btnAnalisisVPN = new Button();
+            pnlFlujoResultados = new Panel();
             gpbMercado.SuspendLayout();
             gpbPrecios.SuspendLayout();
             gpbCostos.SuspendLayout();
@@ -703,10 +704,11 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.AutoScroll = true;
+            panel2.AutoSize = true;
             panel2.Location = new Point(397, 145);
             panel2.Margin = new Padding(2, 3, 2, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(610, 639);
+            panel2.Size = new Size(593, 540);
             panel2.TabIndex = 24;
             // 
             // btnGuardar
@@ -750,12 +752,21 @@
             btnAnalisisVPN.UseVisualStyleBackColor = true;
             btnAnalisisVPN.Click += button1_Click_2;
             // 
+            // pnlFlujoResultados
+            // 
+            pnlFlujoResultados.AutoSize = true;
+            pnlFlujoResultados.Location = new Point(397, 686);
+            pnlFlujoResultados.Name = "pnlFlujoResultados";
+            pnlFlujoResultados.Size = new Size(593, 97);
+            pnlFlujoResultados.TabIndex = 29;
+            // 
             // FormEntradaDatos
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
-            ClientSize = new Size(1181, 783);
+            ClientSize = new Size(1181, 792);
+            Controls.Add(pnlFlujoResultados);
             Controls.Add(btnAnalisisVPN);
             Controls.Add(btnAnalisisSensiVPN);
             Controls.Add(btnSalidas);
@@ -852,5 +863,6 @@
         private Button btnSalidas;
         private Button btnAnalisisSensiVPN;
         private Button btnAnalisisVPN;
+        private Panel pnlFlujoResultados;
     }
 }

@@ -10,7 +10,7 @@ namespace modelo_finanzas.Services
 {
     public class DatosEscenariosService
     {
-        public async Task<int> InsertEscenario(DatosEscenarios datos)
+        public async Task<int> insertEscenario(DatosEscenarios datos)
         {
             String query = @"INSERT INTO datosEscenarios 
             (escenario_id, mercado_esperado_anio1, variacion_nominal_precio, variacion_nominal_ipp,
@@ -42,7 +42,7 @@ namespace modelo_finanzas.Services
 
             }
             return -1;
-            throw new Exception("No se pudo establecer conexión con la base de datos.");
+            throw new Exception("Datos Escenarios Service: Ocurrio un error al insertar");
         }
     }
 

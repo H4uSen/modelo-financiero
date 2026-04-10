@@ -58,38 +58,41 @@ namespace modelo_finanzas.Services
             }
             return lista;
         }
-        public async Task GuardarTablaAmortizacion(List<Amortizacion> lista, int escenarioId)
+
+        public async Task<int> insertAmortizacion(Amortizacion datos)
         {
-         
-            var db = DbConnection.Instance;
+            DbConnection db = DbConnection.Instance;
 
-            using (var connection = await db.GetConnectionAsync())
+            if (!await db.TestConnectionAsync())
             {
-                string deleteQuery = "DELETE FROM amortizacion WHERE id_escenario = @id";
-                using (var deleteCmd = new SqlCommand(deleteQuery, connection))
-                {
-                    deleteCmd.Parameters.AddWithValue("@id", escenarioId);
-                    await deleteCmd.ExecuteNonQueryAsync();
-                }
-                string insertQuery = @"INSERT INTO amortizacion 
-                    (id_escenario, anio, saldo_inicial, cuota, interes, abono_capital, saldo_final) 
-                    VALUES (@id, @anio, @ini, @cuota, @int, @cap, @fin)";
+                throw new Exception("AmortizacionService: No se pudo conectar a la base de datos");
+            }
 
-                foreach (var fila in lista)
-                {
-                    using (var cmd = new SqlCommand(insertQuery, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@id", escenarioId);
-                        cmd.Parameters.AddWithValue("@anio", fila.Anio);
-                        cmd.Parameters.AddWithValue("@ini", fila.SaldoInicial);
-                        cmd.Parameters.AddWithValue("@cuota", fila.Cuota);
-                        cmd.Parameters.AddWithValue("@int", fila.Interes);
-                        cmd.Parameters.AddWithValue("@cap", fila.AbonoCapital);
-                        cmd.Parameters.AddWithValue("@fin", fila.SaldoFinal);
+            using (SqlConnection conn = await db.GetConnectionAsync())
+            {
+                string query = @"
+                    INSERT INTO amortizacion
+                        (id_escenario, anio, saldo_inicial, cuota, interes, abono_capital, saldo_final)
+                    VALUES
+                        (@id_escenario, @anio, @saldo_inicial, @cuota, @interes, @abono_capital, @saldo_final);
+                    
+                    SELECT SCOPE_IDENTITY();
+                ";
 
-                        await cmd.ExecuteNonQueryAsync();
-                    }
-                }
+                var cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@id_escenario", datos.IdEscenario);
+                cmd.Parameters.AddWithValue("@anio", datos.Anio);
+                cmd.Parameters.AddWithValue("@saldo_inicial", datos.SaldoInicial);
+                cmd.Parameters.AddWithValue("@cuota", datos.Cuota);
+                cmd.Parameters.AddWithValue("@interes", datos.Interes);
+                cmd.Parameters.AddWithValue("@abono_capital", datos.AbonoCapital);
+                cmd.Parameters.AddWithValue("@saldo_final", datos.SaldoFinal);
+
+                var result = await cmd.ExecuteScalarAsync();
+                conn.Close();
+
+                return Convert.ToInt32(result);
             }
         }
     }

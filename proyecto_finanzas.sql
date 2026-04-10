@@ -4,38 +4,41 @@ USE hausencito247_finanzas
 GO
 SELECT * FROM entradasEscenarios
 SELECT * FROM datosEscenarios
+SELECT * FROM variables
+SELECT * FROM amortizacion
+
 SELECT * FROM costoCapital
 --DROP DATABASE hausencito247_finanzas
 --USE master
 GO
 GO
-create table entradasEscenarios
+CREATE TABLE entradasEscenarios
 (
     id_escenario             int identity(1,1) primary key,
     nombre_escenario         varchar(100),
     fecha_creacion           datetime default getdate(),
     tamano_mercado           int,
-    crecimiento_mercado      decimal(5, 4),
+    crecimiento_mercado      decimal(16,8),
     encuestas                int,
     personas_interesadas     int,
-    objetivo_mercado         decimal(5, 4),
+    objetivo_mercado         decimal(16,8),
     inversion_equipos        decimal(18, 4),
     depreciacion_anios       int,
     precio_inicial           decimal(18, 2),
-    incremento_precio        decimal(5, 4),
-    inflacion                decimal(5, 4),
-    ipp                      decimal(5, 4),
+    incremento_precio        decimal(16,8),
+    inflacion                decimal(16,8),
+    ipp                      decimal(16,8),
     costo_produccion_inicial decimal(18, 2),
-    otros_ingresos           decimal(5, 4),
-    gastos_operativos        decimal(5, 4),
-    capital_trabajo          decimal(5, 4),
-    porcentaje_deuda         decimal(5, 4),
+    otros_ingresos           decimal(16,8),
+    gastos_operativos        decimal(16,8),
+    capital_trabajo          decimal(16,8),
+    porcentaje_deuda         decimal(16,8),
     plazo_credito            int,
-    tasa_libre_riesgo        decimal(5, 4),
-    beta_sector              decimal(5, 4),
-    prima_riesgo_mercado     decimal(5, 4),
-    gradiente_flujos         decimal(5, 4),
-    tasa_impuestos           decimal(5, 4)
+    tasa_libre_riesgo        decimal(16,8),
+    beta_sector              decimal(16,8),
+    prima_riesgo_mercado     decimal(16,8),
+    gradiente_flujos         decimal(16,8),
+    tasa_impuestos           decimal(16,8)
 )
 GO
 CREATE TABLE datosEscenarios
@@ -43,12 +46,12 @@ CREATE TABLE datosEscenarios
     id                       INT PRIMARY KEY IDENTITY (1,1),
     escenario_id             INT,
 
-    mercado_esperado_anio1   DECIMAL(5, 4),  -- encuestas/personas_interesadas
-    variacion_nominal_precio DECIMAL(5, 4),  --(1+inflacion)*(1+incremento_precio)-1
-    variacion_nominal_ipp    DECIMAL(5, 4),  --(1+inflacion)*(1+ipp)-1
+    mercado_esperado_anio1   DECIMAL(16,8),  -- encuestas/personas_interesadas
+    variacion_nominal_precio DECIMAL(16,8),  --(1+inflacion)*(1+incremento_precio)-1
+    variacion_nominal_ipp    DECIMAL(16,8),  --(1+inflacion)*(1+ipp)-1
     valor_inversion_inicial  DECIMAL(18, 2), --inversion_equipos*(objetivo_mercado*100)
     financiado_con_credito   DECIMAL(18, 2), --valor_inversion_inicial*porcentaje_deuda
-    costo_deuda              DECIMAL(5, 4),  -- Se saca el porcentaje de la tabla de tasas de interés según % de deuda
+    costo_deuda              DECIMAL(16,8),  -- Se saca el porcentaje de la tabla de tasas de interés según % de deuda
     financiado_con_aportes   DECIMAL(18, 4), --valor_inversion_inicial-financiado_con_credito
 
     FOREIGN KEY (escenario_id) REFERENCES entradasEscenarios (id_escenario)
@@ -62,10 +65,11 @@ CREATE TABLE variables
 
     anio                  int,
     tamanio_mercado       DECIMAL(18, 2) DEFAULT 0,
-    participacion_mercado DECIMAL(5, 4)  DEFAULT 0,
+    participacion_mercado DECIMAL(16,8)  DEFAULT 0,
     unidades_vendidas     int            DEFAULT 0,
     precio_venta          DECIMAL(18, 2) DEFAULT 0,
     costo_produccion      DECIMAL(18, 2) DEFAULT 0,
+
     FOREIGN KEY (id_escenario) REFERENCES entradasEscenarios (id_escenario)
 )
 GO
@@ -112,13 +116,13 @@ CREATE TABLE costoCapital
     id                            int identity (1,1) primary key,
     id_escenario                  int,
 
-    porcentaje_deuda              DECIMAL(5, 4) DEFAULT 0,
-    porcentaje_aportes            DECIMAL(5, 4) DEFAULT 0,
-    costo_deuda                   DECIMAL(5, 4) DEFAULT 0,
-    costo_deuda_despues_impuestos DECIMAL(5, 4) DEFAULT 0,
-    betaL_sector                  DECIMAL(5, 4) DEFAULT 0,
-    costo_patrimonio              DECIMAL(5, 4) DEFAULT 0,
-    costo_capital                 DECIMAL(5, 4) DEFAULT 0,
+    porcentaje_deuda              DECIMAL(16,8) DEFAULT 0,
+    porcentaje_aportes            DECIMAL(16,8) DEFAULT 0,
+    costo_deuda                   DECIMAL(16,8) DEFAULT 0,
+    costo_deuda_despues_impuestos DECIMAL(16,8) DEFAULT 0,
+    betaL_sector                  DECIMAL(16,8) DEFAULT 0,
+    costo_patrimonio              DECIMAL(16,8) DEFAULT 0,
+    costo_capital                 DECIMAL(16,8) DEFAULT 0,
 
     FOREIGN KEY (id_escenario) REFERENCES entradasEscenarios (id_escenario)
 )
@@ -166,8 +170,8 @@ CREATE TABLE analisis_vpn
 (
     id                              int identity (1,1) primary key,
     id_escenario                    int,
-    variacion_ipc                   DECIMAL(5, 4)  DEFAULT 0,
-    variacion_participacion_mercado DECIMAL(5, 4)  DEFAULT 0,
+    variacion_ipc                   DECIMAL(16,8)  DEFAULT 0,
+    variacion_participacion_mercado DECIMAL(16,8)  DEFAULT 0,
     valor_presente_neto             DECIMAL(18, 2) DEFAULT 0
 )
 GO
@@ -182,24 +186,24 @@ CREATE TABLE sensibilidad_puntual_vpn
     valor_equipos_vpn         DECIMAL(18, 2) DEFAULT 0,
     tamanio_mercado           DECIMAL(18, 2) DEFAULT 0,
     tamanio_mercado_vpn       DECIMAL(18, 2) DEFAULT 0,
-    crecimiento_mercado       DECIMAL(5, 4)  DEFAULT 0,
-    crecimiento_mercado_vpn   DECIMAL(5, 4)  DEFAULT 0,
-    participacion_mercado     DECIMAL(5, 4)  DEFAULT 0,
-    participacion_mercado_vpn DECIMAL(5, 4)  DEFAULT 0,
+    crecimiento_mercado       DECIMAL(16,8)  DEFAULT 0,
+    crecimiento_mercado_vpn   DECIMAL(16,8)  DEFAULT 0,
+    participacion_mercado     DECIMAL(16,8)  DEFAULT 0,
+    participacion_mercado_vpn DECIMAL(16,8)  DEFAULT 0,
     precio_venta              DECIMAL(18, 2) DEFAULT 0,
     precio_venta_vpn          DECIMAL(18, 2) DEFAULT 0,
-    inflacion_anual           DECIMAL(5, 4)  DEFAULT 0,
-    inflacion_anual_vpn       DECIMAL(5, 4)  DEFAULT 0,
+    inflacion_anual           DECIMAL(16,8)  DEFAULT 0,
+    inflacion_anual_vpn       DECIMAL(16,8)  DEFAULT 0,
     costo_produccion          DECIMAL(18, 2) DEFAULT 0,
     costo_produccion_vpn      DECIMAL(18, 2) DEFAULT 0,
     gastos_operativos         DECIMAL(18, 2) DEFAULT 0,
     gastos_operativos_vpn     DECIMAL(18, 2) DEFAULT 0,
-    gradiente_flujos          DECIMAL(5, 4)  DEFAULT 0,
-    gradiente_flujos_vpn      DECIMAL(5, 4)  DEFAULT (0),
-    tasa_impuestos            DECIMAL(5, 4)  DEFAULT 0,
-    tasa_impuestos_vpn        DECIMAL(5, 4)  DEFAULT 0,
-    costo_capital             DECIMAL(5, 4)  DEFAULT 0,
-    costo_capital_vpn         DECIMAL(5, 4)  DEFAULT 0,
+    gradiente_flujos          DECIMAL(16,8)  DEFAULT 0,
+    gradiente_flujos_vpn      DECIMAL(16,8)  DEFAULT (0),
+    tasa_impuestos            DECIMAL(16,8)  DEFAULT 0,
+    tasa_impuestos_vpn        DECIMAL(16,8)  DEFAULT 0,
+    costo_capital             DECIMAL(16,8)  DEFAULT 0,
+    costo_capital_vpn         DECIMAL(16,8)  DEFAULT 0,
 
     FOREIGN KEY (id_escenario) REFERENCES entradasEscenarios (id_escenario)
 )
@@ -210,7 +214,7 @@ CREATE TABLE resultados_sensibilidad_puntual_vpn
     id                              int identity (1,1) primary key,
     id_escenario                    int,
     id_sensibilidad_puntual         int,
-    variacion_porcentual            DECIMAL(5,4),
+    variacion_porcentual            DECIMAL(16,8),
     esAumento                       BIT,
     grado_sensibilidad              DECIMAL(5,2),
 

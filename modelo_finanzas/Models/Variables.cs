@@ -10,6 +10,7 @@ namespace modelo_finanzas.Models
 {
     public class Variables
     {
+        public int IdEscenario { get; set; }
         public int Anio { get; set; }
 
         public decimal TamanioMercado { get; set; }

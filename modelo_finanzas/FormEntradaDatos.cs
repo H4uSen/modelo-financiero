@@ -299,6 +299,7 @@ namespace modelo_finanzas
         private List<FlujoCajaLibre> listaFlujos = new List<FlujoCajaLibre>();
         private FlujoCajaResultado resultadoCajaLibre = new FlujoCajaResultado();
 
+        //Calcular
         private async void button3_Click(object sender, EventArgs e)
         {
 
@@ -367,6 +368,9 @@ namespace modelo_finanzas
                 FormEstadoResultado formestadoresultado = new FormEstadoResultado(listaEstados);
                 ChildForm.Open(formestadoresultado, new Point(190, 300), panel2);
 
+                FormFlujoCajaResultados formFlujoCajaResultados = new FormFlujoCajaResultados(resultadoCajaLibre);
+                ChildForm.Open(formFlujoCajaResultados, new Point(0,0), pnlFlujoResultados);
+
 
             }
             catch (Exception ex)
@@ -392,40 +396,13 @@ namespace modelo_finanzas
                 return;
             }
 
-
-            //aquí voy a comenzar a guardar las variables de todas las entradas para usarlas 
-            //en la variación del VPN
-            // 1. Aquí Creamos una nueva instancia de la hoja (el sobre vacío)
-            EscenarioFinanciero nuevoEscenario = new EscenarioFinanciero();
-            nuevoEscenario.tamanoActualMercado = double.Parse(txtTamanioMercado.Text);
-            nuevoEscenario.crecimientoMercado = double.Parse(txtCrecimientoAnualMerc.Text.Replace("%", "")) / 100;
-            nuevoEscenario.encuestasRealizadas = int.Parse(txtEncRealizadas.Text);
-            nuevoEscenario.manifestaronComprar = int.Parse(txtManiComp.Text);
-            nuevoEscenario.objetivoMercado = double.Parse(txtObjeMer.Text.Replace("%", "")) / 100;
-            nuevoEscenario.precioVentaInicial = double.Parse(txtPrecioProducto.Text);
-            nuevoEscenario.costoProduccionUnitario = double.Parse(txtCostProdIni.Text);
-            nuevoEscenario.inflacionAnualIPC = double.Parse(txtInflaAnual.Text.Replace("%", "")) / 100;
-            nuevoEscenario.incrementoRealPrecio = double.Parse(txtIncRealPrec.Text.Replace("%", "")) / 100;
-            nuevoEscenario.ippRealCostos = double.Parse(txtIPP.Text.Replace("%", "")) / 100;
-            nuevoEscenario.tasaImpositiva = double.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
-            nuevoEscenario.inversionEquiposPorPunto = double.Parse(txtInvEquiXPart.Text);
-            nuevoEscenario.plazoDepreciacion = int.Parse(txtPlazoDep.Text.Replace(" años", ""));
-            nuevoEscenario.porcentajeFinanciado = double.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
-            nuevoEscenario.plazoCredito = int.Parse(txtPlazoCredito.Text.Replace(" años", ""));
-            nuevoEscenario.gastosOperativosPorc = double.Parse(txtGastOper.Text.Replace("%", "")) / 100;
-            nuevoEscenario.otrosIngresosPorc = double.Parse(txtRecupSobreCosto.Text.Replace("%", "")) / 100;
-            nuevoEscenario.capitalTrabajoPorc = double.Parse(txtCapTrab.Text.Replace("%", "")) / 100;
-            nuevoEscenario.tasaLibreRiesgo = double.Parse(txtTasaLibRiesgo.Text.Replace("%", "")) / 100;
-            nuevoEscenario.bUdelSector = double.Parse(txtBetaSector.Text.Replace("%", ""));
-            nuevoEscenario.primaRiesgoMercado = double.Parse(txtPrimRiesgMerc.Text.Replace("%", "")) / 100;
-            nuevoEscenario.gradienteFlujos = double.Parse(txtGradFlujos.Text.Replace("%", "")) / 100;
-            // 3. Y aquí Guardamos este objeto en la variable estática
-            EscenarioFinanciero.EscenarioActual = nuevoEscenario;
+            btnCalcular.PerformClick();
+            
 
             if (entrada != null)
             {
                 txtFechaCreacion.Text = DateTime.Now.ToString("G");
-                entrada.NombreEscenario = txtNombreEscenario.Text;
+                entrada.NombreEscenario = (txtNombreEscenario.Text == "")?$"Escenario: {txtFechaCreacion.Text}":txtNombreEscenario.Text;
             }
 
             try
@@ -435,12 +412,35 @@ namespace modelo_finanzas
                 int escenarioID = await datosService.InsertDatos(entrada);
 
                 entrada.Id = escenarioID;
-                // variables.IdEscenario = escenarioID;
                 escenarios.Escenario_id = escenarioID;
+                variables.IdEscenario = escenarioID;
+                listaVariables.ForEach(v => v.IdEscenario = escenarioID);
                 amortizacion.IdEscenario = escenarioID;
+                listaAmortizaciones.ForEach(v => v.IdEscenario = escenarioID);
+                estadoResultados.IdEscenario = escenarioID;
+                listaEstados.ForEach(v => v.IdEscenario = escenarioID);
+
+
+                costoCapital.IdEscenario = escenarioID;
+                flujoCaja.IdEscenario = escenarioID;
+                listaFlujos.ForEach(v => v.IdEscenario = escenarioID);
+                resultadoCajaLibre.IdEscenario = escenarioID;
+                
 
                 DatosEscenariosService escenariosService = new DatosEscenariosService();
-                int escenID = await escenariosService.InsertEscenario(escenarios);
+                int escenID = await escenariosService.insertEscenario(escenarios);
+                VariablesService variablesService = new VariablesService();
+                listaVariables.ForEach(async a => await variablesService.insertVariables(a));
+                AmortizacionService amortizacionService = new AmortizacionService();
+                listaAmortizaciones.ForEach(async a => await amortizacionService.insertAmortizacion(a));
+                EstadoResultadosService estadoResultadosService = new EstadoResultadosService();
+                listaEstados.ForEach(async a => await estadoResultadosService.InsertEstadoResultados(a));
+                CostoCapitalService costoCapitalService = new CostoCapitalService();
+                await costoCapitalService.InsertCostoCapital(costoCapital);
+                FlujoCajaService flujoCajaService = new FlujoCajaService();
+                listaFlujos.ForEach(async a => await flujoCajaService.InsertFlujoCajaLibre(a));
+                await flujoCajaService.InsertResultado(resultadoCajaLibre);
+
                 if (escenID > 0)
                 {
                     escenarios.Id = escenID;
@@ -530,6 +530,40 @@ namespace modelo_finanzas
                 MessageBox.Show("Primero rellene los campos marcados.");
                 return;
             }
+
+            //aquí voy a comenzar a guardar las variables de todas las entradas para usarlas 
+            //en la variación del VPN
+            // 1. Aquí Creamos una nueva instancia de la hoja (el sobre vacío)
+            EscenarioFinanciero nuevoEscenario = new EscenarioFinanciero();
+            nuevoEscenario.tamanoActualMercado = double.Parse(txtTamanioMercado.Text);
+            nuevoEscenario.crecimientoMercado = double.Parse(txtCrecimientoAnualMerc.Text.Replace("%", "")) / 100;
+            nuevoEscenario.encuestasRealizadas = int.Parse(txtEncRealizadas.Text);
+            nuevoEscenario.manifestaronComprar = int.Parse(txtManiComp.Text);
+            nuevoEscenario.objetivoMercado = double.Parse(txtObjeMer.Text.Replace("%", "")) / 100;
+            nuevoEscenario.precioVentaInicial = double.Parse(txtPrecioProducto.Text);
+            nuevoEscenario.costoProduccionUnitario = double.Parse(txtCostProdIni.Text);
+            nuevoEscenario.inflacionAnualIPC = double.Parse(txtInflaAnual.Text.Replace("%", "")) / 100;
+            nuevoEscenario.incrementoRealPrecio = double.Parse(txtIncRealPrec.Text.Replace("%", "")) / 100;
+            nuevoEscenario.ippRealCostos = double.Parse(txtIPP.Text.Replace("%", "")) / 100;
+            nuevoEscenario.tasaImpositiva = double.Parse(txtTasaImpositiva.Text.Replace("%", "")) / 100;
+            nuevoEscenario.inversionEquiposPorPunto = double.Parse(txtInvEquiXPart.Text);
+            nuevoEscenario.plazoDepreciacion = int.Parse(txtPlazoDep.Text.Replace(" años", ""));
+            nuevoEscenario.porcentajeFinanciado = double.Parse(txtFinanCredito.Text.Replace("%", "")) / 100;
+            nuevoEscenario.plazoCredito = int.Parse(txtPlazoCredito.Text.Replace(" años", ""));
+            nuevoEscenario.gastosOperativosPorc = double.Parse(txtGastOper.Text.Replace("%", "")) / 100;
+            nuevoEscenario.otrosIngresosPorc = double.Parse(txtRecupSobreCosto.Text.Replace("%", "")) / 100;
+            nuevoEscenario.capitalTrabajoPorc = double.Parse(txtCapTrab.Text.Replace("%", "")) / 100;
+            nuevoEscenario.tasaLibreRiesgo = double.Parse(txtTasaLibRiesgo.Text.Replace("%", "")) / 100;
+            nuevoEscenario.bUdelSector = double.Parse(txtBetaSector.Text.Replace("%", ""));
+            nuevoEscenario.primaRiesgoMercado = double.Parse(txtPrimRiesgMerc.Text.Replace("%", "")) / 100;
+            nuevoEscenario.gradienteFlujos = double.Parse(txtGradFlujos.Text.Replace("%", "")) / 100;
+            // 3. Y aquí Guardamos este objeto en la variable estática
+            EscenarioFinanciero.EscenarioActual = nuevoEscenario;
+
+
+            FormVariacionPorcentalVPN formVariacion = new FormVariacionPorcentalVPN();
+            formVariacion.Show();
         }
+        
     }
 }
