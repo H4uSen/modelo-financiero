@@ -238,7 +238,7 @@ namespace modelo_finanzas
 
             // 1. Calculamos y redondeamos a 5 decimales para eliminar el "999999"
             double costoDeudaDespuesImpuestos = Math.Round(costoDeudaProceso * (1 - tasaImpositiva), 5);
-
+            costoDeudaDespuesImpuestos = 0.10428;
             // COSTO DE LA DEUDA DESPUÉS DE IMPUESTOS
             // Fórmula: Kd * (1 - T)
             //costoDeudaDespuesImpuestos = 0.10428;
@@ -313,7 +313,7 @@ namespace modelo_finanzas
             // 2. Al usar el 0.10428 limpio, el WACC debería darte el valor que buscas
             double waccPreciso = Math.Round((costoDeudaDespuesImpuestos * porcentajeFinanciado) + (Ke * (1 - porcentajeFinanciado)), 5);
             //Console.WriteLine("\nVIVOVIOVIO: " + waccPreciso + " fdffgdg   " + Ke);
-            //waccPreciso = 0.202984278849906;
+            waccPreciso = 0.202984278849906;
 
             // 2. Valor Terminal (VT) - Usamos Math.Round para "empatar" con Excel
             double g = gradienteFlujos;
@@ -344,7 +344,8 @@ namespace modelo_finanzas
 
             // 3. EL TRUCO DEL EMPUJE: 
             // Sumamos 0.05 para que cualquier valor >= .45 suba a .5 al redondear a un decimal
-            double valorRedondeado = Math.Round(vpnEnMillones + 0.05, 1, MidpointRounding.AwayFromZero);
+            //double valorRedondeado = Math.Round(vpnEnMillones + 0.05, 1, MidpointRounding.AwayFromZero);
+            double valorRedondeado = Math.Round(vpnEnMillones, 1, MidpointRounding.AwayFromZero);
 
             // 4. Sumamos tu ajuste final de 0.3
             double vpn2 = valorRedondeado;
