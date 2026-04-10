@@ -286,14 +286,14 @@ namespace modelo_finanzas
             InputValidator.integerValidation(txtTamanioMercado, e);
         }
 
-        private  DatosEntrada entrada = new DatosEntrada();
-        private  DatosEscenarios escenarios = new DatosEscenarios();
-        private  Variables variables = new Variables();
-        private  List<Variables> listaVariables = new List<Variables>();
-        private  Amortizacion amortizacion = new Amortizacion();
-        private  List<Amortizacion> listaAmortizaciones = new List<Amortizacion>();
-        private  EstadoResultados estadoResultados = new EstadoResultados();
-        private  List<EstadoResultados> listaEstados = new List<EstadoResultados>();
+        private DatosEntrada entrada = new DatosEntrada();
+        private DatosEscenarios escenarios = new DatosEscenarios();
+        private Variables variables = new Variables();
+        private List<Variables> listaVariables = new List<Variables>();
+        private Amortizacion amortizacion = new Amortizacion();
+        private List<Amortizacion> listaAmortizaciones = new List<Amortizacion>();
+        private EstadoResultados estadoResultados = new EstadoResultados();
+        private List<EstadoResultados> listaEstados = new List<EstadoResultados>();
         private CostoCapital costoCapital = new CostoCapital();
         private FlujoCajaLibre flujoCaja = new FlujoCajaLibre();
         private List<FlujoCajaLibre> listaFlujos = new List<FlujoCajaLibre>();
@@ -351,6 +351,8 @@ namespace modelo_finanzas
                 listaAmortizaciones = amortizacion.Calcular(entrada);
                 listaEstados = estadoResultados.Calcular(entrada, listaVariables, escenarios, listaAmortizaciones);
                 listaFlujos = flujoCaja.Calcular(entrada, escenarios, listaEstados);
+                costoCapital.CalcularCostoCapital(escenarios, entrada);
+                resultadoCajaLibre.Calcular(listaFlujos, escenarios, costoCapital, entrada);
 
                 panel2.Controls.Clear();
                 FormDatosEscenario formDatosEscenario = new FormDatosEscenario(escenarios);
@@ -383,6 +385,12 @@ namespace modelo_finanzas
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
+
+            if (!FormValidator.ValidateRequired(this, errorProvider1))
+            {
+                MessageBox.Show("Rellene los campos marcados.");
+                return;
+            }
 
 
             //aquí voy a comenzar a guardar las variables de todas las entradas para usarlas 
@@ -491,17 +499,37 @@ namespace modelo_finanzas
 
         private void btnSalidas_Click(object sender, EventArgs e)
         {
-            costoCapital.CalcularCostoCapital(escenarios, entrada);
-            List<FlujoCajaLibre> flujos = flujoCaja.Calcular(entrada, escenarios, listaEstados);
-
-            resultadoCajaLibre.Calcular(flujos,escenarios,costoCapital,entrada);
-
+            if (!FormValidator.ValidateRequired(this, errorProvider1))
+            {
+                MessageBox.Show("Primero rellene los campos marcados.");
+                return;
+            }
             FormSalidas formSalidas = new FormSalidas(
                 costoCapital,
-                flujos,
+                listaFlujos,
                 resultadoCajaLibre);
             formSalidas.Show();
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (!FormValidator.ValidateRequired(this, errorProvider1))
+            {
+                MessageBox.Show("Primero rellene los campos marcados.");
+                return;
+            }
+            FormSensibilidadFactibleVPN formSensibilidad = new FormSensibilidadFactibleVPN();
+            formSensibilidad.Show();
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if (!FormValidator.ValidateRequired(this, errorProvider1))
+            {
+                MessageBox.Show("Primero rellene los campos marcados.");
+                return;
+            }
         }
     }
 }

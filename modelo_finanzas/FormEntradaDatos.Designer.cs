@@ -88,6 +88,8 @@
             panel2 = new Panel();
             btnGuardar = new Button();
             btnSalidas = new Button();
+            btnAnalisisSensiVPN = new Button();
+            btnAnalisisVPN = new Button();
             gpbMercado.SuspendLayout();
             gpbPrecios.SuspendLayout();
             gpbCostos.SuspendLayout();
@@ -704,7 +706,7 @@
             panel2.Location = new Point(397, 145);
             panel2.Margin = new Padding(2, 3, 2, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(695, 639);
+            panel2.Size = new Size(610, 639);
             panel2.TabIndex = 24;
             // 
             // btnGuardar
@@ -722,11 +724,31 @@
             // 
             btnSalidas.Location = new Point(858, 102);
             btnSalidas.Name = "btnSalidas";
-            btnSalidas.Size = new Size(152, 32);
+            btnSalidas.Size = new Size(217, 32);
             btnSalidas.TabIndex = 26;
-            btnSalidas.Text = "Ver salidas";
+            btnSalidas.Text = "Ver Flujo de Caja";
             btnSalidas.UseVisualStyleBackColor = true;
             btnSalidas.Click += btnSalidas_Click;
+            // 
+            // btnAnalisisSensiVPN
+            // 
+            btnAnalisisSensiVPN.Location = new Point(856, 64);
+            btnAnalisisSensiVPN.Name = "btnAnalisisSensiVPN";
+            btnAnalisisSensiVPN.Size = new Size(219, 32);
+            btnAnalisisSensiVPN.TabIndex = 27;
+            btnAnalisisSensiVPN.Text = "Ver Análisis de Sensibilidad del VPN";
+            btnAnalisisSensiVPN.UseVisualStyleBackColor = true;
+            btnAnalisisSensiVPN.Click += button1_Click_1;
+            // 
+            // btnAnalisisVPN
+            // 
+            btnAnalisisVPN.Location = new Point(856, 25);
+            btnAnalisisVPN.Name = "btnAnalisisVPN";
+            btnAnalisisVPN.Size = new Size(219, 32);
+            btnAnalisisVPN.TabIndex = 28;
+            btnAnalisisVPN.Text = "Ver Análisis de VPN";
+            btnAnalisisVPN.UseVisualStyleBackColor = true;
+            btnAnalisisVPN.Click += button1_Click_2;
             // 
             // FormEntradaDatos
             // 
@@ -734,6 +756,8 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
             ClientSize = new Size(1181, 783);
+            Controls.Add(btnAnalisisVPN);
+            Controls.Add(btnAnalisisSensiVPN);
             Controls.Add(btnSalidas);
             Controls.Add(btnGuardar);
             Controls.Add(panel2);
@@ -826,5 +850,7 @@
         private Panel panel2;
         private Button btnGuardar;
         private Button btnSalidas;
+        private Button btnAnalisisSensiVPN;
+        private Button btnAnalisisVPN;
     }
 }

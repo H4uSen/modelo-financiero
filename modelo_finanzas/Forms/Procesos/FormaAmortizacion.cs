@@ -19,7 +19,7 @@ namespace Prueba1
             InitializeComponent();
             this.CenterToScreen();
             this.Text = "Amortizacion";
-            this.Enabled = false;
+            dgvTablaAmortiCredito.Enabled = false;
             dgvTablaAmortiCredito.RowHeadersVisible = false;
             dgvTablaAmortiCredito.DataSource = null;
             dgvTablaAmortiCredito.CellFormatting += dgvTablaAmortiCredito_CellFormatting;

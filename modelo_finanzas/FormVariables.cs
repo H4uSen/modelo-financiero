@@ -22,7 +22,7 @@ namespace modelo_finanzas
 
             _datosEntrada = de;
             _datosEscenarios = ds;
-            this.Enabled = false;
+            dataGridView1.Enabled = false;
             this.Load += FormVariables_Load;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.Enabled = false;

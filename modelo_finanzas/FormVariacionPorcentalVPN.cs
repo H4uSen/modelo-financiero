@@ -15,6 +15,7 @@ namespace modelo_finanzas
         public FormVariacionPorcentalVPN()
         {
             InitializeComponent();
+            this.Load += FormVariacionPorcentalVPN_Load;
         }
 
         private void FormVariacionPorcentalVPN_Load(object sender, EventArgs e)
