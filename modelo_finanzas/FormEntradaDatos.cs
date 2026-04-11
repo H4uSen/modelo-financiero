@@ -389,7 +389,7 @@ namespace modelo_finanzas
         {
             MenuPrincipal menuPrincipal = new MenuPrincipal();
             menuPrincipal.Show();
-            this.Dispose();
+            this.Close();
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
