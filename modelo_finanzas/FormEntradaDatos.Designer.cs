@@ -91,6 +91,7 @@
             btnAnalisisSensiVPN = new Button();
             btnAnalisisVPN = new Button();
             pnlFlujoResultados = new Panel();
+            button2 = new Button();
             gpbMercado.SuspendLayout();
             gpbPrecios.SuspendLayout();
             gpbCostos.SuspendLayout();
@@ -724,7 +725,7 @@
             // 
             // btnSalidas
             // 
-            btnSalidas.Location = new Point(825, 102);
+            btnSalidas.Location = new Point(825, 93);
             btnSalidas.Name = "btnSalidas";
             btnSalidas.Size = new Size(217, 32);
             btnSalidas.TabIndex = 26;
@@ -734,7 +735,7 @@
             // 
             // btnAnalisisSensiVPN
             // 
-            btnAnalisisSensiVPN.Location = new Point(823, 64);
+            btnAnalisisSensiVPN.Location = new Point(1048, 34);
             btnAnalisisSensiVPN.Name = "btnAnalisisSensiVPN";
             btnAnalisisSensiVPN.Size = new Size(219, 32);
             btnAnalisisSensiVPN.TabIndex = 27;
@@ -744,7 +745,7 @@
             // 
             // btnAnalisisVPN
             // 
-            btnAnalisisVPN.Location = new Point(823, 25);
+            btnAnalisisVPN.Location = new Point(825, 34);
             btnAnalisisVPN.Name = "btnAnalisisVPN";
             btnAnalisisVPN.Size = new Size(219, 32);
             btnAnalisisVPN.TabIndex = 28;
@@ -760,12 +761,22 @@
             pnlFlujoResultados.Size = new Size(685, 97);
             pnlFlujoResultados.TabIndex = 29;
             // 
+            // button2
+            // 
+            button2.Location = new Point(1048, 93);
+            button2.Name = "button2";
+            button2.Size = new Size(219, 32);
+            button2.TabIndex = 30;
+            button2.Text = "Ver Análisis de Sensibilidad Puntual";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // FormEntradaDatos
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
             ClientSize = new Size(1273, 792);
+            Controls.Add(button2);
             Controls.Add(pnlFlujoResultados);
             Controls.Add(btnAnalisisVPN);
             Controls.Add(btnAnalisisSensiVPN);
@@ -865,5 +876,6 @@
         private Button btnAnalisisVPN;
         private Panel pnlFlujoResultados;
         private Button button1;
+        private Button button2;
     }
 }
