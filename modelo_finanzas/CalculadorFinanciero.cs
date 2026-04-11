@@ -17,7 +17,7 @@ namespace modelo_finanzas
 
         // Esta función es la que "hará la magia"
         // Recibe: La clase con los 22 datos fijos + los 2 datos que van a variar
-        public double CalcularSoloVPN(EscenarioFinanciero datosEntrada, double inflacionVariable, double objetivoMercadoVariable)
+        public double CalcularSoloVPN(EscenarioFinanciero datosEntrada, double inflacionVariable, double objetivoMercadoVariable, bool returnRawVPN = false)
         {
 
             // 1. Aumentamos el contador cada vez que se llama a esta función
@@ -365,6 +365,11 @@ namespace modelo_finanzas
             else if (TotalCalculosRealizados==24)
             {
                 F127 = vpnFinal;
+            }
+
+            if (returnRawVPN)
+            {
+                return vpnBrutoCompleto; // Devuelve el VPN en escala real sin dividir entre 1M ni redondear drásticamente
             }
 
             return vpn2;

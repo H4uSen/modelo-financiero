@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            dgv = new DataGridView();
             Concepto = new DataGridViewTextBoxColumn();
             menos = new DataGridViewTextBoxColumn();
             zero = new DataGridViewTextBoxColumn();
@@ -37,50 +38,68 @@
             gradSen = new DataGridViewTextBoxColumn();
             label1 = new Label();
             btnCalcular = new Button();
+            btnPdf = new Button();
             txtPorcentaje = new NumericUpDown();
             label2 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPorcentaje).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgv
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Concepto, menos, zero, mas, varPorc, gradSen });
-            dataGridView1.Location = new Point(3, 95);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(667, 354);
-            dataGridView1.TabIndex = 0;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv.Columns.AddRange(new DataGridViewColumn[] { Concepto, menos, zero, mas, varPorc, gradSen });
+            dgv.Location = new Point(3, 95);
+            dgv.Name = "dgv";
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgv.RowHeadersVisible = false;
+            dgv.Size = new Size(651, 468);
+            dgv.TabIndex = 0;
             // 
             // Concepto
             // 
             Concepto.HeaderText = "Sensibilidad puntual";
             Concepto.Name = "Concepto";
+            Concepto.Width = 127;
             // 
             // menos
             // 
             menos.HeaderText = "-1";
             menos.Name = "menos";
+            menos.Width = 43;
             // 
             // zero
             // 
             zero.HeaderText = "0";
             zero.Name = "zero";
+            zero.Width = 38;
             // 
             // mas
             // 
             mas.HeaderText = "+1";
             mas.Name = "mas";
+            mas.Width = 46;
             // 
             // varPorc
             // 
             varPorc.HeaderText = "Variacion porcentual";
             varPorc.Name = "varPorc";
+            varPorc.Width = 128;
             // 
             // gradSen
             // 
             gradSen.HeaderText = "Grado de sensibilidad";
             gradSen.Name = "gradSen";
+            gradSen.Width = 133;
             // 
             // label1
             // 
@@ -100,6 +119,16 @@
             btnCalcular.TabIndex = 2;
             btnCalcular.Text = "Calcular";
             btnCalcular.UseVisualStyleBackColor = true;
+            // 
+            // btnPdf
+            // 
+            btnPdf.Location = new Point(390, 56);
+            btnPdf.Name = "btnPdf";
+            btnPdf.Size = new Size(164, 33);
+            btnPdf.TabIndex = 5;
+            btnPdf.Text = "Guardar como PDF";
+            btnPdf.UseVisualStyleBackColor = true;
+            btnPdf.Click += btnPdf_Click;
             // 
             // txtPorcentaje
             // 
@@ -123,15 +152,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            AutoSize = true;
+            ClientSize = new Size(655, 575);
             Controls.Add(label2);
             Controls.Add(txtPorcentaje);
             Controls.Add(btnCalcular);
+            Controls.Add(btnPdf);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgv);
             Name = "FormSensiPuntual";
             Text = "FormSensiPuntual";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtPorcentaje).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -139,7 +170,7 @@
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgv;
         private DataGridViewTextBoxColumn Concepto;
         private DataGridViewTextBoxColumn menos;
         private DataGridViewTextBoxColumn zero;
@@ -148,6 +179,7 @@
         private DataGridViewTextBoxColumn gradSen;
         private Label label1;
         private Button btnCalcular;
+        private Button btnPdf;
         private NumericUpDown txtPorcentaje;
         private Label label2;
     }

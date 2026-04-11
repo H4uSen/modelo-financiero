@@ -90,6 +90,7 @@
             btnSalidas = new Button();
             btnAnalisisSensiVPN = new Button();
             btnAnalisisVPN = new Button();
+            btnPdfGeneral = new Button();
             pnlFlujoResultados = new Panel();
             button2 = new Button();
             gpbMercado.SuspendLayout();
@@ -753,6 +754,16 @@
             btnAnalisisVPN.UseVisualStyleBackColor = true;
             btnAnalisisVPN.Click += button1_Click_2;
             // 
+            // btnPdfGeneral
+            // 
+            btnPdfGeneral.Location = new Point(825, 131);
+            btnPdfGeneral.Name = "btnPdfGeneral";
+            btnPdfGeneral.Size = new Size(442, 32);
+            btnPdfGeneral.TabIndex = 31;
+            btnPdfGeneral.Text = "Guardar Reporte en PDF";
+            btnPdfGeneral.UseVisualStyleBackColor = true;
+            btnPdfGeneral.Click += btnPdfGeneral_Click;
+            // 
             // pnlFlujoResultados
             // 
             pnlFlujoResultados.AutoSize = true;
@@ -769,6 +780,7 @@
             button2.TabIndex = 30;
             button2.Text = "Ver Análisis de Sensibilidad Puntual";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // FormEntradaDatos
             // 
@@ -780,6 +792,7 @@
             Controls.Add(pnlFlujoResultados);
             Controls.Add(btnAnalisisVPN);
             Controls.Add(btnAnalisisSensiVPN);
+            Controls.Add(btnPdfGeneral);
             Controls.Add(btnSalidas);
             Controls.Add(btnGuardar);
             Controls.Add(panel2);
@@ -874,6 +887,7 @@
         private Button btnSalidas;
         private Button btnAnalisisSensiVPN;
         private Button btnAnalisisVPN;
+        private Button btnPdfGeneral;
         private Panel pnlFlujoResultados;
         private Button button1;
         private Button button2;

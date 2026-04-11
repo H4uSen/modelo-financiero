@@ -1,3 +1,4 @@
+using modelo_finanzas.Forms.Analisis;
 using modelo_finanzas.Forms.Salidas;
 using modelo_finanzas.Logic;
 using modelo_finanzas.Models;
@@ -6,6 +7,10 @@ using modelo_finanzas.Utils;
 using Prueba1;
 using System.Configuration;
 using System.Data.SqlTypes;
+using System.Drawing.Imaging;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
 namespace modelo_finanzas
 {
     public partial class FormEntradaDatos : Form
@@ -444,7 +449,7 @@ namespace modelo_finanzas
 
                 SensiPorcenService porcenService = new SensiPorcenService();
                 fillEscenario();
-                porcenService.CalcularGuardar((double)entrada.Inflacion, (double)entrada.ObjetivoMercado,(double)resultadoCajaLibre.ValorPresenteNeto, escenarioID);
+                porcenService.CalcularGuardar((double)entrada.Inflacion, (double)entrada.ObjetivoMercado, (double)resultadoCajaLibre.ValorPresenteNeto, escenarioID);
 
                 if (escenID > 0)
                 {
@@ -524,7 +529,7 @@ namespace modelo_finanzas
                 MessageBox.Show("Primero rellene los campos marcados.");
                 return;
             }
-            FormSensibilidadFactibleVPN formSensibilidad = new FormSensibilidadFactibleVPN(entrada,escenarios,variables,amortizacion);
+            FormSensibilidadFactibleVPN formSensibilidad = new FormSensibilidadFactibleVPN(entrada, escenarios, variables, amortizacion);
             formSensibilidad.Show();
         }
 
@@ -609,6 +614,147 @@ namespace modelo_finanzas
             EscenarioFinanciero.EscenarioActual = nuevoEscenario;
         }
 
+        //Botón sensibilidad puntual VPN
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!FormValidator.ValidateRequired(this, errorProvider1))
+            {
+                MessageBox.Show("Primero rellene los campos marcados.");
+                return;
+            }
 
+            btnCalcular.PerformClick();
+
+            FormSensiPuntual formSensiPuntual = new FormSensiPuntual(entrada, escenarios, costoCapital, 4);
+            formSensiPuntual.Show();
+        }
+
+        
+            private void btnPdfGeneral_Click(object sender, EventArgs e)
+            {
+                if (!FormValidator.ValidateRequired(this, errorProvider1))
+                {
+                    MessageBox.Show("Primero rellene los campos marcados.");
+                    return;
+                }
+
+                btnCalcular.PerformClick();
+                fillEscenario();
+
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "PDF (*.pdf)|*.pdf",
+                    FileName = $"Reporte_Modelo_Financiero_{DateTime.Now:yyyyMMdd_HHmmss}.pdf"
+                };
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        Cursor.Current = Cursors.WaitCursor;
+
+                        using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
+                        {
+                            iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(PageSize.A4.Rotate(), 20f, 20f, 20f, 20f);
+                            PdfWriter.GetInstance(pdfDoc, stream);
+                            pdfDoc.Open();
+
+                            // Lista de formularios que queremos exportar
+                            List<Form> formsToPrint = new List<Form>
+                            {
+                                this, // Primero esta misma pantalla (FormEntradaDatos)
+                                new FormSalidas(costoCapital, listaFlujos, resultadoCajaLibre),
+                                new FormSensibilidadFactibleVPN(entrada, escenarios, variables, amortizacion),
+                                new FormVariacionPorcentalVPN(),
+                                new FormSensiPuntual(entrada, escenarios, costoCapital, 4)
+                            };
+
+                            foreach (Form fr in formsToPrint)
+                            {
+                                bool isSelf = (fr == this);
+
+                                if (!isSelf)
+                                {
+                                    // Configurar para que no sea visible durante la renderización y forzar layout
+                                    fr.StartPosition = FormStartPosition.Manual;
+                                    fr.Location = new Point(-20000, -20000);
+                                    fr.ShowInTaskbar = false;
+                                    fr.FormBorderStyle = FormBorderStyle.None; // Quita el borde de la ventana
+                                    fr.Show();
+                                    fr.Refresh();
+                                    Application.DoEvents();
+
+                                    // Un pequeño retraso para permitir que los controles (como DataGridView) terminen de dibujarse
+                                    System.Threading.Thread.Sleep(200);
+                                    Application.DoEvents();
+                                }
+
+                                int width = fr.Width;
+                                int height = fr.Height;
+
+                                // Expandir para capturar todo el área de scroll si existe
+                                if (fr.AutoScrollMinSize.Width > width) width = fr.AutoScrollMinSize.Width;
+                                if (fr.AutoScrollMinSize.Height > height) height = fr.AutoScrollMinSize.Height;
+                                // Para si isSelf, intentar capturar todo el DisplayRectangle
+                                if (isSelf && this.DisplayRectangle.Height > height) height = this.DisplayRectangle.Height;
+
+                                // Prevenir anchos/altos cero
+                                if (width <= 0) width = 800;
+                                if (height <= 0) height = 600;
+
+                                using (Bitmap bmp = new Bitmap(width, height))
+                                {
+                                    // Guardar el estado de auto-scroll
+                                    Point savedScroll = fr.AutoScrollPosition;
+                                    fr.AutoScrollPosition = new Point(0, 0);
+
+                                    fr.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, width, height));
+
+                                    // Restaurar scroll
+                                    if (savedScroll.X < 0 || savedScroll.Y < 0)
+                                        fr.AutoScrollPosition = new Point(Math.Abs(savedScroll.X), Math.Abs(savedScroll.Y));
+
+                                    using (MemoryStream ms = new MemoryStream())
+                                    {
+                                        bmp.Save(ms, ImageFormat.Png);
+                                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(ms.ToArray());
+
+                                        // Agregar nueva página antes del texto (si no es el primero)
+                                        if (fr != formsToPrint[0])
+                                        {
+                                            pdfDoc.NewPage();
+                                        }
+
+                                        Paragraph p = new Paragraph(fr.Text ?? "Reporte", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14));
+                                        p.Alignment = Element.ALIGN_CENTER;
+                                        p.SpacingAfter = 10f;
+                                        pdfDoc.Add(p);
+
+                                        // Ajustar la imagen al tamaño de la carta dejando espacio para el titulo
+                                        img.ScaleToFit(pdfDoc.PageSize.Width - 40f, pdfDoc.PageSize.Height - 60f);
+                                        img.Alignment = Element.ALIGN_CENTER;
+                                        pdfDoc.Add(img);
+                                    }
+                                }
+
+                                if (!isSelf)
+                                {
+                                    fr.Close();
+                                }
+                            }
+
+                            pdfDoc.Close();
+                        }
+
+                        Cursor.Current = Cursors.Default;
+                        MessageBox.Show("Reporte completo en PDF generado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        Cursor.Current = Cursors.Default;
+                        MessageBox.Show("Error al generar PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
-}
