@@ -655,7 +655,7 @@ namespace modelo_finanzas
 
                         using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
                         {
-                            iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(PageSize.A4.Rotate(), 20f, 20f, 20f, 20f);
+                            iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(PageSize.A4.Rotate(), 10f, 10f, 10f, 10f);
                             PdfWriter.GetInstance(pdfDoc, stream);
                             pdfDoc.Open();
 
@@ -725,10 +725,10 @@ namespace modelo_finanzas
                                             pdfDoc.NewPage();
                                         }
 
-                                        Paragraph p = new Paragraph(fr.Text ?? "Reporte", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14));
-                                        p.Alignment = Element.ALIGN_CENTER;
-                                        p.SpacingAfter = 10f;
-                                        pdfDoc.Add(p);
+                                        //Paragraph p = new Paragraph(fr.Text ?? "Reporte", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 9));
+                                        //p.Alignment = Element.ALIGN_CENTER;
+                                        //p.SpacingAfter = 5f;
+                                        //pdfDoc.Add(p);
 
                                         // Ajustar la imagen al tamaño de la carta dejando espacio para el titulo
                                         img.ScaleToFit(pdfDoc.PageSize.Width - 40f, pdfDoc.PageSize.Height - 60f);

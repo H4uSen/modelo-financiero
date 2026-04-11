@@ -223,10 +223,10 @@
             // 
             // btnTest
             // 
-            btnTest.Location = new Point(6, 691);
+            btnTest.Location = new Point(6, 737);
             btnTest.Margin = new Padding(2);
             btnTest.Name = "btnTest";
-            btnTest.Size = new Size(92, 44);
+            btnTest.Size = new Size(73, 44);
             btnTest.TabIndex = 9;
             btnTest.Text = "test connection";
             btnTest.UseVisualStyleBackColor = false;
@@ -678,10 +678,10 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(108, 691);
+            btnCancelar.Location = new Point(6, 691);
             btnCancelar.Margin = new Padding(2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(78, 44);
+            btnCancelar.Size = new Size(79, 44);
             btnCancelar.TabIndex = 21;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -689,10 +689,10 @@
             // 
             // btnCalcular
             // 
-            btnCalcular.Location = new Point(199, 691);
+            btnCalcular.Location = new Point(99, 691);
             btnCalcular.Margin = new Padding(2);
             btnCalcular.Name = "btnCalcular";
-            btnCalcular.Size = new Size(84, 44);
+            btnCalcular.Size = new Size(75, 44);
             btnCalcular.TabIndex = 22;
             btnCalcular.Text = "Calcular";
             btnCalcular.UseVisualStyleBackColor = true;
@@ -715,10 +715,10 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(295, 691);
+            btnGuardar.Location = new Point(191, 691);
             btnGuardar.Margin = new Padding(2);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(84, 44);
+            btnGuardar.Size = new Size(70, 44);
             btnGuardar.TabIndex = 25;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
@@ -756,9 +756,9 @@
             // 
             // btnPdfGeneral
             // 
-            btnPdfGeneral.Location = new Point(825, 131);
+            btnPdfGeneral.Location = new Point(276, 691);
             btnPdfGeneral.Name = "btnPdfGeneral";
-            btnPdfGeneral.Size = new Size(442, 32);
+            btnPdfGeneral.Size = new Size(110, 44);
             btnPdfGeneral.TabIndex = 31;
             btnPdfGeneral.Text = "Guardar Reporte en PDF";
             btnPdfGeneral.UseVisualStyleBackColor = true;
@@ -788,11 +788,11 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
             ClientSize = new Size(1273, 792);
+            Controls.Add(btnPdfGeneral);
             Controls.Add(button2);
             Controls.Add(pnlFlujoResultados);
             Controls.Add(btnAnalisisVPN);
             Controls.Add(btnAnalisisSensiVPN);
-            Controls.Add(btnPdfGeneral);
             Controls.Add(btnSalidas);
             Controls.Add(btnGuardar);
             Controls.Add(panel2);
