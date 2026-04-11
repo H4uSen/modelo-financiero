@@ -1,0 +1,23 @@
+- El programa debe de realizar y mostrar los cálculos como en el excel del caso.
+- Debe mostrar reportes y dejar exportarlos como PDf y Excel.
+- Todos los datos debe de ser guardado en una base de datos.
+- Los escenarios y calculos debe de poder ser recuperados para analizarlos.
+- El programa debe de ser capaz de permitir comparar dos escenarios.
+- Hay que contestar las siguientes preguntas con la herramienta:
+	• De acuerdo con las funciones del gerente financiero, ¿cuáles deben ser los 
+	aspectos de mayor relevancia que se deben tener en cuenta para hacer un 
+	análisis de la situación anterior? 
+	• ¿Cómo se puede determinar que el lanzamiento de este producto será 
+	exitoso? ¿Es posible cuantificarlo? 
+	• Proyectar el precio y el costo unitario del nuevo producto anualmente 
+	durante cinco años y graficarlos utilizando números índice con el año 1 igual 
+	a 100. ¿Cuál es su conclusión? 
+	• Hacer la tabla de amortización del crédito que se contrate, dejando que el 
+	usuario pueda cambiar el porcentaje financiado con deuda. 
+OBJETIVO: Analizar el negocio, hacer un estudio de riesgo y recomendar la factibilidad del 
+lanzamiento de este producto. 
+
+El objetivo del modelo es recomendar a la gerencia si es conveniente para la empresa tomar 
+la decisión de lanzar el producto. Para evaluarla, se ha seleccionado como criterio de 
+decisión el Valor Presente Neto (vpn). De ahí que se debe construir un modelo que, a partir 
+de los datos de entrada, calcule el vpn. 

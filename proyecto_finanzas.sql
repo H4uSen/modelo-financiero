@@ -166,7 +166,7 @@ GO
 --TABLA para hacer la relacion de un escenario con sus resultados
 -- y preparar el analisis de VPN de acuerdo a la variacion
 -- del IPC y el objetivo de participacion de mercado
-SELECT * FROM analisis_vpn
+--SELECT * FROM analisis_vpn
 CREATE TABLE analisis_vpn
 (
     id                              int identity (1,1) primary key,
@@ -223,5 +223,35 @@ CREATE TABLE resultados_sensibilidad_puntual_vpn
     FOREIGN KEY (id_sensibilidad_puntual) REFERENCES sensibilidad_puntual_vpn
 )
 GO
+CREATE TABLE sensibilidad_factible_vpn
+(
+    id                        int identity (1,1) primary key,
+    id_escenario              int,
 
+    crecimiento_mercado       DECIMAL(16,8)  DEFAULT 0,--
+    crecimiento_mercado_vpn   DECIMAL(16,8)  DEFAULT 0,--
+    participacion_mercado     DECIMAL(16,8)  DEFAULT 0,--
+    participacion_mercado_vpn DECIMAL(16,8)  DEFAULT 0,--
+    precio_venta              DECIMAL(18, 2) DEFAULT 0,--
+    precio_venta_vpn          DECIMAL(18, 2) DEFAULT 0,--
+    inflacion_anual           DECIMAL(16,8)  DEFAULT 0,--
+    inflacion_anual_vpn       DECIMAL(16,8)  DEFAULT 0,--
+    costo_produccion          DECIMAL(18, 2) DEFAULT 0,--
+    costo_produccion_vpn      DECIMAL(18, 2) DEFAULT 0,--
+    gastos_operativos         DECIMAL(18, 2) DEFAULT 0,---
+    gastos_operativos_vpn     DECIMAL(18, 2) DEFAULT 0,--
+
+
+    FOREIGN KEY (id_escenario) REFERENCES entradasEscenarios (id_escenario)
+)
+GO
+CREATE TABLE resultados_sensibilidad_factible_vpn
+(
+    id                              int identity (1,1) primary key,
+    id_escenario                    int,
+    variacion_neta            DECIMAL(16,2),
+    grado_sensibilidad              DECIMAL(5,2),
+
+    FOREIGN KEY (id_escenario) REFERENCES entradasEscenarios (id_escenario),
+)
 

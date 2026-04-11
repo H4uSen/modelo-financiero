@@ -1,4 +1,5 @@
-﻿using System;
+﻿using modelo_finanzas.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,9 +15,25 @@ namespace modelo_finanzas
 {
     public partial class FormSensibilidadFactibleVPN : Form
     {
-        public FormSensibilidadFactibleVPN()
+        private readonly DatosEntrada _entrada = new DatosEntrada();
+        private readonly DatosEscenarios _escenarios = new DatosEscenarios();
+        private readonly Variables _variables = new Variables();
+        private readonly List<Variables> _listaVariables = new List<Variables>();
+        private readonly    Amortizacion _amortizacion = new Amortizacion();
+        private readonly List<Amortizacion> _listaAmortizaciones = new List<Amortizacion>();
+        private readonly EstadoResultados _estadoResultados = new EstadoResultados();
+        private readonly List<EstadoResultados> _listaEstados = new List<EstadoResultados>();
+        private readonly CostoCapital _costoCapital = new CostoCapital();
+        private readonly FlujoCajaLibre _flujoCaja = new FlujoCajaLibre();
+        private readonly List<FlujoCajaLibre> _listaFlujos = new List<FlujoCajaLibre>();
+        private readonly FlujoCajaResultado _resultadoCajaLibre = new FlujoCajaResultado();
+        public FormSensibilidadFactibleVPN(DatosEntrada entrada, DatosEscenarios escenario, Variables variables, Amortizacion amortizacion)
         {
             InitializeComponent();
+            _entrada = entrada;
+            _escenarios = escenario;
+            _variables = variables;
+            _amortizacion = amortizacion;
             this.Load += FormSensibilidadFactibleVPN_Load;
         }
 
@@ -63,24 +80,41 @@ namespace modelo_finanzas
             dgvSensibilidad.Columns["ValorMaximo"].HeaderCell.Style.ForeColor = Color.Black;
 
         }
-
+        
         private void CargarDatosIniciales()
         {
+
             dgvSensibilidad.Rows.Clear();
 
+            SensibilidadFactibleVpn min = calcularFactibilidadVPN(-0.02m);
+
+            SensibilidadFactibleVpn actual = calcularFactibilidadVPN(0m);
+            SensibilidadFactibleVpn max = calcularFactibilidadVPN(0.02m);
+
             // Agregar variables fila por fila
-            AgregarVariable("PARTICIPACIÓN EN EL MERCADO", 0.035, 0.04, 0.042, 50000000, 49916443, 50000000, 50033423, true);
-            AgregarVariable("CRECIMIENTO DEL MERCADO", 0.018, 0.02, 0.024, 50000000, 48364833, 50000000, 53301789, true);
-            AgregarVariable("PRECIO DE VENTA", 7200, 7200, 7250, 50000000, 50000000, 50000000, 54627077, false);
-            AgregarVariable("COSTO DE PRODUCCIÓN", 3500, 3500, 3550, 50000000, 50000000, 50000000, 43577855, false);
-            AgregarVariable("INFLACIÓN - IPC", 0.03, 0.035, 0.038, 50000000, 47022810, 50000000, 51802909, true);
-            AgregarVariable("GASTOS OPERATIVOS", 0.23, 0.25, 0.25, 50000000, 68564988, 50000000, 50000000, true);
+            AgregarVariable("PARTICIPACIÓN EN EL MERCADO", min.ParticipacionMercado, actual.ParticipacionMercado, max.ParticipacionMercado, 
+                min.ParticipacionMercadoVpn, actual.ParticipacionMercadoVpn, max.ParticipacionMercadoVpn, actual.ParticipacionMercadoVpn, true);
+
+            AgregarVariable("CRECIMIENTO DEL MERCADO", min.CrecimientoMercado, actual.CrecimientoMercado, max.CrecimientoMercado, 
+                min.CrecimientoMercadoVpn, actual.CrecimientoMercadoVpn, max.CrecimientoMercadoVpn, actual.CrecimientoMercadoVpn, true);
+
+            AgregarVariable("PRECIO DE VENTA", min.PrecioVenta, actual.PrecioVenta, max.PrecioVenta, 
+                min.PrecioVentaVpn, actual.PrecioVentaVpn, max.PrecioVentaVpn, actual.PrecioVentaVpn, false);
+
+            AgregarVariable("COSTO DE PRODUCCIÓN", min.CostoProduccion, actual.CostoProduccion, max.CostoProduccion, 
+                min.CostoProduccionVpn, actual.CostoProduccionVpn, max.CostoProduccionVpn, actual.CostoProduccionVpn, false);
+
+            AgregarVariable("INFLACIÓN - IPC", min.InflacionAnual, actual.InflacionAnual, max.InflacionAnual, 
+                min.InflacionAnualVpn, actual.InflacionAnualVpn, max.InflacionAnualVpn, actual.InflacionAnualVpn, true);
+
+            AgregarVariable("GASTOS OPERATIVOS", min.GastosOperativos, actual.GastosOperativos, max.GastosOperativos, 
+                min.GastosOperativosVpn, actual.GastosOperativosVpn, max.GastosOperativosVpn, actual.GastosOperativosVpn, true);
 
 
         }
 
-        private void AgregarVariable(string nombre, double valMin, double valAct, double valMax,
-                                     double absMin, double absAct, double absMax, double absExtra, bool esPorcentaje)
+        private void AgregarVariable(string nombre, decimal valMin, decimal valAct, decimal valMax,
+                                     decimal absMin, decimal absAct, decimal absMax, decimal absExtra, bool esPorcentaje)
         {
             // Fila de valores 
             var fila = dgvSensibilidad.Rows.Add(nombre, valMin, valAct, valMax, "", "");
@@ -151,6 +185,143 @@ namespace modelo_finanzas
         private void t_Click(object sender, EventArgs e)
         {
             CalcularResultados();
+        }
+
+        private SensibilidadFactibleVpn calcularFactibilidadVPN(decimal paso)
+        { 
+            SensibilidadFactibleVpn sensibilidadFactible = new SensibilidadFactibleVpn();
+            CalculadorFinanciero calculador = new CalculadorFinanciero();
+            EscenarioFinanciero datos = _entrada.ToEscenarioFinanciero();
+            decimal vpnBase = (decimal)calculador.CalcularSoloVPN(datos,(double)datos.inflacionAnualIPC,(double)datos.objetivoMercado);
+            decimal vpnCalc = 0;
+
+            // Crecimiento del mercado
+            while (true)
+            {
+                datos.crecimientoMercado += (double)paso/10;
+                vpnCalc = (decimal)calculador.CalcularSoloVPN(datos, (double)datos.inflacionAnualIPC, (double)datos.objetivoMercado);
+                if(paso > 0)                {
+                    if (vpnCalc >= vpnBase)
+                        break;
+                }
+                else
+                {
+                    if (vpnCalc <= vpnBase)
+                        break;
+                }
+
+            }
+            sensibilidadFactible.CrecimientoMercado = (decimal)datos.crecimientoMercado;
+            sensibilidadFactible.CrecimientoMercadoVpn = vpnCalc;
+
+            // Participación de mercado
+            datos = _entrada.ToEscenarioFinanciero();
+            while (true)
+            {
+                datos.objetivoMercado += (double)paso/10;
+                vpnCalc = (decimal)calculador.CalcularSoloVPN(datos, (double)datos.inflacionAnualIPC, (double)datos.objetivoMercado);
+                if (paso > 0)
+                {
+                    if (vpnCalc >= vpnBase)
+                        break;
+                }
+                else
+                {
+                    if (vpnCalc <= vpnBase)
+                        break;
+                }
+            }
+            sensibilidadFactible.ParticipacionMercado = (decimal)datos.objetivoMercado;
+            sensibilidadFactible.ParticipacionMercadoVpn = vpnCalc;
+
+            //Precio venta
+            datos = _entrada.ToEscenarioFinanciero();
+            while (true)
+            {
+                datos.precioVentaInicial = datos.precioVentaInicial *(1 + (double)paso);
+                vpnCalc = (decimal)calculador.CalcularSoloVPN(datos, (double)datos.inflacionAnualIPC, (double)datos.objetivoMercado);
+                if (paso > 0)
+                {
+                    if (vpnCalc >= vpnBase)
+                        break;
+                }
+                else
+                {
+                    datos.precioVentaInicial = (double)_entrada.PrecioInicial;
+                    vpnCalc = vpnBase;
+                    break;
+                }
+            }
+            sensibilidadFactible.PrecioVenta = (decimal)datos.precioVentaInicial;
+            sensibilidadFactible.PrecioVentaVpn = vpnCalc;
+
+            // Costo producción
+            datos = _entrada.ToEscenarioFinanciero();
+            while (true) 
+            {
+                datos.costoProduccionUnitario = datos.costoProduccionUnitario * (1 + (double)paso);
+                vpnCalc = (decimal)calculador.CalcularSoloVPN(datos, (double)datos.inflacionAnualIPC, (double)datos.objetivoMercado);
+
+                if (paso > 0)
+                {
+                    if (vpnCalc <= vpnBase)
+                        break;
+                }
+                else
+                {
+                    datos.costoProduccionUnitario = (double)_entrada.CostoProduccionInicial;
+                    vpnCalc = vpnBase;
+                    break;
+                }
+            } 
+            sensibilidadFactible.CostoProduccion = (decimal)datos.costoProduccionUnitario;
+            sensibilidadFactible.CostoProduccionVpn = vpnCalc;
+
+            //IPC
+            datos = _entrada.ToEscenarioFinanciero();
+            while (true)
+            {
+                datos.inflacionAnualIPC += (double)paso / 10;
+                vpnCalc = (decimal)calculador.CalcularSoloVPN(datos, (double)datos.inflacionAnualIPC, (double)datos.objetivoMercado);
+                if (paso > 0)
+                {
+                    if (vpnCalc >= vpnBase)
+                        break;
+                }
+                else
+                {
+                    if (vpnCalc <= vpnBase)
+                        break;
+                }
+            } 
+            sensibilidadFactible.InflacionAnual = (decimal)datos.inflacionAnualIPC;
+            sensibilidadFactible.InflacionAnualVpn = vpnCalc;
+
+            //Gastos operativos
+            datos = _entrada.ToEscenarioFinanciero();
+            int i = 0;
+            while (true) 
+            {
+                datos.gastosOperativosPorc += (double)paso / 10;
+                vpnCalc = (decimal)calculador.CalcularSoloVPN(datos, (double)datos.inflacionAnualIPC, (double)datos.objetivoMercado);
+                if (paso > 0)
+                {
+                    if (vpnCalc >= vpnBase)
+                        break;
+                }
+                else
+                {
+                    if (vpnCalc <= vpnBase)
+                        break;
+                }
+                i++;
+                if (i > 7) break;
+            } 
+            sensibilidadFactible.GastosOperativos = (decimal)datos.gastosOperativosPorc;
+            sensibilidadFactible.GastosOperativosVpn = vpnCalc;
+
+
+            return sensibilidadFactible;
         }
     }
 }

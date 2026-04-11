@@ -36,15 +36,15 @@
             // dgvSensibilidad
             // 
             dgvSensibilidad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSensibilidad.Location = new Point(12, 12);
+            dgvSensibilidad.Location = new Point(2, -3);
             dgvSensibilidad.Name = "dgvSensibilidad";
             dgvSensibilidad.Size = new Size(776, 315);
             dgvSensibilidad.TabIndex = 0;
             // 
             // t
             // 
-            t.Anchor = AnchorStyles.Bottom;
-            t.Location = new Point(327, 333);
+            t.Anchor = AnchorStyles.Top;
+            t.Location = new Point(2, 318);
             t.Name = "t";
             t.Size = new Size(133, 41);
             t.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 381);
+            ClientSize = new Size(800, 366);
             Controls.Add(t);
             Controls.Add(dgvSensibilidad);
             Name = "FormSensibilidadFactibleVPN";

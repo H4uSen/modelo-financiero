@@ -37,6 +37,33 @@ namespace modelo_finanzas.Models
         public decimal GradienteFlujos   { get; set; }
         public decimal TasaImpuestos     { get; set; }
 
-
+        public EscenarioFinanciero ToEscenarioFinanciero()
+        {
+            return new EscenarioFinanciero
+            {
+                tamanoActualMercado = this.TamanioMercado,
+                crecimientoMercado = (double)this.CrecimientoMercado,
+                encuestasRealizadas = this.Encuestas,
+                manifestaronComprar = this.PersonasInteresadas,
+                objetivoMercado = (double)this.ObjetivoMercado,
+                precioVentaInicial = (double)this.PrecioInicial,
+                costoProduccionUnitario = (double)this.CostoProduccionInicial,
+                inflacionAnualIPC = (double)this.Inflacion,
+                incrementoRealPrecio = (double)this.IncrementoPrecio,
+                ippRealCostos = (double)this.Ipp,
+                tasaImpositiva = (double)this.TasaImpuestos,
+                inversionEquiposPorPunto = (double)this.InversionEquipos,
+                plazoDepreciacion = this.DepreciacionAnios,
+                porcentajeFinanciado = (double)this.PorcentajeDeuda,
+                plazoCredito = this.PlazoCredito,
+                gastosOperativosPorc = (double)this.GastosOperativos,
+                otrosIngresosPorc = (double)this.OtrosIngresos,
+                capitalTrabajoPorc = (double)this.CapitalTrabajo,
+                tasaLibreRiesgo = (double)this.TasaLibreRiesgo,
+                bUdelSector = (double)this.BetaSector,
+                primaRiesgoMercado = (double)this.PrimaRiesgoMercado,
+                gradienteFlujos = (double)this.GradienteFlujos
+            };
+        }
     }
 }

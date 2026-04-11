@@ -524,7 +524,7 @@ namespace modelo_finanzas
                 MessageBox.Show("Primero rellene los campos marcados.");
                 return;
             }
-            FormSensibilidadFactibleVPN formSensibilidad = new FormSensibilidadFactibleVPN();
+            FormSensibilidadFactibleVPN formSensibilidad = new FormSensibilidadFactibleVPN(entrada,escenarios,variables,amortizacion);
             formSensibilidad.Show();
         }
 
