@@ -82,8 +82,20 @@ namespace modelo_finanzas
             // Financiado con aportes = Inversión - Crédito
             double financiadoAportes = valorInversionInicial - financiadoCredito;
 
-            // Costo Deuda (Según tu nota en el TXT es 15.8%, pero usaremos la variable 17)
+            // Costo Deuda lo vamos a buscar según la tabla
+            // Usamos una estructura de 'if-else' que es muy eficiente para rangos fijos
             double costoDeudaProceso = 0.158;
+            if (porcentajeFinanciado >= 0 && porcentajeFinanciado <= 10) costoDeudaProceso = 0.15;
+            if (porcentajeFinanciado > 10 && porcentajeFinanciado <= 20) costoDeudaProceso = 0.148;
+            if (porcentajeFinanciado > 20 && porcentajeFinanciado <= 30) costoDeudaProceso = 0.152;
+            if (porcentajeFinanciado > 30 && porcentajeFinanciado <= 40) costoDeudaProceso = 0.158;
+            if (porcentajeFinanciado > 40 && porcentajeFinanciado <= 50) costoDeudaProceso = 0.168;
+            if (porcentajeFinanciado > 50 && porcentajeFinanciado <= 60) costoDeudaProceso = 0.182;
+            if (porcentajeFinanciado > 60 && porcentajeFinanciado <= 70) costoDeudaProceso = 0.20;
+            if (porcentajeFinanciado > 70 && porcentajeFinanciado <= 80) costoDeudaProceso = 0.22;
+
+
+            
             //Aquí termina la parte del PROCESO.
 
             //TODO: aquí comienza la parte de VARIABLES.
