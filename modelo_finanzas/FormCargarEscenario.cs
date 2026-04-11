@@ -109,6 +109,14 @@ namespace modelo_finanzas
             FormEntradaDatos frm = new FormEntradaDatos(escenario);
 
             frm.Show();
+
+            // Si el parent form existe (el MenuPrincipal), ocultarlo
+            Form menuPrincipal = Application.OpenForms.OfType<Prueba1.MenuPrincipal>().FirstOrDefault();
+            if (menuPrincipal != null)
+            {
+                menuPrincipal.Hide();
+            }
+
             this.Hide(); 
         }
     }

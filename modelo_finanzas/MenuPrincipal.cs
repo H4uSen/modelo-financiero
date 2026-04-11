@@ -91,5 +91,11 @@ namespace Prueba1
                 MessageBox.Show("No se pudo conectar a la base de datos. Verifique la configuración.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnComparar_Click(object sender, EventArgs e)
+        {
+            FormComparacionEscenarios comparacionEscenarios = new FormComparacionEscenarios();
+            comparacionEscenarios.Show();
+        }
     }
 }

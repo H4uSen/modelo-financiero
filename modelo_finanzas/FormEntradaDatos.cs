@@ -387,8 +387,16 @@ namespace modelo_finanzas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            MenuPrincipal menuPrincipal = new MenuPrincipal();
-            menuPrincipal.Show();
+            var menuPrincipal = Application.OpenForms.OfType<MenuPrincipal>().FirstOrDefault();
+            if (menuPrincipal != null)
+            {
+                menuPrincipal.Show();
+            }
+            else
+            {
+                new MenuPrincipal().Show();
+            }
+
             this.Close();
         }
 

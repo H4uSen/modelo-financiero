@@ -34,6 +34,7 @@
             panel1 = new Panel();
             label1 = new Label();
             btnTestConnection = new Button();
+            btnComparar = new Button();
             SuspendLayout();
             // 
             // btnIngresarDatos
@@ -51,7 +52,7 @@
             // btnCargarEscenario
             // 
             btnCargarEscenario.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCargarEscenario.Location = new Point(10, 163);
+            btnCargarEscenario.Location = new Point(10, 167);
             btnCargarEscenario.Margin = new Padding(3, 2, 3, 2);
             btnCargarEscenario.Name = "btnCargarEscenario";
             btnCargarEscenario.Size = new Size(289, 47);
@@ -63,10 +64,10 @@
             // btnSalir
             // 
             btnSalir.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalir.Location = new Point(12, 274);
+            btnSalir.Location = new Point(12, 296);
             btnSalir.Margin = new Padding(3, 2, 3, 2);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(276, 47);
+            btnSalir.Size = new Size(287, 47);
             btnSalir.TabIndex = 0;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
@@ -93,7 +94,7 @@
             // btnTestConnection
             // 
             btnTestConnection.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnTestConnection.Location = new Point(10, 214);
+            btnTestConnection.Location = new Point(10, 236);
             btnTestConnection.Margin = new Padding(3, 2, 3, 2);
             btnTestConnection.Name = "btnTestConnection";
             btnTestConnection.Size = new Size(289, 47);
@@ -102,11 +103,24 @@
             btnTestConnection.UseVisualStyleBackColor = true;
             btnTestConnection.Click += button1_Click_1;
             // 
+            // btnComparar
+            // 
+            btnComparar.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnComparar.Location = new Point(10, 95);
+            btnComparar.Margin = new Padding(3, 2, 3, 2);
+            btnComparar.Name = "btnComparar";
+            btnComparar.Size = new Size(289, 47);
+            btnComparar.TabIndex = 5;
+            btnComparar.Text = "Comparar escenarios";
+            btnComparar.UseVisualStyleBackColor = true;
+            btnComparar.Click += btnComparar_Click;
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(740, 372);
+            Controls.Add(btnComparar);
             Controls.Add(btnTestConnection);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -132,5 +146,6 @@
         private Button bntVariables;
         private Button button2;
         private Label label1;
+        private Button btnComparar;
     }
 }

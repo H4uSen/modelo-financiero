@@ -42,7 +42,8 @@ namespace modelo_finanzas
             dgvSensibilidad.Dock = DockStyle.Fill;
             ConfigurarDataGrid();
             CargarDatosIniciales();
-            //CalcularResultados();
+            
+            CalcularResultados();
         }
 
         private void ConfigurarDataGrid()
