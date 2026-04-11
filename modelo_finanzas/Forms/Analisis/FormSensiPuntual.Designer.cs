@@ -62,7 +62,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv.RowHeadersVisible = false;
-            dgv.Size = new Size(651, 468);
+            dgv.Size = new Size(651, 467);
             dgv.TabIndex = 0;
             // 
             // Concepto
@@ -153,7 +153,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(655, 575);
+            ClientSize = new Size(655, 565);
             Controls.Add(label2);
             Controls.Add(txtPorcentaje);
             Controls.Add(btnCalcular);
